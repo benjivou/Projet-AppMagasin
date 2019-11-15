@@ -6,6 +6,3 @@ zduiazuoehoa
 ahazgiuazhgea
 azgeiazgeiageia
 iazgdiuagzid
-
-
-Byyyyyyyyyyyyyyyyeeeeeeeeee
