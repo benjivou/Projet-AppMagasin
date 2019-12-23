@@ -12,9 +12,9 @@ import com.example.myapplication.R;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class catalogFragment extends Fragment {
+public class CatalogFragment extends Fragment {
 
-    public catalogFragment() {
+    public CatalogFragment() {
     }
 
     @Override
