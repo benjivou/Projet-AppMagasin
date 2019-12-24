@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import com.example.myapplication.R;
 
+import static com.example.myapplication.controller.util.DisplayUtil.displayError;
+
 
 public class LoginActivity extends Activity  {
     Button b1,b2;
@@ -37,10 +39,11 @@ public class LoginActivity extends Activity  {
             public void onClick(View v) {
                 if(ed1.getText().toString().equals("admin") &&
                         ed2.getText().toString().equals("admin")) {
-                    Toast.makeText(getApplicationContext(),
-                            "Redirecting...",Toast.LENGTH_SHORT).show();
+                    displayError("Redirecting...",
+                            getApplicationContext());
                 }else{
-                    Toast.makeText(getApplicationContext(), "Wrong Credentials",Toast.LENGTH_SHORT).show();
+                    displayError("Wrong Credentials",
+                            getApplicationContext());
 
 
                     counter--;
