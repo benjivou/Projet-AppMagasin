@@ -6,17 +6,15 @@ public class EntityArticle {
     private String name;
     private int quantity;
     private float price;
-    private EntityRayon rayon;
 
     public EntityArticle(){}
 
-    public EntityArticle(int idArticle, String name, float price, int quantity, EntityRayon rayon){
+    public EntityArticle(int idArticle, String name, float price, int quantity){
 
         this.idArticle = idArticle;
         this.name = name;
         this.price = price;
         this.quantity = quantity;
-        this.rayon = rayon;
     }
 
     public int getIdArticle() {
@@ -50,15 +48,7 @@ public class EntityArticle {
     public void setPrice(float price) {
         this.price = price;
     }
-
-
-    public EntityRayon getRayon() {
-        return rayon;
-    }
-
-    public void setRayon(EntityRayon rayon) {
-        this.rayon = rayon;
-    }
+    
 
 
 }
