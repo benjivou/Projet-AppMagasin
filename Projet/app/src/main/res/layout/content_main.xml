@@ -9,20 +9,39 @@
     tools:showIn="@layout/activity_student_list"
     android:layout_marginBottom="8dp">
 
-    <TextView
-        android:id="@+id/summaryTextView"
+
+
+    <Button
+        android:id="@+id/btModeProduct"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:text="@string/database_summary"
-        android:padding="8dp"/>
+        android:text="@string/product_list"
+        android:background="@color/clicked"
+        >
+
+    </Button>
+
+    <Button
+        android:id="@+id/btModeEmployee"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/btModeProduct"
+        android:text="@string/subject_list"
+        android:background="@color/wait_clicked">
+
+    </Button>
+
+
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/summaryTextView"
+        app:layout_constraintTop_toBottomOf="@id/btModeProduct"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="16dp">

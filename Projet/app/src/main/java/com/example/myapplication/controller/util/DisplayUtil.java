@@ -13,7 +13,7 @@ import static com.example.myapplication.config.ConfigFront.*;
 public class DisplayUtil {
 
     /**
-     * Prepare the error message
+     * Display the error message
      * @param msg the error message
      * @param context the Activity context
      */
@@ -25,5 +25,17 @@ public class DisplayUtil {
                     Toast.LENGTH_SHORT
             ).show();
         }
+    }
+
+    /**
+     * Log the the user to the Activity
+     * @param login
+     * @param password
+     * @return
+     */
+    public static boolean loginProcess(String login, String password){
+        boolean resultat = false;
+
+        return resultat;
     }
 }

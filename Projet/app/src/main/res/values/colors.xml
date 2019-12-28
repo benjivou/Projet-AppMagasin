@@ -8,5 +8,7 @@
     
     <color name="black_overlay">#66000000</color>
 
+    <color name="clicked">#FF4081</color>
+    <color name="wait_clicked">#FFA081</color>
 
 </resources>

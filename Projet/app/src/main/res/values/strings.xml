@@ -20,8 +20,8 @@
     <string name="student_information">Student Information</string>
     <string name="name">Name</string>
     <string name="registration_no_with_color">Registration Number: </string>
-    <string name="subject_list">Subject List</string>
-    <string name="student_list">Student List</string>
+    <string name="subject_list">Employers</string>
+    <string name="product_list">Produit</string>
     <string name="database_summary">Total Student: %1$d. Total Subject: %2$d</string>
 
     <!-- TODO: Remove or change this placeholder text -->
