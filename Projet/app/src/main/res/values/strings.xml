@@ -15,17 +15,32 @@
     <string name="edit_button_description">Edit Single student information</string>
     <string name="subject_name">Subject Name</string>
     <string name="subject_code">Subject Code</string>
-    <string name="subject_credit">Subject Credit</string>
-    <string name="add_new_subject">Add New Subject</string>
-    <string name="student_information">Student Information</string>
-    <string name="name">Name</string>
-    <string name="registration_no_with_color">Registration Number: </string>
-    <string name="subject_list">Employers</string>
-    <string name="product_list">Produit</string>
-    <string name="database_summary">Total Student: %1$d. Total Subject: %2$d</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="update_button">Update</string>
+
+    <string name="subject_list">Employers</string>
+    <string name="userfield_sex">Sexe</string>
+    <string name="userfield_sex_m">M</string>
+    <string name="userfield_sex_f">F</string>
+    <string name="userfield_name">Nom</string>
+    <string name="userfield_aisle">Rayon</string>
+    <string name="userfield_id">Matricule</string>
+
+    <string name="product_list">Produit</string>
+    <string name="prductfield_name">Nom</string>
+    <string name="prductfield_quantity">Quantité</string>
+    <string name="prductfield_aisle">Rayon</string>
+    <string name="prductfield_price">Prix</string>
+
+
+    <string name="error_userfield_aisle">Rayon à définir</string>
+    <string name="error_userfield_name">Nom à définir</string>
+    <string name="error_userfield_sex">Sexe à définir</string>
+    <string name="error_userfield_id">Matricule déja utilisé</string>
+
+    <string name="error_productfield_quantité">Quantité négative </string>
+    <string name="error_productfield_prix">Prix négatif</string>
+
+
+
 
 </resources>
