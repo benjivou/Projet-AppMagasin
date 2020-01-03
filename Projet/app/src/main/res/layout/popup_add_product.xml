@@ -13,24 +13,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.25"
-            android:text="@string/userfield_sex" />
+            android:text="@string/prductfield_name" />
 
-        <RadioGroup
+        <EditText
+            android:id="@+id/txtName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.75"
-            android:orientation="horizontal">
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="@string/userfield_sex_f"
-                android:layout_weight="0.5"/>
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="0.5"
-                android:text="@string/userfield_sex_m"></RadioButton>
-        </RadioGroup>
+            android:ems="10" />
 
 
     </LinearLayout>
@@ -44,10 +34,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.25"
-            android:text= "@string/userfield_name"/>
+            android:text= "@string/prductfield_aisle"/>
 
         <EditText
-            android:id="@+id/name"
+            android:id="@+id/txtAisle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.75"
@@ -64,10 +54,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.25"
-            android:text="@string/userfield_aisle" />
+            android:text="@string/prductfield_quantity" />
 
         <EditText
-            android:id="@+id/txtPublisher"
+            android:id="@+id/txtQuantité"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.75"
@@ -84,7 +74,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="0.25"
-            android:text="@string/userfield_id" />
+            android:text="@string/prductfield_price" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -94,7 +84,7 @@
             android:gravity="center">
 
             <EditText
-                android:id="@+id/txtIsbn"
+                android:id="@+id/txtPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="5" />

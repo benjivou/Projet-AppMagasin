@@ -39,8 +39,9 @@
 
     <string name="error_productfield_quantité">Quantité négative </string>
     <string name="error_productfield_prix">Prix négatif</string>
-
-
+    <string name="new_aisle">Nouveau Rayon</string>
+    <string name="prductfield_ref">Ref</string>
+    <string name="none">none</string>
 
 
 </resources>
