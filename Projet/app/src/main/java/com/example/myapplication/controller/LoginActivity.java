@@ -17,7 +17,7 @@ import static com.example.myapplication.controller.util.DisplayUtil.displayError
 
 
 public class LoginActivity extends Activity  {
-    ImageButton b1,b2;
+    ImageButton b1;
     EditText ed1,ed2;
 
 
@@ -47,7 +47,7 @@ public class LoginActivity extends Activity  {
                             getBaseContext());
 
 
-                    
+
                 }
             }
         });
