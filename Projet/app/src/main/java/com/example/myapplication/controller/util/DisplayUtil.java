@@ -18,11 +18,11 @@ public class DisplayUtil {
      * @param context the Activity context
      */
     public static void displayError(String msg, Context context){
-        for (int i = 0 ; i < DURATION_ERROR_MESSAGES-1; i ++ ) {
+        for (int i = 0 ; i < DURATION_ERROR_MESSAGES; i ++ ) {
             Toast.makeText(
                     context,
                     msg,
-                    Toast.LENGTH_LONG
+                    Toast.LENGTH_SHORT
             ).show();
         }
     }
