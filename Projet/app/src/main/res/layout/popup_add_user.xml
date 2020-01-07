@@ -66,8 +66,8 @@
             android:layout_weight="0.25"
             android:text="@string/userfield_aisle" />
 
-        <EditText
-            android:id="@+id/txtPublisher"
+        <Spinner
+        android:id="@+id/txtPublisher"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.75"

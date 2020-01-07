@@ -86,7 +86,7 @@
             android:orientation="horizontal"
             android:gravity="center">
 
-            <TextView
+            <Spinner
                 android:id="@+id/txtPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

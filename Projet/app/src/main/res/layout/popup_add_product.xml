@@ -36,7 +36,7 @@
             android:layout_weight="0.25"
             android:text= "@string/prductfield_aisle"/>
 
-        <EditText
+        <Spinner
             android:id="@+id/txtAisle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
