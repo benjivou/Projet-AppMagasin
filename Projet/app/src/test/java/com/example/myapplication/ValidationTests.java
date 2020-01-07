@@ -1,14 +1,11 @@
 package com.example.myapplication;
 
+import com.example.myapplication.config.ConfigFront;
 import com.example.myapplication.config.passwordvalidator.PasswordValidator;
-import com.example.myapplication.config.passwordvalidator.RegexValidationRule;
-import com.example.myapplication.config.passwordvalidator.ValidationResult;
-import com.example.myapplication.config.passwordvalidator.ValidationRule;
+
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import org.junit.Test;
 
@@ -63,6 +60,12 @@ public class ValidationTests {
 		assertEquals(pv.validate("@#$#$"), false);
 		assertEquals(pv.validate("1Aabc"), false);
 		assertEquals(pv.validate("Ab1i;;ekn"),true);
+
+	}
+	public  void testErrorMessage(){
+		PasswordValidator pv = new PasswordValidator();
+		assertEquals(pv.validateWithMessages("123aaaaa").equals(ConfigFront.ERROR_CREATION_PASSWORD_CORRESPONDANCE_PROBLEM), false);
+		assertEquals(pv.validateWithMessages("123aaaaa").equals(ConfigFront.ERROR_CREATION_PASSWORD_MISSING_MAJ), true);
 	}
 	
 }

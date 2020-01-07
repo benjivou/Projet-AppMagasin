@@ -3,6 +3,8 @@
  */
 package com.example.myapplication.config.passwordvalidator;
 
+import com.example.myapplication.config.ConfigFront;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,10 +63,10 @@ public class PasswordValidator {
 		List<ValidationRule> returnValue = new ArrayList<ValidationRule>();
 
 
-		returnValue.add(new RegexValidationRule(".*[a-z].*", DefaultValidatorMessages.LOWERCASE_AND_NUMBERS));
-		returnValue.add(new RegexValidationRule(".*[A-Z].*", DefaultValidatorMessages.LOWERCASE_AND_NUMBERS));
-		returnValue.add(new RegexValidationRule(".*[^[A-Za-z]].*", DefaultValidatorMessages.LOWERCASE_AND_NUMBERS));
-		returnValue.add(new RegexValidationRule(".{8,20}", DefaultValidatorMessages.FIVE_AND_TWELVE));
+		returnValue.add(new RegexValidationRule(".*[a-z].*", ConfigFront.ERROR_CREATION_PASSWORD_MISSING_MIN));
+		returnValue.add(new RegexValidationRule(".*[A-Z].*", ConfigFront.ERROR_CREATION_PASSWORD_MISSING_MAJ));
+		returnValue.add(new RegexValidationRule(".*[^[A-Za-z]].*", ConfigFront.ERROR_CREATION_PASSWORD_MISSING_SPECIAL));
+		returnValue.add(new RegexValidationRule(".{8,20}", ConfigFront.ERROR_CREATION_PASSWORD_LENGTH_PROBLEM));
 		return returnValue;
 	}
 
