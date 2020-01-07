@@ -1,15 +1,11 @@
 package com.example.myapplication.controller;
 
 import android.app.Activity;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.myapplication.R;
 
@@ -29,7 +25,7 @@ public class LoginActivity extends Activity  {
         setContentView(R.layout.activity_login_frame);
 
         b1 = (ImageButton)findViewById(R.id.button);
-        ed1 = (EditText)findViewById(R.id.editText);
+        ed1 = (EditText)findViewById(R.id.password);
         ed2 = (EditText)findViewById(R.id.editText2);
 
 
