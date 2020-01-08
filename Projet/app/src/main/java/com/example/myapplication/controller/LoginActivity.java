@@ -24,9 +24,9 @@ public class LoginActivity extends Activity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_frame);
 
-        b1 = (ImageButton)findViewById(R.id.button);
-        ed1 = (EditText)findViewById(R.id.password);
-        ed2 = (EditText)findViewById(R.id.editText2);
+        b1 = (ImageButton)findViewById(R.id.btnSubmit);
+        ed1 = (EditText)findViewById(R.id.login);
+        ed2 = (EditText)findViewById(R.id.password);
 
 
 
