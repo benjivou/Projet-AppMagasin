@@ -2,7 +2,7 @@ package com.example.myapplication.config;
 
 public class ConfigFront {
 
-    public static final int DURATION_ERROR_MESSAGES  = 3; // 3 *2 sec long
+    public static final int DURATION_ERROR_MESSAGES  = 1; // 3 *2 sec long
 
     // Error messages
     public static final String ERROR_CREATION_PASSWORD_MISSING_MAJ="Il faut 1 Majuscule";

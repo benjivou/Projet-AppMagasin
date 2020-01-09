@@ -24,7 +24,7 @@ public class DisplayUtil {
             Toast.makeText(
                     context,
                     msg,
-                    Toast.LENGTH_SHORT
+                    Toast.LENGTH_LONG
             ).show();
         }
     }
