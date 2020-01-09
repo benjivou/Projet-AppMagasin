@@ -1,40 +1,52 @@
 package DAO;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 
 
-public abstract class DatabaseQueryDao <T> {
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 
 
 
-    protected Connection conn;
+public class DatabaseQueryDao  extends SQLiteOpenHelper {
 
-    /*Constructor*/
+    //propreties
 
-    public DatabaseQueryDao(){
-        initConnection();
+    private String create = "create table Employee ("
+            + "idEmployee INTEGER PRIMARY KEY,"
+            + "name TEXT NOT NULL,"
+            + "sex TEXT NOT NULL,"
+            + "password TEXT NOT NULL,"
+            + "role TEXT NOT NULL); ";
+
+
+    /**
+     * Constructor
+     * @param context
+     * @param name
+     * @param factory
+     * @param version
+     */
+    public DatabaseQueryDao( Context context,String name, SQLiteDatabase.CursorFactory factory, int version) {
+        super(context, name, factory, version);
     }
 
-    protected void initConnection() {
-
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException ex1) {
-            System.exit(1);
-        }
-        try {
-            String serverName = "localhost";
-            String mydatabase = "tpbdnote";
-            String url = "jdbc:mysql://" + serverName + "/" + mydatabase+"?serverTimezone=UTC";
-
-            String username = "root";
-            String password = "";
-            conn=DriverManager.getConnection(url,username,password);
-        }catch (SQLException ex2) {
-            System.exit(1);
-        }
+    /**
+     * If we change bdd
+     * @param db
+     */
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+         db.execSQL(create);
     }
 
+    /**
+     * If we change the version
+     * @param db
+     * @param oldVersion
+     * @param newVersion
+     */
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
+    }
 }

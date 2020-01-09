@@ -6,11 +6,13 @@ public class EntityEmployee {
     private String name;
     private String sex;
     private String password;
-    private EntityRole role;
+
+    //private EntityRole role;
+    private String role;
 
     public EntityEmployee(){}
 
-    public EntityEmployee(int idEmployee, String name, String sex, String password, EntityRole role){
+    public EntityEmployee(int idEmployee, String name, String sex, String password, String role){
         this.idEmployee = idEmployee;
         this.name = name;
         this.sex = sex;
@@ -51,13 +53,21 @@ public class EntityEmployee {
         this.password = password;
     }
 
-    public EntityRole getRole() {
+    /*public EntityRole getRole() {
         return role;
     }
 
     public void setRole(EntityRole role) {
         this.role = role;
+    }*/
+
+
+    public String getRole() {
+        return role;
     }
 
+    public void setRole(String role) {
+        this.role = role;
+    }
 
 }
