@@ -5,6 +5,8 @@ import android.widget.Toast;
 
 import com.example.myapplication.BuildConfig;
 
+import java.util.Map;
+
 import static com.example.myapplication.config.ConfigFront.*;
 
 /**
@@ -31,11 +33,29 @@ public class DisplayUtil {
      * Log the the user to the Activity
      * @param login
      * @param password
-     * @return
+     * @return First : isIt the good pair login password ?
+     *          Second : is it the first connexion ?
      */
-    public static boolean loginProcess(String login, String password){
-        boolean resultat = false;
+    public static boolean[] loginProcess(String login, String password){
+        boolean[] resultat = {false,false};
+        String truePassword = "";
+
+        /*
+        Step 1 : get the code from the bdd
+         */
+        // TO-DO
+        if (login.equals("root"))
+            truePassword = DEFAULT_PASSWORD;
+
+
+        /*
+        Step 2 : check the password
+         */
+        resultat[0] = password.equals(truePassword);
+        resultat[1] = truePassword.equals(DEFAULT_PASSWORD);
+
 
         return resultat;
     }
+
 }
