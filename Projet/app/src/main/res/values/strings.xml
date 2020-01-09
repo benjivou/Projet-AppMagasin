@@ -1,6 +1,47 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">StoreManager</string>
+    <string name="action_settings">action setttings</string>
+    <string name="title_activity_create_subject">CreateSubjectActivity</string>
+    <string name="registration_no">Registration No</string>
+    <string name="email">Email</string>
+    <string name="phone">Phone</string>
+    <string name="cross_image_content_description">Delete student from SQLite database</string>
+    <string name="empty_list_message">List is Empty!</string>
+    <string name="student_name">Student Name</string>
+    <string name="update">Update</string>
+    <string name="cancel_button">Cancel</string>
+    <string name="create_button">Create</string>
+    <string name="all_delete">All Delete</string>
+    <string name="edit_button_description">Edit Single student information</string>
+    <string name="subject_name">Subject Name</string>
+    <string name="subject_code">Subject Code</string>
 
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="subject_list">Employers</string>
+    <string name="userfield_sex">Sexe</string>
+    <string name="userfield_sex_m">M</string>
+    <string name="userfield_sex_f">F</string>
+    <string name="userfield_name">Nom</string>
+    <string name="userfield_aisle">Rayon</string>
+    <string name="userfield_id">Matricule</string>
+
+    <string name="product_list">Produit</string>
+    <string name="prductfield_name">Nom</string>
+    <string name="prductfield_quantity">Quantité</string>
+    <string name="prductfield_aisle">Rayon</string>
+    <string name="prductfield_price">Prix</string>
+
+
+    <string name="error_userfield_aisle">Rayon à définir</string>
+    <string name="error_userfield_name">Nom à définir</string>
+    <string name="error_userfield_sex">Sexe à définir</string>
+    <string name="error_userfield_id">Matricule déja utilisé</string>
+
+    <string name="error_productfield_quantité">Quantité négative </string>
+    <string name="error_productfield_prix">Prix négatif</string>
+    <string name="new_aisle">Nouveau Rayon</string>
+    <string name="prductfield_ref">Ref</string>
+    <string name="none">none</string>
+
+
 </resources>

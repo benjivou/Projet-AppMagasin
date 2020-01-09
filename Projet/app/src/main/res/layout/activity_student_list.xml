@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_shadow"
+    tools:context=".Features.StudentCRUD.ShowStudentList.StudentListActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="55dp"
+            android:layout_gravity="right">
+
+            <ImageButton
+                android:id="@+id/btShoppingBasket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+
+                android:src="@drawable/ic_shopping_basket_black_24dp"></ImageButton>
+
+            <ImageButton
+                android:id="@+id/btReload"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/btShoppingBasket"
+
+                android:src="@drawable/ic_reload_black_24dp"></ImageButton>
+
+            <ImageButton
+                android:id="@+id/btPlus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/btBrowsing"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_plus_symbol"></ImageButton>
+
+            <ImageButton
+                android:id="@+id/btBrowsing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_find_replace_black_24dp"
+                android:layout_alignParentRight="true">
+
+            </ImageButton>
+
+        </LinearLayout>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/userInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login"
+
+            ></TextView>
+
+
+    </LinearLayout>
+
+    <include layout="@layout/content_main" />
+
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
