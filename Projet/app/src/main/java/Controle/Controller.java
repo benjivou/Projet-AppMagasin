@@ -17,9 +17,15 @@ public class Controller {
 
             Controller.instance = new Controller();
             accesLocal = new AccesLocal(context);
-            employee = accesLocal
+            employee = accesLocal.getLastEmployee();
         }
 
         return Controller.instance;
+    }
+
+    public void createEmployee(int idEmployee,String name,String sex, String password,String role){
+
+        employee = new EntityEmployee(idEmployee,name,sex,password,role);
+        accesLocal.add(employee);
     }
 }
