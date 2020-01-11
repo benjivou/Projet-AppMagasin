@@ -11,16 +11,19 @@ import android.widget.ImageButton;
 import com.example.myapplication.R;
 import com.example.myapplication.config.ConfigFront;
 
+import com.example.myapplication.dao.EmployeeDAO;
 import com.example.myapplication.model.EntityEmployee;
 
 import static com.example.myapplication.config.ConfigFront.USERNAME_SESSION;
 import static com.example.myapplication.controller.util.DisplayUtil.displayError;
+import static com.example.myapplication.controller.util.DisplayUtil.initBDD;
 import static com.example.myapplication.controller.util.DisplayUtil.loginProcess;
 
 
 public class LoginActivity extends Activity  {
     ImageButton mButton;
     EditText mLogin,mPassword;
+
 
 
     int counter = 3;
@@ -30,9 +33,13 @@ public class LoginActivity extends Activity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_frame);
 
+        /*
+        Connect the View
+         */
         mButton = (ImageButton)findViewById(R.id.btnSubmit);
         mLogin = (EditText)findViewById(R.id.login);
         mPassword = (EditText)findViewById(R.id.password);
+
 
 
 
@@ -72,7 +79,10 @@ public class LoginActivity extends Activity  {
             }
         });
 
-
+        /*
+        Retrieve the
+         */
+        initBDD();
     }
 
     private void changeActivity(boolean isFirstConnection){

@@ -4,10 +4,13 @@ import android.content.Context;
 import android.widget.Toast;
 
 import com.example.myapplication.BuildConfig;
+import com.example.myapplication.dao.EmployeeDAO;
+import com.example.myapplication.model.EntityEmployee;
 
 import java.util.Map;
 
 import static com.example.myapplication.config.ConfigFront.*;
+import static com.example.myapplication.dao.roleDAO.ADMIN;
 
 /**
  * Prepare some methods use in the front
@@ -56,6 +59,25 @@ public class DisplayUtil {
 
 
         return resultat;
+    }
+
+
+    public  static void initBDD(){
+        EmployeeDAO employeeDAO = new EmployeeDAO();
+
+        /*
+        First Use of the APP
+         */
+        if (employeeDAO.getSize() == 0 ){
+            employeeDAO.add(
+                    new EntityEmployee(
+                            0,
+                            "root",
+                            "M",
+                            ADMIN.getSring()
+                    )
+            );
+        }
     }
 
 }

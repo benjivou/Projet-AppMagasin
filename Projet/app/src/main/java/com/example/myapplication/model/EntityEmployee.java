@@ -7,6 +7,15 @@ public class EntityEmployee extends SearchebleImplement{
     private int idEmployee;
     private String name;
     private String sex;
+
+    public EntityEmployee(int idEmployee, String name, String sex, String password, String role) {
+        this.idEmployee = idEmployee;
+        this.name = name;
+        this.sex = sex;
+        this.password = password;
+        this.role = role;
+    }
+
     private String password;
 
     //private EntityRole role;
@@ -21,6 +30,8 @@ public class EntityEmployee extends SearchebleImplement{
         this.password = DEFAULT_PASSWORD;
         this.role = role;
     }
+
+
 
     /*Getters  & Setters*/
     public int getIdEmployee() {

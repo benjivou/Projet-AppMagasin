@@ -35,5 +35,13 @@ public abstract class Dao <T extends SearchebleImplement>{
           this.mFileManager.update();
      }
 
+     /**
+      * get the number of element we have in the BDD
+      * @return
+      */
+     public int getSize(){
+          return this.mFileManager.read().size();
+     }
+
 
 }

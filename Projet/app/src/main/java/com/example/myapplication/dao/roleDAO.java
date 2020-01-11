@@ -9,7 +9,8 @@ public enum roleDAO {
         this.str = str;
     }
 
-    public String getStr() {
+
+    public String getSring() {
         return str;
     }
 }
