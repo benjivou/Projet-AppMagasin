@@ -1,6 +1,6 @@
 package com.example.myapplication.model;
 
-public class EntityEmployee {
+public class EntityEmployee extends SearchebleImplement{
 
     private int idEmployee;
     private String name;
@@ -31,6 +31,11 @@ public class EntityEmployee {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public int getUniqueKey() {
+        return this.idEmployee;
     }
 
     public void setName(String name) {

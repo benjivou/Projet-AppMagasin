@@ -114,7 +114,7 @@ public class FileManager<T> {
     }
 
     /**
-     * Realese the update on the Db
+     * update the Db
      */
     public void update(){
         File myFile = null;
