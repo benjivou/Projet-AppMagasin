@@ -1,5 +1,7 @@
 package com.example.myapplication.model;
 
+import static com.example.myapplication.config.ConfigFront.DEFAULT_PASSWORD;
+
 public class EntityEmployee extends SearchebleImplement{
 
     private int idEmployee;
@@ -12,11 +14,11 @@ public class EntityEmployee extends SearchebleImplement{
 
     public EntityEmployee(){}
 
-    public EntityEmployee(int idEmployee, String name, String sex, String password, String role){
+    public EntityEmployee(int idEmployee, String name, String sex,  String role){
         this.idEmployee = idEmployee;
         this.name = name;
         this.sex = sex;
-        this.password = password;
+        this.password = DEFAULT_PASSWORD;
         this.role = role;
     }
 
