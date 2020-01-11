@@ -4,9 +4,7 @@ import com.example.myapplication.model.EntityArticle;
 
 import java.io.IOException;
 
-import static com.example.myapplication.config.ConfigDAO.AISLE;
 import static com.example.myapplication.config.ConfigDAO.ARTICLE;
-import static com.example.myapplication.config.ConfigDAO.EMPLOYEE;
 import static com.example.myapplication.config.ConfigDAO.FOLDER;
 
 

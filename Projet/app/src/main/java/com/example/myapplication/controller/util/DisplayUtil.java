@@ -51,7 +51,7 @@ public class DisplayUtil {
         /*
         Step 2 : check the password
          */
-        resultat[0] = password.equals(truePassword);
+        resultat[0] =  !(truePassword.equals("")) &&  password.equals(truePassword);
         resultat[1] = truePassword.equals(DEFAULT_PASSWORD);
 
 

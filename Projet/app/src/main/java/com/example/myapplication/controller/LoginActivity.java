@@ -51,7 +51,7 @@ public class LoginActivity extends Activity  {
                 /*
                 Step 2 : result
                  */
-                if(process[0]) {
+                if(process[0] == true) {
                     displayError("Redirecting...",
                             getBaseContext());
 
