@@ -11,7 +11,7 @@ import android.widget.ImageButton;
 import com.example.myapplication.R;
 import com.example.myapplication.config.ConfigFront;
 
-import Model.EntityEmployee;
+import com.example.myapplication.model.EntityEmployee;
 
 import static com.example.myapplication.config.ConfigFront.USERNAME_SESSION;
 import static com.example.myapplication.controller.util.DisplayUtil.displayError;

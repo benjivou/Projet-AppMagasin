@@ -4,8 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import DAO.DatabaseQueryDao;
-import Model.EntityEmployee;
+import com.example.myapplication.model.EntityEmployee;
 
 public class AccesLocal {
 
