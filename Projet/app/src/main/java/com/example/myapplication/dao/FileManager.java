@@ -1,5 +1,6 @@
 package com.example.myapplication.dao;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -11,15 +12,14 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 
-import static androidx.constraintlayout.widget.Constraints.TAG;
 
-
-public class FileManager<T> {
-
+public class FileManager<T>  {
+    private static final String TAG = "FileManager";
     private final static GsonBuilder gsonBuilder = new GsonBuilder();
     private final static Gson gson = gsonBuilder.create();
 
@@ -34,25 +34,10 @@ public class FileManager<T> {
 
         this.mType = new TypeToken<ArrayList<T>>(){}.getType();
         this.path = path;
-
-        File yourFile = new File(path);
-        String content = "";
-        FileInputStream inFile = null;
-
-        /* Step 1 : create the file if it isn't exist */
-        try {
-            yourFile.createNewFile(); // if file already exists will do nothing
-        } catch (FileNotFoundException e) {
-            Log.d(TAG, "The file cannot be create");
-            throw (e);
-        } catch (IOException e) {
-            e.printStackTrace();
-            throw (e);
-        }
-
         init();
 
     }
+
 
     /**
      * @brief Deserialize all elements from the file
@@ -68,36 +53,42 @@ public class FileManager<T> {
 
         /* Step 2: read the number of elements in the file*/
         FileInputStream inFile = null;
-        try {
-            inFile = new FileInputStream(yourFile);
+        if(yourFile.exists()) {
+            try {
+                inFile = new FileInputStream(yourFile);
 
             /*
         Step 2 : Get by char the file content
             */
 
-            while ((intChar = inFile.read()) != -1) {
+                while ((intChar = inFile.read()) != -1) {
 
-                content += (char) intChar;
-            }
+                    content += (char) intChar;
+                }
 
-            try {
-                inFile.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+                try {
+                    inFile.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
         /*
         Step 3 : Deserialize & open the access
          */
 
 
-            Log.d(TAG, "init: \"in the file : " + content );
-            this.list = gson.fromJson(content, this.mType);
+                Log.d(TAG, "init: \"in the file : " + content);
+                this.list = gson.fromJson(content, this.mType);
 
 
-        } catch (FileNotFoundException e) {
-            Log.d(TAG, "init: (\"File U search was " + yourFile.toString());
-            e.printStackTrace();
+            } catch (FileNotFoundException e) {
+                Log.d(TAG, "init: (\"File U search was " + yourFile.toString());
+                e.printStackTrace();
+            }
+        }
+        else
+        {
+            // do nothing
         }
 
 
@@ -126,9 +117,7 @@ public class FileManager<T> {
 
         try {
 
-            myFile = new File(this.path);
-            outFile = new FileWriter(myFile,false);     // open file
-
+            // write the contents on mySettings to the file
 
             gson.toJson(list, outFile);                         // save
             outFile.close();
@@ -138,4 +127,12 @@ public class FileManager<T> {
 
     }
 
+    @Override
+    public String toString() {
+        return "FileManager{" +
+                "mType=" + mType +
+                ", path='" + path + '\'' +
+                ", list=" + list +
+                '}';
+    }
 }

@@ -1,11 +1,15 @@
 package com.example.myapplication.dao;
 
+import android.app.Service;
+import android.content.Context;
+
 import com.example.myapplication.model.SearchebleImplement;
 
 import java.util.ArrayList;
 
-public abstract class Dao <T extends SearchebleImplement>{
+public abstract class Dao <T extends SearchebleImplement> /*extends Service*/ {
      protected FileManager<T> mFileManager ;
+     protected String mPath;
 
      public void add(T t){
           ArrayList<T> list =  this.mFileManager.read();

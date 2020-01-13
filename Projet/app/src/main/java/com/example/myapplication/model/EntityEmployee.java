@@ -88,4 +88,14 @@ public class EntityEmployee extends SearchebleImplement{
         this.role = role;
     }
 
+    @Override
+    public String toString() {
+        return "EntityEmployee{" +
+                "idEmployee=" + idEmployee +
+                ", name='" + name + '\'' +
+                ", sex='" + sex + '\'' +
+                ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
+                '}';
+    }
 }

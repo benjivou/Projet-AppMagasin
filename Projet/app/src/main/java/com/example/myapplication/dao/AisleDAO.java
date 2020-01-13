@@ -5,16 +5,17 @@ import com.example.myapplication.model.EntityRayon;
 import java.io.IOException;
 
 import static com.example.myapplication.config.ConfigDAO.AISLE;
-import static com.example.myapplication.config.ConfigDAO.EMPLOYEE;
-import static com.example.myapplication.config.ConfigDAO.FOLDER;
+
+
 
 public class AisleDAO extends Dao<EntityRayon>{
-    private static final String path = FOLDER + AISLE;
+
 
 
     public AisleDAO() {
+        this.mPath = AISLE;
         try {
-            this.mFileManager = new FileManager<>(path);
+            this.mFileManager = new FileManager<>(this.mPath);
         } catch (IOException e) {
             e.printStackTrace();
         }
