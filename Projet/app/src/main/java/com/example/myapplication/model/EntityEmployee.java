@@ -7,6 +7,8 @@ public class EntityEmployee extends SearchebleImplement{
     private int idEmployee;
     private String name;
     private String sex;
+    private String role;
+    private String password;
 
     public EntityEmployee(int idEmployee, String name, String sex, String password, String role) {
         this.idEmployee = idEmployee;
@@ -15,11 +17,6 @@ public class EntityEmployee extends SearchebleImplement{
         this.password = password;
         this.role = role;
     }
-
-    private String password;
-
-    //private EntityRole role;
-    private String role;
 
     public EntityEmployee(){}
 
@@ -71,21 +68,13 @@ public class EntityEmployee extends SearchebleImplement{
         this.password = password;
     }
 
-    /*public EntityRole getRole() {
-        return role;
-    }
-
-    public void setRole(EntityRole role) {
-        this.role = role;
-    }*/
-
-
-    public String getRole() {
-        return role;
-    }
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getRole() {
+        return role;
     }
 
     @Override
