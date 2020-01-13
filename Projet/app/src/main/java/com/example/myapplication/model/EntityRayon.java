@@ -1,8 +1,10 @@
-package Model;
+package com.example.myapplication.model;
+
+import android.app.SearchableInfo;
 
 import java.util.ArrayList;
 
-public class EntityRayon {
+public class EntityRayon extends SearchebleImplement {
 
     private int idRayon;
     private String name;
@@ -38,6 +40,11 @@ public class EntityRayon {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public int getUniqueKey() {
+        return this.idRayon;
     }
 
     public void setName(String name) {

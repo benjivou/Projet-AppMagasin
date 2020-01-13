@@ -3,7 +3,7 @@ package Controle;
 import android.content.Context;
 
 import DAO.AccesLocal;
-import Model.EntityEmployee;
+import com.example.myapplication.model.EntityEmployee;
 
 public class Controller {
 

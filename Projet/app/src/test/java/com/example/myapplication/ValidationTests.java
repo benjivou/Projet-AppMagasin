@@ -62,6 +62,8 @@ public class ValidationTests {
 		assertEquals(pv.validate("Ab1i;;ekn"),true);
 
 	}
+
+	@Test
 	public  void testErrorMessage(){
 		PasswordValidator pv = new PasswordValidator();
 		assertEquals(pv.validateWithMessages("123aaaaa").equals(ConfigFront.ERROR_CREATION_PASSWORD_CORRESPONDANCE_PROBLEM), false);

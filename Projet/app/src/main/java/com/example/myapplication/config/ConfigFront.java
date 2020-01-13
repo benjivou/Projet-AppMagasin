@@ -2,7 +2,7 @@ package com.example.myapplication.config;
 
 public class ConfigFront {
 
-    public static final int DURATION_ERROR_MESSAGES  = 3; // 3 *2 sec long
+    public static final int DURATION_ERROR_MESSAGES  = 1; // 3 *2 sec long
 
     // Error messages
     public static final String ERROR_CREATION_PASSWORD_MISSING_MAJ="Il faut 1 Majuscule";
@@ -10,4 +10,10 @@ public class ConfigFront {
     public static final String ERROR_CREATION_PASSWORD_MISSING_SPECIAL="Il faut 1 caractère autre qu’une lettre de l’alphabet";
     public static final String ERROR_CREATION_PASSWORD_LENGTH_PROBLEM="Il faut entre 8 et 20 caractères";
     public static final String ERROR_CREATION_PASSWORD_CORRESPONDANCE_PROBLEM="les 2 mots de passe doivent correspondre";
+
+    public static final String DEFAULT_PASSWORD = "root";                    // Default password
+    public static final String ERROR_BAD_PAIR_LOGIN_MDP = "Mauvaise combinaison login/mdp";
+
+
+    public static final String  USERNAME_SESSION = " Username";
 }
