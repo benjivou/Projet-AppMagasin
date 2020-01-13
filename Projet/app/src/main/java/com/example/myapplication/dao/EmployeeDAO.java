@@ -1,24 +1,12 @@
 package com.example.myapplication.dao;
 
-import android.content.Context;
 
 import com.example.myapplication.model.EntityEmployee;
 
-import java.io.IOException;
+public class EmployeeDAO {
 
-import static com.example.myapplication.config.ConfigDAO.*;
+    public static EntityEmployee getByMatricule(int matricule){
 
-public class EmployeeDAO extends Dao<EntityEmployee>{
-
-
-
-    public EmployeeDAO() {
-        this.mPath = EMPLOYEE;
-        try {
-            this.mFileManager = new FileManager<>(this.mPath);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
 

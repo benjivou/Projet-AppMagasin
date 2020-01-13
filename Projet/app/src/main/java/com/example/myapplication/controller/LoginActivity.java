@@ -147,13 +147,10 @@ public class LoginActivity extends Activity  {
         startActivity(newActivity);
 
     }
-    public void initBDD(){
 
-        for (EntityEmployee o :
-             databaseQueryClass.getAllEmployee())
-        {
-            Log.d(TAG, "initBDD: " + o.toString());
-        }
+    public void initBDD(){
+        checkRootUser();
+
         /*
         checkFolder();
         EmployeeDAO employeeDAO = new EmployeeDAO();
@@ -174,17 +171,16 @@ public class LoginActivity extends Activity  {
 
     }
 
-    public void checkFolder() {
-        String path =  Environment.getExternalStorageDirectory().getPath() + "/Android/data/ " +
-                getPackageName() + "/files/"   ;
-        File dir = new File(path);
-        boolean isDirectoryCreated = dir.exists();
-        if (!isDirectoryCreated) {
-            isDirectoryCreated = dir.mkdir();
-        }
-        if (isDirectoryCreated) {
-            // do something\
-            Log.d("Folder", "Already Created");
+    /*
+    Check if the root user exist
+    if not create 1
+     */
+    public void checkRootUser() {
+        //TODO get Employee by name
+        for (EntityEmployee o :
+                databaseQueryClass.getAllEmployee())
+        {
+            Log.d(TAG, "initBDD: " + o.toString());
         }
     }
 }
