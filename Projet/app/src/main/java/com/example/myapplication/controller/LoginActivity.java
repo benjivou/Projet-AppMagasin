@@ -34,6 +34,7 @@ import static com.example.myapplication.config.ConfigFront.USERNAME_SESSION;
 import static com.example.myapplication.controller.util.DisplayUtil.displayError;
 
 import static com.example.myapplication.controller.util.DisplayUtil.loginProcess;
+import static com.example.myapplication.dao.EmployeeDAO.getByMatricule;
 import static com.example.myapplication.dao.roleDAO.ADMIN;
 
 
@@ -176,11 +177,7 @@ public class LoginActivity extends Activity  {
     if not create 1
      */
     public void checkRootUser() {
-        //TODO get Employee by name
-        for (EntityEmployee o :
-                databaseQueryClass.getAllEmployee())
-        {
-            Log.d(TAG, "initBDD: " + o.toString());
-        }
+        if(getByMatricule(1,this) == null );
+
     }
 }

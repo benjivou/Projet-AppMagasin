@@ -59,6 +59,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + ")";*/
 
         db.execSQL(CREATE_EMPLOYEE_TABLE);
+
+
+
+
        /* db.execSQL(CREATE_SUBJECT_TABLE);*/
         // TO-DO
 
