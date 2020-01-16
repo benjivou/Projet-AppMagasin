@@ -18,6 +18,7 @@ import android.widget.ImageButton;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.example.myapplication.Database.DatabaseHelper;
 import com.example.myapplication.Database.DatabaseQueryClass;
 import com.example.myapplication.R;
 import com.example.myapplication.config.ConfigDAO;
@@ -32,6 +33,7 @@ import java.io.FileOutputStream;
 
 import DAO.DatabaseQueryDao;
 
+import static com.example.myapplication.config.ConfigFront.DEFAULT_PASSWORD;
 import static com.example.myapplication.config.ConfigFront.USERNAME_SESSION;
 import static com.example.myapplication.controller.util.DisplayUtil.displayError;
 
@@ -41,7 +43,7 @@ import static com.example.myapplication.dao.roleDAO.ADMIN;
 
 
 public class LoginActivity extends Activity  {
-    private DatabaseQueryClass databaseQueryClass = new DatabaseQueryClass(this);
+    private DatabaseQueryClass databaseQueryClass;
 
 
     ImageButton mButton;
@@ -153,22 +155,27 @@ public class LoginActivity extends Activity  {
     }
 
     public void initBDD(){
-        SQLiteDatabase checkDB =  null;
-        try {
-            checkDB = SQLiteDatabase.openDatabase(ConfigDAO.DB, null,
-                    SQLiteDatabase.OPEN_READONLY);
-            checkDB.close();
-        } catch (Exception e) {
+
+
+
+        this.getDatabasePath(ConfigDAO.DB).delete();
+        if(  !this.getDatabasePath(ConfigDAO.DB).exists()) {
+            this.databaseQueryClass = new DatabaseQueryClass(this);
+
             // database doesn't exist yet.
-            Log.d(TAG, "initBDD: db doesn't exist" );
+
+            EmployeeDAO.insertStudent(new EntityEmployee(
+                    1,
+                    "root",
+                    "M",
+                    DEFAULT_PASSWORD,
+                    ADMIN.getSring()),
+                    this);
+            Log.d(TAG, "initBDD: We add the root user");
+
         }
+        Log.d(TAG, "initBDD: first root " + EmployeeDAO.getByMatricule(1,this));
 
-        /*
-        checkFolder();
-        EmployeeDAO employeeDAO = new EmployeeDAO();
-        Log.d(TAG, "initBDD: " + employeeDAO.toString());
-
-        }*/
 
     }
 

@@ -1,7 +1,9 @@
 package com.example.myapplication.Database;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteCantOpenDatabaseException;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
@@ -87,5 +89,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //enable foreign key constraints like ON UPDATE CASCADE, ON DELETE CASCADE
         db.execSQL("PRAGMA foreign_keys=ON;");
     }
+
+    /*
+   Check if the root user exist
+   if not create 1
+    */
 
 }

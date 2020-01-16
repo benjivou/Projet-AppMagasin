@@ -13,6 +13,8 @@ import com.example.myapplication.Database.DatabaseHelper;
 import com.example.myapplication.config.ConfigDAO;
 import com.example.myapplication.model.EntityEmployee;
 
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,7 +73,14 @@ public class EmployeeDAO {
 
         return result;
     }
-    public long insertStudent(EntityEmployee entityEmployeedent,Context context){
+
+    /**
+     *
+     * @param entityEmployeedent
+     * @param context
+     * @return
+     */
+    public static long  insertStudent(EntityEmployee entityEmployeedent,Context context){
 
         long id = -1;
         DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
@@ -93,6 +102,23 @@ public class EmployeeDAO {
         }
 
         return id;
+    }
+
+    /**
+     * Count the number of Employee in the dB
+     * @param context
+     * @return
+     */
+    public int countEmployee(Context context){
+
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
+        SQLiteDatabase sqLiteDatabase = databaseHelper.getReadableDatabase();
+
+        Cursor Count= sqLiteDatabase.rawQuery("select count(*) from"+ ConfigDAO.TABLE_EMPLOYEE, null);
+        Count.moveToFirst();
+        int count= Count.getInt(0);
+        Count.close();
+        return count;
     }
 
 

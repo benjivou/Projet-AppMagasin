@@ -28,7 +28,7 @@ public class DatabaseQueryClass {
         Log.d(TAG, "DatabaseQueryClass: "+ " COntext done");
     }
 
-    public long insertStudent(EntityEmployee entityEmployeedent){
+    public long insertEmployee(EntityEmployee entityEmployeedent){
 
         long id = -1;
         DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
