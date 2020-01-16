@@ -4,6 +4,9 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteCantOpenDatabaseException;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -17,6 +20,7 @@ import androidx.core.content.ContextCompat;
 
 import com.example.myapplication.Database.DatabaseQueryClass;
 import com.example.myapplication.R;
+import com.example.myapplication.config.ConfigDAO;
 import com.example.myapplication.config.ConfigFront;
 
 import com.example.myapplication.dao.EmployeeDAO;
@@ -27,8 +31,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
 import DAO.DatabaseQueryDao;
-
-import static com.example.myapplication.config.ConfigDAO.EMPLOYEE;
 
 import static com.example.myapplication.config.ConfigFront.USERNAME_SESSION;
 import static com.example.myapplication.controller.util.DisplayUtil.displayError;
@@ -112,6 +114,7 @@ public class LoginActivity extends Activity  {
         Retrieve the
          */
         initBDD();
+
     }
 
     @Override
@@ -150,34 +153,24 @@ public class LoginActivity extends Activity  {
     }
 
     public void initBDD(){
-        checkRootUser();
+        SQLiteDatabase checkDB =  null;
+        try {
+            checkDB = SQLiteDatabase.openDatabase(ConfigDAO.DB, null,
+                    SQLiteDatabase.OPEN_READONLY);
+            checkDB.close();
+        } catch (Exception e) {
+            // database doesn't exist yet.
+            Log.d(TAG, "initBDD: db doesn't exist" );
+        }
 
         /*
         checkFolder();
         EmployeeDAO employeeDAO = new EmployeeDAO();
         Log.d(TAG, "initBDD: " + employeeDAO.toString());
-        /*
-        First Use of the APP
-         *//*
-        if (employeeDAO.getSize() == 0 ){
-            employeeDAO.add(
-                    new EntityEmployee(
-                            0,
-                            "root",
-                            "M",
-                            ADMIN.getSring()
-                    )
-            );
+
         }*/
 
     }
 
-    /*
-    Check if the root user exist
-    if not create 1
-     */
-    public void checkRootUser() {
-        if(getByMatricule(1,this) == null );
 
-    }
 }
