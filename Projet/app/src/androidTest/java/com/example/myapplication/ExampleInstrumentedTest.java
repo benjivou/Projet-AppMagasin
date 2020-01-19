@@ -6,13 +6,16 @@ import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.rule.ActivityTestRule;
 
+import com.example.myapplication.config.ConfigFront;
 import com.example.myapplication.controller.LoginActivity;
 
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.internal.runners.statements.Fail;
 import org.junit.runner.RunWith;
 
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
@@ -31,16 +34,32 @@ public class ExampleInstrumentedTest {
     @Rule
     public ActivityTestRule<LoginActivity> activityActivityTestRule = new ActivityTestRule<LoginActivity>(LoginActivity.class);
 
+    /**
+     * Fail to connect:
+     * "Login do not exist"
+     */
+    @Test
+    public void processBadLogin(){
+
+        /*
+        Write the login
+         */
+        onView(withId(R.id.login))
+                .perform((typeText("NOTRootATall")),closeSoftKeyboard());
+        onView(withId(R.id.password))
+                .perform((typeText("NOTRootATall")),closeSoftKeyboard());
+        /*
+        Click on the submit button
+         */
+        onView(withId(R.id.btnSubmit))
+                .perform(click());
+
+        onView(withText(ConfigFront.ERROR_BAD_PAIR_LOGIN_MDP))
+                .inRoot(new ToastMatcher())
+                .check(matches(withText(ConfigFront.ERROR_BAD_PAIR_LOGIN_MDP)));
+    }
     @Test
     public void procesAdmin() {
-
-
-        // Context of the app under test.
-        onView(withId(R.id.login))            // withId(R.id.my_view) is a ViewMatcher
-                .perform(typeText("titit"), closeSoftKeyboard());
-        onView(withId(R.id.login))
-                .check(matches(withText("titit")));            // click() is a ViewAction
-
 
     }
 }
