@@ -42,13 +42,13 @@ public class EmployeeDAO {
             /**
              // If you want to execute raw query then uncomment below 2 lines. And comment out above line.
 
-             String SELECT_QUERY = String.format("SELECT %s, %s, %s, %s, %s FROM %s", Config.COLUMN_STUDENT_ID, Config.COLUMN_STUDENT_NAME, Config.COLUMN_STUDENT_REGISTRATION, Config.COLUMN_STUDENT_EMAIL, Config.COLUMN_STUDENT_PHONE, Config.TABLE_STUDENT);
+             String SELECT_QUERY = String.format("SELECT %s, %s, %s, %s, %s FROM %s", Config.COLUMN_Employee_ID, Config.COLUMN_Employee_NAME, Config.COLUMN_Employee_REGISTRATION, Config.COLUMN_Employee_EMAIL, Config.COLUMN_Employee_PHONE, Config.TABLE_Employee);
              cursor = sqLiteDatabase.rawQuery(SELECT_QUERY, null);
              */
 
             if(cursor!=null)
                 if(cursor.moveToFirst()){
-                    List<EntityEmployee> studentList = new ArrayList<>();
+                    List<EntityEmployee> EmployeeList = new ArrayList<>();
                     do {
                         int id = cursor.getInt(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_ID));
                         String name = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_NAME));
@@ -57,9 +57,9 @@ public class EmployeeDAO {
                         String role = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_ROLE));
 
 
-                        studentList.add(new EntityEmployee(id, name, sex, password, role));
+                        EmployeeList.add(new EntityEmployee(id, name, sex, password, role));
                     }   while (cursor.moveToNext());
-                    result = studentList.get(0);
+                    result = EmployeeList.get(0);
                     return result;
                 }
         } catch (Exception e){
@@ -80,7 +80,7 @@ public class EmployeeDAO {
      * @param context
      * @return
      */
-    public static long  insertStudent(EntityEmployee entityEmployeedent,Context context){
+    public static long  insertEmployee(EntityEmployee entityEmployeedent,Context context){
 
         long id = -1;
         DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
@@ -109,7 +109,7 @@ public class EmployeeDAO {
      * @param context
      * @return
      */
-    public int countEmployee(Context context){
+    public static int countEmployee(Context context){
 
         DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getReadableDatabase();
@@ -120,6 +120,16 @@ public class EmployeeDAO {
         Count.close();
         return count;
     }
+    public static boolean  deleteStudentById(int subjectId,Context context) {
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
+        SQLiteDatabase sqLiteDatabase = databaseHelper.getWritableDatabase();
+
+        int row = sqLiteDatabase.delete(ConfigDAO.TABLE_EMPLOYEE,
+                ConfigDAO.COLUMN_EMPLOYEE_ID + " = ? ", new String[]{String.valueOf(subjectId)});
+
+        return row > 0;
+    }
+
 
 
 }

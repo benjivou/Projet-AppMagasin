@@ -158,13 +158,15 @@ public class LoginActivity extends Activity  {
 
 
 
-        this.getDatabasePath(ConfigDAO.DB).delete();
+        this.getDatabasePath(ConfigDAO.DB).delete(); // Config de Test
+
+
         if(  !this.getDatabasePath(ConfigDAO.DB).exists()) {
             this.databaseQueryClass = new DatabaseQueryClass(this);
 
             // database doesn't exist yet.
 
-            EmployeeDAO.insertStudent(new EntityEmployee(
+            EmployeeDAO.insertEmployee(new EntityEmployee(
                     1,
                     "root",
                     "M",
@@ -172,9 +174,9 @@ public class LoginActivity extends Activity  {
                     ADMIN.getSring()),
                     this);
             Log.d(TAG, "initBDD: We add the root user");
+            Log.d(TAG, "initBDD: first root " + EmployeeDAO.getByMatricule(1,this));
 
         }
-        Log.d(TAG, "initBDD: first root " + EmployeeDAO.getByMatricule(1,this));
 
 
     }

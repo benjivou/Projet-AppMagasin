@@ -43,7 +43,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // Create tables SQL execution
         // Table Employee
         String CREATE_EMPLOYEE_TABLE = "CREATE TABLE " + ConfigDAO.TABLE_EMPLOYEE + "("
-                + ConfigDAO.COLUMN_EMPLOYEE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + ConfigDAO.COLUMN_EMPLOYEE_ID + " INTEGER PRIMARY KEY UNIQUE, "
                 + ConfigDAO.COLUMN_EMPLOYEE_NAME + " TEXT NOT NULL, "
                 + ConfigDAO.COLUMN_EMPLOYEE_SEX + " TEXT NOT NULL, "
                 + ConfigDAO.COLUMN_EMPLOYEE_PASSWORD + " TEXT NOT NULL, " //nullable
