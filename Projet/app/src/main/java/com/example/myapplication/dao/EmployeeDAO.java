@@ -79,6 +79,12 @@ public class EmployeeDAO {
         return result;
     }
 
+    /**
+     * Get a employee
+     * @param nameWanted
+     * @param context
+     * @return
+     */
     public static ArrayList< EntityEmployee> getByName(String nameWanted, Context context){
 
         DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
@@ -126,7 +132,7 @@ public class EmployeeDAO {
         return employeeList;
     }
     /**
-     *
+     * Insert employee
      * @param entityEmployeedent
      * @param context
      * @return
@@ -171,7 +177,14 @@ public class EmployeeDAO {
         Count.close();
         return count;
     }
-    public static boolean  deleteStudentById(int subjectId,Context context) {
+
+    /**
+     * Delete a employee with id employee
+     * @param subjectId
+     * @param context
+     * @return
+     */
+    public static boolean  deleteEmployeeById(int subjectId,Context context) {
         DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getWritableDatabase();
 
