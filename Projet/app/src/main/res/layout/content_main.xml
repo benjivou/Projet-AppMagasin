@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".Features.StudentCRUD.ShowStudentList.StudentListActivity"
-    tools:showIn="@layout/activity_student_list"
+    tools:context=".Features.EmployeeCRUD.ShowEmployeeList.EmployeeListActivity"
+    tools:showIn="@layout/activity_Employee_list"
     android:layout_marginBottom="8dp">
 
 

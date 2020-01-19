@@ -16,7 +16,9 @@ import com.example.myapplication.model.EntityEmployee;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Logger;
 
+import javax.security.auth.Subject;
 
 
 public class DatabaseQueryClass {
@@ -28,7 +30,7 @@ public class DatabaseQueryClass {
         Log.d(TAG, "DatabaseQueryClass: "+ " COntext done");
     }
 
-    public long insertStudent(EntityEmployee entityEmployeedent){
+    public long insertEmployee(EntityEmployee entityEmployeedent){
 
         long id = -1;
         DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
@@ -65,13 +67,13 @@ public class DatabaseQueryClass {
             /**
                  // If you want to execute raw query then uncomment below 2 lines. And comment out above line.
 
-                 String SELECT_QUERY = String.format("SELECT %s, %s, %s, %s, %s FROM %s", Config.COLUMN_STUDENT_ID, Config.COLUMN_STUDENT_NAME, Config.COLUMN_STUDENT_REGISTRATION, Config.COLUMN_STUDENT_EMAIL, Config.COLUMN_STUDENT_PHONE, Config.TABLE_STUDENT);
+                 String SELECT_QUERY = String.format("SELECT %s, %s, %s, %s, %s FROM %s", Config.COLUMN_Employee_ID, Config.COLUMN_Employee_NAME, Config.COLUMN_Employee_REGISTRATION, Config.COLUMN_Employee_EMAIL, Config.COLUMN_Employee_PHONE, Config.TABLE_Employee);
                  cursor = sqLiteDatabase.rawQuery(SELECT_QUERY, null);
              */
 
             if(cursor!=null)
                 if(cursor.moveToFirst()){
-                    List<EntityEmployee> studentList = new ArrayList<>();
+                    List<EntityEmployee> EmployeeList = new ArrayList<>();
                     do {
                         int id = cursor.getInt(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_ID));
                         String name = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_NAME));
@@ -80,10 +82,10 @@ public class DatabaseQueryClass {
                         String role = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_ROLE));
 
 
-                        studentList.add(new EntityEmployee(id, name, sex, password, role));
+                        EmployeeList.add(new EntityEmployee(id, name, sex, password, role));
                     }   while (cursor.moveToNext());
 
-                    return studentList;
+                    return EmployeeList;
                 }
         } catch (Exception e){
             Log.i(TAG, "getAllEmployee: "+e.getMessage());
@@ -97,34 +99,34 @@ public class DatabaseQueryClass {
         return Collections.emptyList();
     }
 
-   /* public Student getStudentByRegNum(long registrationNum){
+  /*  public Employee getEmployeeByRegNum(long registrationNum){
 
         DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getReadableDatabase();
 
         Cursor cursor = null;
-        Student student = null;
+        Employee Employee = null;
         try {
 
-            cursor = sqLiteDatabase.query(Config.TABLE_STUDENT, null,
-                    Config.COLUMN_STUDENT_REGISTRATION + " = ? ", new String[]{String.valueOf(registrationNum)},
+            cursor = sqLiteDatabase.query(Config.TABLE_Employee, null,
+                    Config.COLUMN_Employee_REGISTRATION + " = ? ", new String[]{String.valueOf(registrationNum)},
                     null, null, null);
 
             *//**
                  // If you want to execute raw query then uncomment below 2 lines. And comment out above sqLiteDatabase.query() method.
 
-                 String SELECT_QUERY = String.format("SELECT * FROM %s WHERE %s = %s", Config.TABLE_STUDENT, Config.COLUMN_STUDENT_REGISTRATION, String.valueOf(registrationNum));
+                 String SELECT_QUERY = String.format("SELECT * FROM %s WHERE %s = %s", Config.TABLE_Employee, Config.COLUMN_Employee_REGISTRATION, String.valueOf(registrationNum));
                  cursor = sqLiteDatabase.rawQuery(SELECT_QUERY, null);
              *//*
 
             if(cursor.moveToFirst()){
-                int id = cursor.getInt(cursor.getColumnIndex(Config.COLUMN_STUDENT_ID));
-                String name = cursor.getString(cursor.getColumnIndex(Config.COLUMN_STUDENT_NAME));
-                long registrationNumber = cursor.getLong(cursor.getColumnIndex(Config.COLUMN_STUDENT_REGISTRATION));
-                String phone = cursor.getString(cursor.getColumnIndex(Config.COLUMN_STUDENT_PHONE));
-                String email = cursor.getString(cursor.getColumnIndex(Config.COLUMN_STUDENT_EMAIL));
+                int id = cursor.getInt(cursor.getColumnIndex(Config.COLUMN_Employee_ID));
+                String name = cursor.getString(cursor.getColumnIndex(Config.COLUMN_Employee_NAME));
+                long registrationNumber = cursor.getLong(cursor.getColumnIndex(Config.COLUMN_Employee_REGISTRATION));
+                String phone = cursor.getString(cursor.getColumnIndex(Config.COLUMN_Employee_PHONE));
+                String email = cursor.getString(cursor.getColumnIndex(Config.COLUMN_Employee_EMAIL));
 
-                student = new Student(id, name, registrationNumber, phone, email);
+                Employee = new Employee(id, name, registrationNumber, phone, email);
             }
         } catch (Exception e){
             Logger.d("Exception: " + e.getMessage());
@@ -135,25 +137,25 @@ public class DatabaseQueryClass {
             sqLiteDatabase.close();
         }
 
-        return student;
-    }
+        return Employee;
+    }*/
 
-    public long updateStudentInfo(Student student){
+    /*public long updateEmployeeInfo(Employee Employee){
 
         long rowCount = 0;
         DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put(Config.COLUMN_STUDENT_NAME, student.getName());
-        contentValues.put(Config.COLUMN_STUDENT_REGISTRATION, student.getRegistrationNumber());
-        contentValues.put(Config.COLUMN_STUDENT_PHONE, student.getPhoneNumber());
-        contentValues.put(Config.COLUMN_STUDENT_EMAIL, student.getEmail());
+        contentValues.put(Config.COLUMN_Employee_NAME, Employee.getName());
+        contentValues.put(Config.COLUMN_Employee_REGISTRATION, Employee.getRegistrationNumber());
+        contentValues.put(Config.COLUMN_Employee_PHONE, Employee.getPhoneNumber());
+        contentValues.put(Config.COLUMN_Employee_EMAIL, Employee.getEmail());
 
         try {
-            rowCount = sqLiteDatabase.update(Config.TABLE_STUDENT, contentValues,
-                    Config.COLUMN_STUDENT_ID + " = ? ",
-                    new String[] {String.valueOf(student.getId())});
+            rowCount = sqLiteDatabase.update(Config.TABLE_Employee, contentValues,
+                    Config.COLUMN_Employee_ID + " = ? ",
+                    new String[] {String.valueOf(Employee.getId())});
         } catch (SQLiteException e){
             Logger.d("Exception: " + e.getMessage());
             Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
@@ -163,58 +165,17 @@ public class DatabaseQueryClass {
 
         return rowCount;
     }
+*/
 
-    public long deleteStudentByRegNum(long registrationNum) {
-        long deletedRowCount = -1;
-        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
-        SQLiteDatabase sqLiteDatabase = databaseHelper.getWritableDatabase();
 
-        try {
-            deletedRowCount = sqLiteDatabase.delete(Config.TABLE_STUDENT,
-                                    Config.COLUMN_STUDENT_REGISTRATION + " = ? ",
-                                    new String[]{ String.valueOf(registrationNum)});
-        } catch (SQLiteException e){
-            Logger.d("Exception: " + e.getMessage());
-            Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
-        } finally {
-            sqLiteDatabase.close();
-        }
-
-        return deletedRowCount;
-    }
-
-    public boolean deleteAllStudents(){
-        boolean deleteStatus = false;
-        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
-        SQLiteDatabase sqLiteDatabase = databaseHelper.getWritableDatabase();
-
-        try {
-            //for "1" delete() method returns number of deleted rows
-            //if you don't want row count just use delete(TABLE_NAME, null, null)
-            sqLiteDatabase.delete(Config.TABLE_STUDENT, null, null);
-
-            long count = DatabaseUtils.queryNumEntries(sqLiteDatabase, Config.TABLE_STUDENT);
-
-            if(count==0)
-                deleteStatus = true;
-
-        } catch (SQLiteException e){
-            Logger.d("Exception: " + e.getMessage());
-            Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
-        } finally {
-            sqLiteDatabase.close();
-        }
-
-        return deleteStatus;
-    }
-
-    public long getNumberOfStudent(){
+/*
+    public long getNumberOfEmployee(){
         long count = -1;
         DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getWritableDatabase();
 
         try {
-            count = DatabaseUtils.queryNumEntries(sqLiteDatabase, Config.TABLE_STUDENT);
+            count = DatabaseUtils.queryNumEntries(sqLiteDatabase, Config.TABLE_Employee);
         } catch (SQLiteException e){
             Logger.d("Exception: " + e.getMessage());
             Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
@@ -223,18 +184,18 @@ public class DatabaseQueryClass {
         }
 
         return count;
-    }
+    }*/
 
-    // subjects
-    public long insertSubject(Subject subject, long registrationNo){
+   /* // subjects
+    public long insertEmployee(Subject subject, long registrationNo){
         long rowId = -1;
         DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put(Config.COLUMN_SUBJECT_NAME, subject.getName());
-        contentValues.put(Config.COLUMN_SUBJECT_CODE, subject.getCode());
-        contentValues.put(Config.COLUMN_SUBJECT_CREDIT, subject.getCredit());
+        contentValues.put(ConfigDAO.COLUMN_SUBJECT_NAME, subject.getName());
+        contentValues.put(ConfigDAO.COLUMN_SUBJECT_CODE, subject.getCode());
+        contentValues.put(ConfigDA.COLUMN_SUBJECT_CREDIT, subject.getCredit());
         contentValues.put(Config.COLUMN_REGISTRATION_NUMBER, registrationNo);
 
         try {
@@ -248,108 +209,13 @@ public class DatabaseQueryClass {
 
         return rowId;
     }
+*/
 
-    public Subject getSubjectById(long subjectId){
-        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
-        SQLiteDatabase sqLiteDatabase = databaseHelper.getReadableDatabase();
 
-        Subject subject = null;
 
-        Cursor cursor = null;
-        try{
-            cursor = sqLiteDatabase.query(Config.TABLE_SUBJECT, null,
-                    Config.COLUMN_SUBJECT_ID + " = ? ", new String[] {String.valueOf(subjectId)},
-                    null, null, null);
 
-            if(cursor!=null && cursor.moveToFirst()){
-                String subjectName = cursor.getString(cursor.getColumnIndex(Config.COLUMN_SUBJECT_NAME));
-                int subjectCode = cursor.getInt(cursor.getColumnIndex(Config.COLUMN_SUBJECT_CODE));
-                double subjectCredit = cursor.getDouble(cursor.getColumnIndex(Config.COLUMN_SUBJECT_CREDIT));
 
-                subject = new Subject(subjectId, subjectName, subjectCode, subjectCredit);
-            }
-        } catch (SQLiteException e){
-            Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
-        } finally {
-            if(cursor!=null)
-                cursor.close();
-            sqLiteDatabase.close();
-        }
-
-        return subject;
-    }
-
-    public long updateSubjectInfo(Subject subject){
-
-        long rowCount = 0;
-        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
-        SQLiteDatabase sqLiteDatabase = databaseHelper.getWritableDatabase();
-
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(Config.COLUMN_SUBJECT_NAME, subject.getName());
-        contentValues.put(Config.COLUMN_SUBJECT_CODE, subject.getCode());
-        contentValues.put(Config.COLUMN_SUBJECT_CREDIT, subject.getCredit());
-
-        try {
-            rowCount = sqLiteDatabase.update(Config.TABLE_SUBJECT, contentValues,
-                    Config.COLUMN_SUBJECT_ID + " = ? ",
-                    new String[] {String.valueOf(subject.getId())});
-        } catch (SQLiteException e){
-            Logger.d("Exception: " + e.getMessage());
-            Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
-        } finally {
-            sqLiteDatabase.close();
-        }
-
-        return rowCount;
-    }
-
-    public List<Subject> getAllSubjectsByRegNo(long registrationNo){
-        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
-        SQLiteDatabase sqLiteDatabase = databaseHelper.getReadableDatabase();
-
-        List<Subject> subjectList = new ArrayList<>();
-        Cursor cursor = null;
-        try{
-            cursor = sqLiteDatabase.query(Config.TABLE_SUBJECT,
-                    new String[] {Config.COLUMN_SUBJECT_ID, Config.COLUMN_SUBJECT_NAME, Config.COLUMN_SUBJECT_CODE, Config.COLUMN_SUBJECT_CREDIT},
-                    Config.COLUMN_REGISTRATION_NUMBER + " = ? ",
-                    new String[] {String.valueOf(registrationNo)},
-                    null, null, null);
-
-            if(cursor!=null && cursor.moveToFirst()){
-                subjectList = new ArrayList<>();
-                do {
-                    int id = cursor.getInt(cursor.getColumnIndex(Config.COLUMN_SUBJECT_ID));
-                    String subjectName = cursor.getString(cursor.getColumnIndex(Config.COLUMN_SUBJECT_NAME));
-                    int subjectCode = cursor.getInt(cursor.getColumnIndex(Config.COLUMN_SUBJECT_CODE));
-                    double subjectCredit = cursor.getDouble(cursor.getColumnIndex(Config.COLUMN_SUBJECT_CREDIT));
-
-                    subjectList.add(new Subject(id, subjectName, subjectCode, subjectCredit));
-                } while (cursor.moveToNext());
-            }
-        } catch (SQLiteException e){
-            Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
-        } finally {
-            if(cursor!=null)
-                cursor.close();
-            sqLiteDatabase.close();
-        }
-
-        return subjectList;
-    }
-
-    public boolean deleteSubjectById(long subjectId) {
-        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
-        SQLiteDatabase sqLiteDatabase = databaseHelper.getWritableDatabase();
-
-        int row = sqLiteDatabase.delete(Config.TABLE_SUBJECT,
-                Config.COLUMN_SUBJECT_ID + " = ? ", new String[]{String.valueOf(subjectId)});
-
-        return row > 0;
-    }
-
-    public boolean deleteAllSubjectsByRegNum(long registrationNum) {
+   /* public boolean deleteAllSubjectsByRegNum(long registrationNum) {
         DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getWritableDatabase();
 
@@ -357,23 +223,8 @@ public class DatabaseQueryClass {
                 Config.COLUMN_REGISTRATION_NUMBER + " = ? ", new String[]{String.valueOf(registrationNum)});
 
         return row > 0;
-    }
+    }*/
 
-    public long getNumberOfSubject(){
-        long count = -1;
-        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
-        SQLiteDatabase sqLiteDatabase = databaseHelper.getWritableDatabase();
 
-        try {
-            count = DatabaseUtils.queryNumEntries(sqLiteDatabase, Config.TABLE_SUBJECT);
-        } catch (SQLiteException e){
-            Logger.d("Exception: " + e.getMessage());
-            Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
-        } finally {
-            sqLiteDatabase.close();
-        }
 
-        return count;
-    }
-*/
 }

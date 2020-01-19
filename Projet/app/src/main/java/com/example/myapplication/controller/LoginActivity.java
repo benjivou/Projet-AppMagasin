@@ -4,6 +4,9 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteCantOpenDatabaseException;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -15,8 +18,10 @@ import android.widget.ImageButton;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.example.myapplication.Database.DatabaseHelper;
 import com.example.myapplication.Database.DatabaseQueryClass;
 import com.example.myapplication.R;
+import com.example.myapplication.config.ConfigDAO;
 import com.example.myapplication.config.ConfigFront;
 
 import com.example.myapplication.dao.EmployeeDAO;
@@ -27,17 +32,17 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
 
-import static com.example.myapplication.config.ConfigDAO.EMPLOYEE;
-
+import static com.example.myapplication.config.ConfigFront.DEFAULT_PASSWORD;
 import static com.example.myapplication.config.ConfigFront.USERNAME_SESSION;
 import static com.example.myapplication.controller.util.DisplayUtil.displayError;
 
 import static com.example.myapplication.controller.util.DisplayUtil.loginProcess;
+import static com.example.myapplication.dao.EmployeeDAO.getByMatricule;
 import static com.example.myapplication.dao.roleDAO.ADMIN;
 
 
 public class LoginActivity extends Activity  {
-    private DatabaseQueryClass databaseQueryClass = new DatabaseQueryClass(this);
+    private DatabaseQueryClass databaseQueryClass;
 
 
     ImageButton mButton;
@@ -52,16 +57,7 @@ public class LoginActivity extends Activity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_frame);
 
-        if(ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
-        }
-        if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},1);
-        }
+
         /*
         Connect the View
          */
@@ -110,6 +106,7 @@ public class LoginActivity extends Activity  {
         Retrieve the
          */
         initBDD();
+
     }
 
     @Override
@@ -146,44 +143,33 @@ public class LoginActivity extends Activity  {
         startActivity(newActivity);
 
     }
+
     public void initBDD(){
 
-        for (EntityEmployee o :
-             databaseQueryClass.getAllEmployee())
-        {
-            Log.d(TAG, "initBDD: " + o.toString());
+
+
+        this.getDatabasePath(ConfigDAO.DB).delete(); // Config de Test
+
+
+        if(  !this.getDatabasePath(ConfigDAO.DB).exists()) {
+            this.databaseQueryClass = new DatabaseQueryClass(this);
+
+            // database doesn't exist yet.
+
+            EmployeeDAO.insertEmployee(new EntityEmployee(
+                    1,
+                    "root",
+                    "M",
+                    DEFAULT_PASSWORD,
+                    ADMIN.getSring()),
+                    this);
+            Log.d(TAG, "initBDD: We add the root user");
+            Log.d(TAG, "initBDD: first root " + EmployeeDAO.getByMatricule(1,this));
+
         }
-        /*
-        checkFolder();
-        EmployeeDAO employeeDAO = new EmployeeDAO();
-        Log.d(TAG, "initBDD: " + employeeDAO.toString());
-        /*
-        First Use of the APP
-         *//*
-        if (employeeDAO.getSize() == 0 ){
-            employeeDAO.add(
-                    new EntityEmployee(
-                            0,
-                            "root",
-                            "M",
-                            ADMIN.getSring()
-                    )
-            );
-        }*/
+
 
     }
 
-    public void checkFolder() {
-        String path =  Environment.getExternalStorageDirectory().getPath() + "/Android/data/ " +
-                getPackageName() + "/files/"   ;
-        File dir = new File(path);
-        boolean isDirectoryCreated = dir.exists();
-        if (!isDirectoryCreated) {
-            isDirectoryCreated = dir.mkdir();
-        }
-        if (isDirectoryCreated) {
-            // do something\
-            Log.d("Folder", "Already Created");
-        }
-    }
+
 }

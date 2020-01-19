@@ -1,7 +1,9 @@
 package com.example.myapplication.Database;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteCantOpenDatabaseException;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
@@ -41,7 +43,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // Create tables SQL execution
         // Table Employee
         String CREATE_EMPLOYEE_TABLE = "CREATE TABLE " + ConfigDAO.TABLE_EMPLOYEE + "("
-                + ConfigDAO.COLUMN_EMPLOYEE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + ConfigDAO.COLUMN_EMPLOYEE_ID + " INTEGER PRIMARY KEY UNIQUE, "
                 + ConfigDAO.COLUMN_EMPLOYEE_NAME + " TEXT NOT NULL, "
                 + ConfigDAO.COLUMN_EMPLOYEE_SEX + " TEXT NOT NULL, "
                 + ConfigDAO.COLUMN_EMPLOYEE_PASSWORD + " TEXT NOT NULL, " //nullable
@@ -76,6 +78,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + ")";*/
 
         db.execSQL(CREATE_EMPLOYEE_TABLE);
+
+
+
+
        /* db.execSQL(CREATE_SUBJECT_TABLE);*/
         // TO-DO
 
@@ -100,5 +106,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //enable foreign key constraints like ON UPDATE CASCADE, ON DELETE CASCADE
         db.execSQL("PRAGMA foreign_keys=ON;");
     }
+
+    /*
+   Check if the root user exist
+   if not create 1
+    */
 
 }
