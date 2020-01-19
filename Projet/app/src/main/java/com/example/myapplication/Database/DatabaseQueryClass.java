@@ -75,7 +75,7 @@ public class DatabaseQueryClass {
                 if(cursor.moveToFirst()){
                     List<EntityEmployee> EmployeeList = new ArrayList<>();
                     do {
-                        int id = cursor.getInt(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_ID));
+                        String id = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_ID));
                         String name = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_NAME));
                         String sex = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_SEX));
                         String password = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_PASSWORD));

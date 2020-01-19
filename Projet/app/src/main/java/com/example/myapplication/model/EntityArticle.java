@@ -1,14 +1,41 @@
 package com.example.myapplication.model;
 
-public class EntityArticle extends SearchebleImplement {
+/**
+ * This class represent a article
+ * @<version 1.0
+ * @author Leslie Kiav & Benjamin Vouillon
+ */
+public class EntityArticle{
 
+    /**
+     * The article id
+     */
     private int idArticle;
+    /**
+     * The article name
+     */
     private String name;
+    /**
+     * The article quantity
+     */
     private int quantity;
+    /**
+     * The article price
+     */
     private float price;
 
+    /**
+     * This is the default constructor
+     */
     public EntityArticle(){}
 
+    /**
+     * The copy constructor
+     * @param idArticle : int
+     * @param name : String
+     * @param price : float
+     * @param quantity : int
+     */
     public EntityArticle(int idArticle, String name, float price, int quantity){
 
         this.idArticle = idArticle;
@@ -17,6 +44,7 @@ public class EntityArticle extends SearchebleImplement {
         this.quantity = quantity;
     }
 
+    /*Getters & Setters*/
     public int getIdArticle() {
         return idArticle;
     }
@@ -27,11 +55,6 @@ public class EntityArticle extends SearchebleImplement {
 
     public String getName() {
         return name;
-    }
-
-    @Override
-    public int getUniqueKey() {
-        return this.idArticle;
     }
 
     public void setName(String name) {

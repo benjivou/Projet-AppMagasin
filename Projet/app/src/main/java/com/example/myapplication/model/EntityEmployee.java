@@ -2,15 +2,43 @@ package com.example.myapplication.model;
 
 import static com.example.myapplication.config.ConfigFront.DEFAULT_PASSWORD;
 
-public class EntityEmployee extends SearchebleImplement{
+/**
+ * This class represent a employee
+ * @<version 1.0
+ * @author Leslie Kiav & Benjamin Vouillon
+ */
+public class EntityEmployee{
 
-    private int idEmployee;
+    /**
+     * The employee id
+     */
+    private String idEmployee;
+    /**
+     * The employee name
+     */
     private String name;
+    /**
+     * The employee sex
+     */
     private String sex;
+    /**
+     * The employee role in the store
+     */
     private String role;
+    /**
+     * The employee password
+     */
     private String password;
 
-    public EntityEmployee(int idEmployee, String name, String sex, String password, String role) {
+    /**
+     * The copy constructor
+     * @param idEmployee : String
+     * @param name : String
+     * @param sex : String
+     * @param password : String
+     * @param role : String
+     */
+    public EntityEmployee(String idEmployee, String name, String sex, String password, String role) {
         this.idEmployee = idEmployee;
         this.name = name;
         this.sex = sex;
@@ -18,9 +46,19 @@ public class EntityEmployee extends SearchebleImplement{
         this.role = role;
     }
 
+    /**
+     * This is the default constructor
+     */
     public EntityEmployee(){}
 
-    public EntityEmployee(int idEmployee, String name, String sex,  String role){
+    /**
+     * The copy constructor
+     * @param idEmployee
+     * @param name
+     * @param sex
+     * @param role
+     */
+    public EntityEmployee(String idEmployee, String name, String sex,  String role){
         this.idEmployee = idEmployee;
         this.name = name;
         this.sex = sex;
@@ -28,14 +66,13 @@ public class EntityEmployee extends SearchebleImplement{
         this.role = role;
     }
 
-
-
     /*Getters  & Setters*/
-    public int getIdEmployee() {
+
+    public String getIdEmployee() {
         return idEmployee;
     }
 
-    public void setIdEmployee(int idEmployee) {
+    public void setIdEmployee(String idEmployee) {
         this.idEmployee = idEmployee;
     }
 
@@ -43,10 +80,7 @@ public class EntityEmployee extends SearchebleImplement{
         return name;
     }
 
-    @Override
-    public int getUniqueKey() {
-        return this.idEmployee;
-    }
+
 
     public void setName(String name) {
         this.name = name;
