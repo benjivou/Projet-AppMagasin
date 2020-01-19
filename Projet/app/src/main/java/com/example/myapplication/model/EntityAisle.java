@@ -4,7 +4,12 @@ import android.app.SearchableInfo;
 
 import java.util.ArrayList;
 
-public class EntityRayon extends SearchebleImplement {
+/**
+ * This class represent a aisle
+ * @<version 1.0
+ * @author Leslie Kiav & Benjamin Vouillon
+ */
+public class EntityRayon {
 
     private int idRayon;
     private String name;
@@ -40,11 +45,6 @@ public class EntityRayon extends SearchebleImplement {
 
     public String getName() {
         return name;
-    }
-
-    @Override
-    public int getUniqueKey() {
-        return this.idRayon;
     }
 
     public void setName(String name) {
