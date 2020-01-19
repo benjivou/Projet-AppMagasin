@@ -212,65 +212,7 @@ public class DatabaseQueryClass {
 */
 
 
-    public long updateSubjectInfo(Subject subject){
 
-        long rowCount = 0;
-        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
-        SQLiteDatabase sqLiteDatabase = databaseHelper.getWritableDatabase();
-
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(Config.COLUMN_SUBJECT_NAME, subject.getName());
-        contentValues.put(Config.COLUMN_SUBJECT_CODE, subject.getCode());
-        contentValues.put(Config.COLUMN_SUBJECT_CREDIT, subject.getCredit());
-
-        try {
-            rowCount = sqLiteDatabase.update(Config.TABLE_SUBJECT, contentValues,
-                    Config.COLUMN_SUBJECT_ID + " = ? ",
-                    new String[] {String.valueOf(subject.getId())});
-        } catch (SQLiteException e){
-            Logger.d("Exception: " + e.getMessage());
-            Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
-        } finally {
-            sqLiteDatabase.close();
-        }
-
-        return rowCount;
-    }
-
-    public List<Subject> getAllSubjectsByRegNo(long registrationNo){
-        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
-        SQLiteDatabase sqLiteDatabase = databaseHelper.getReadableDatabase();
-
-        List<Subject> subjectList = new ArrayList<>();
-        Cursor cursor = null;
-        try{
-            cursor = sqLiteDatabase.query(Config.TABLE_SUBJECT,
-                    new String[] {Config.COLUMN_SUBJECT_ID, Config.COLUMN_SUBJECT_NAME, Config.COLUMN_SUBJECT_CODE, Config.COLUMN_SUBJECT_CREDIT},
-                    Config.COLUMN_REGISTRATION_NUMBER + " = ? ",
-                    new String[] {String.valueOf(registrationNo)},
-                    null, null, null);
-
-            if(cursor!=null && cursor.moveToFirst()){
-                subjectList = new ArrayList<>();
-                do {
-                    int id = cursor.getInt(cursor.getColumnIndex(Config.COLUMN_SUBJECT_ID));
-                    String subjectName = cursor.getString(cursor.getColumnIndex(Config.COLUMN_SUBJECT_NAME));
-                    int subjectCode = cursor.getInt(cursor.getColumnIndex(Config.COLUMN_SUBJECT_CODE));
-                    double subjectCredit = cursor.getDouble(cursor.getColumnIndex(Config.COLUMN_SUBJECT_CREDIT));
-
-                    subjectList.add(new Subject(id, subjectName, subjectCode, subjectCredit));
-                } while (cursor.moveToNext());
-            }
-        } catch (SQLiteException e){
-            Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
-        } finally {
-            if(cursor!=null)
-                cursor.close();
-            sqLiteDatabase.close();
-        }
-
-        return subjectList;
-    }
 
 
    /* public boolean deleteAllSubjectsByRegNum(long registrationNum) {

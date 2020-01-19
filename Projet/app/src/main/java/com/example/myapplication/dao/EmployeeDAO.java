@@ -74,6 +74,52 @@ public class EmployeeDAO {
         return result;
     }
 
+    public static ArrayList< EntityEmployee> getByName(String nameWanted, Context context){
+
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
+        SQLiteDatabase sqLiteDatabase = databaseHelper.getReadableDatabase();
+
+        ArrayList<EntityEmployee> employeeList = new ArrayList<>();
+
+        Cursor cursor = null;
+        try {
+
+            cursor = sqLiteDatabase.query(ConfigDAO.TABLE_EMPLOYEE, null, ConfigDAO.COLUMN_EMPLOYEE_NAME +" = " + nameWanted , null, null, null, null, null);
+
+            /**
+             // If you want to execute raw query then uncomment below 2 lines. And comment out above line.
+
+             String SELECT_QUERY = String.format("SELECT %s, %s, %s, %s, %s FROM %s", Config.COLUMN_Employee_ID, Config.COLUMN_Employee_NAME, Config.COLUMN_Employee_REGISTRATION, Config.COLUMN_Employee_EMAIL, Config.COLUMN_Employee_PHONE, Config.TABLE_Employee);
+             cursor = sqLiteDatabase.rawQuery(SELECT_QUERY, null);
+             */
+
+            if(cursor!=null)
+                if(cursor.moveToFirst()){
+
+                    do {
+                        int id = cursor.getInt(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_ID));
+                        String name = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_NAME));
+                        String sex = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_SEX));
+                        String password = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_PASSWORD));
+                        String role = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_ROLE));
+
+
+                        employeeList.add(new EntityEmployee(id, name, sex, password, role));
+                    }   while (cursor.moveToNext());
+
+                    return employeeList;
+                }
+        } catch (Exception e){
+            Log.i(TAG, "getAllEmployee: "+e.getMessage());
+            Toast.makeText(context, "Operation failed", Toast.LENGTH_SHORT).show();
+        } finally {
+            if(cursor!=null)
+                cursor.close();
+            sqLiteDatabase.close();
+        }
+
+        return employeeList;
+    }
     /**
      *
      * @param entityEmployeedent
