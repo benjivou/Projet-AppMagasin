@@ -1,6 +1,6 @@
 package com.example.myapplication.model;
 
-public class EntityArticle extends SearchebleImplement {
+public class EntityArticle extends SearchebleImplement<Integer> {
 
     private int idArticle;
     private String name;
@@ -30,7 +30,7 @@ public class EntityArticle extends SearchebleImplement {
     }
 
     @Override
-    public int getUniqueKey() {
+    public Integer getUniqueKey() {
         return this.idArticle;
     }
 

@@ -1,6 +1,6 @@
 package com.example.myapplication.model;
 
-public interface Searchable {
+public interface Searchable<T> {
     public String getName();
-    public int getUniqueKey();
+    public T getUniqueKey();
 }

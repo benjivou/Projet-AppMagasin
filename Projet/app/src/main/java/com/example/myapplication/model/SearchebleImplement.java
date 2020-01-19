@@ -2,7 +2,7 @@ package com.example.myapplication.model;
 
 import androidx.annotation.Nullable;
 
-public abstract class SearchebleImplement  implements Searchable{
+public abstract class SearchebleImplement<T>  implements Searchable<T>{
     @Override
     public boolean equals(@Nullable Object obj) {
         if (this == obj)        // Same object
@@ -14,6 +14,6 @@ public abstract class SearchebleImplement  implements Searchable{
 
         SearchebleImplement sch = (SearchebleImplement) obj;
         // same Unique Key
-        return this.getUniqueKey() == (sch.getUniqueKey());
+        return this.getUniqueKey().equals(sch.getUniqueKey());
     }
 }

@@ -4,7 +4,7 @@ import android.app.SearchableInfo;
 
 import java.util.ArrayList;
 
-public class EntityRayon extends SearchebleImplement {
+public class EntityRayon extends SearchebleImplement<Integer> {
 
     private int idRayon;
     private String name;
@@ -43,7 +43,7 @@ public class EntityRayon extends SearchebleImplement {
     }
 
     @Override
-    public int getUniqueKey() {
+    public Integer getUniqueKey() {
         return this.idRayon;
     }
 
