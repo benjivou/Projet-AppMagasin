@@ -18,6 +18,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class represent a database access for the employee table
+ * @<version 1.0
+ * @author Leslie Kiav & Benjamin Vouillon
+ */
 public class EmployeeDAO {
     private static final String TAG = "EmployeeDAO";
 
@@ -27,7 +32,7 @@ public class EmployeeDAO {
      * @param context Activity context
      * @return null if the employee didn't exist else the employee
      */
-    public static EntityEmployee getByMatricule(int matricule, Context context){
+    public static EntityEmployee getByMatricule(String matricule, Context context){
 
         DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getReadableDatabase();
@@ -50,7 +55,7 @@ public class EmployeeDAO {
                 if(cursor.moveToFirst()){
                     List<EntityEmployee> EmployeeList = new ArrayList<>();
                     do {
-                        int id = cursor.getInt(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_ID));
+                        String id = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_ID));
                         String name = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_NAME));
                         String sex = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_SEX));
                         String password = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_PASSWORD));
@@ -97,7 +102,7 @@ public class EmployeeDAO {
                 if(cursor.moveToFirst()){
 
                     do {
-                        int id = cursor.getInt(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_ID));
+                        String id = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_ID));
                         String name = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_NAME));
                         String sex = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_SEX));
                         String password = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_PASSWORD));

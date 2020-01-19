@@ -31,7 +31,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
-import DAO.DatabaseQueryDao;
 
 import static com.example.myapplication.config.ConfigFront.DEFAULT_PASSWORD;
 import static com.example.myapplication.config.ConfigFront.USERNAME_SESSION;
@@ -158,14 +157,14 @@ public class LoginActivity extends Activity  {
             // database doesn't exist yet.
 
             EmployeeDAO.insertEmployee(new EntityEmployee(
-                    1,
+                    "1",
                     "root",
                     "M",
                     DEFAULT_PASSWORD,
                     ADMIN.getSring()),
                     this);
             Log.d(TAG, "initBDD: We add the root user");
-            Log.d(TAG, "initBDD: first root " + EmployeeDAO.getByMatricule(1,this));
+            Log.d(TAG, "initBDD: first root " + EmployeeDAO.getByMatricule("1",this));
 
         }
 
