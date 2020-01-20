@@ -30,7 +30,7 @@ public class FirstConnexionActivity extends Activity {
         mPassword = (EditText)findViewById(R.id.password);
     }
 
-    protected void firstConnection(String username, String password{
+    protected void firstConnection(String username, String password){
 
 
     }

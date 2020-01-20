@@ -68,7 +68,7 @@ public class LoginActivity extends Activity  {
 
 
         mButton.setOnClickListener(new View.OnClickListener() {
-            @Overrideé
+            @Override
             public void onClick(View v) {
                 /*
                 Step 1 : get the login info

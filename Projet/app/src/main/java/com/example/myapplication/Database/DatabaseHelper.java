@@ -66,24 +66,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + ConfigDAO.COLUMN_ARTICLE_PRICE + " INTEGER NOT NULL, " //nullable
                 + ")";
 
-/*
-        String CREATE_ARTICLE_TABLE = "CREATE TABLE " + Config.TABLE_ARTICLE + "("
-                + Config.COLUMN_ARTICLE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + Config.COLUMN_REGISTRATION_NUMBER + " INTEGER NOT NULL, "
-                + Config.COLUMN_ARTICLE_NAME + " TEXT NOT NULL, "
-                + Config.COLUMN_ARTICLE_CODE + " INTEGER NOT NULL, "
-                + Config.COLUMN_ARTICLE_CREDIT + " REAL, " //nullable
-                + "FOREIGN KEY (" + Config.COLUMN_REGISTRATION_NUMBER + ") REFERENCES " + Config.TABLE_EMPLOYEE + "(" + Config.COLUMN_EMPLOYEE_REGISTRATION + ") ON UPDATE CASCADE ON DELETE CASCADE, "
-                + "CONSTRAINT " + Config.EMPLOYEE_SUB_CONSTRAINT + " UNIQUE (" + Config.COLUMN_REGISTRATION_NUMBER + "," + Config.COLUMN_ARTICLE_CODE + ")"
-                + ")";*/
 
         db.execSQL(CREATE_EMPLOYEE_TABLE);
+        db.execSQL(CREATE_ARTICLE_TABLE);
+        db.execSQL(CREATE_RAYON_TABLE);
 
 
-
-
-       /* db.execSQL(CREATE_SUBJECT_TABLE);*/
-        // TO-DO
 
         Log.d(TAG, "onCreate: "+ "DB Create");
 
@@ -93,7 +81,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop older table if existed
         db.execSQL("DROP TABLE IF EXISTS " + ConfigDAO.TABLE_EMPLOYEE);
-        /*db.execSQL("DROP TABLE IF EXISTS " + Config.TABLE_SUBJECT);*/
+        db.execSQL("DROP TABLE IF EXISTS " + ConfigDAO.TABLE_ARTICLE);
+        db.execSQL("DROP TABLE IF EXISTS " + ConfigDAO.TABLE_RAYON);
 
         // Create tables again
         onCreate(db);

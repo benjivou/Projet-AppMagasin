@@ -144,6 +144,7 @@ public class EmployeeDAO {
         SQLiteDatabase sqLiteDatabase = databaseHelper.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
+        contentValues.put(ConfigDAO.COLUMN_EMPLOYEE_ID, entityEmployeedent.getIdEmployee());
         contentValues.put(ConfigDAO.COLUMN_EMPLOYEE_NAME, entityEmployeedent.getName());
         contentValues.put(ConfigDAO.COLUMN_EMPLOYEE_SEX, entityEmployeedent.getSex());
         contentValues.put(ConfigDAO.COLUMN_EMPLOYEE_PASSWORD, entityEmployeedent.getPassword());
