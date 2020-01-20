@@ -1,9 +1,7 @@
 package com.example.myapplication.model;
 
-<<<<<<< HEAD
-public class EntityArticle extends SearchebleImplement<Integer> {
 
-=======
+
 /**
  * This class represent a article
  * @<version 1.0
@@ -14,7 +12,6 @@ public class EntityArticle{
     /**
      * The article id
      */
->>>>>>> Leslie
     private int idArticle;
     /**
      * The article name
@@ -62,14 +59,7 @@ public class EntityArticle{
         return name;
     }
 
-<<<<<<< HEAD
-    @Override
-    public Integer getUniqueKey() {
-        return this.idArticle;
-    }
 
-=======
->>>>>>> Leslie
     public void setName(String name) {
         this.name = name;
     }

@@ -54,6 +54,9 @@ public class ExampleInstrumentedTest {
         onView(withId(R.id.btnSubmit))
                 .perform(click());
 
+        onView(withText(ConfigFront.ERROR_CREATION_PASSWORD_CORRESPONDANCE_PROBLEM))
+                .inRoot(new ToastMatcher())
+                .check(matches(not(isDisplayed())));
         onView(withText(ConfigFront.ERROR_BAD_PAIR_LOGIN_MDP))
                 .inRoot(new ToastMatcher())
                 .check(matches(withText(ConfigFront.ERROR_BAD_PAIR_LOGIN_MDP)));
