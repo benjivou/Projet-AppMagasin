@@ -68,7 +68,7 @@ public class LoginActivity extends Activity  {
 
 
         mButton.setOnClickListener(new View.OnClickListener() {
-            @Override
+            @Overrideé
             public void onClick(View v) {
                 /*
                 Step 1 : get the login info
@@ -119,10 +119,6 @@ public class LoginActivity extends Activity  {
 
         Intent newActivity;
         EntityEmployee  employee = new EntityEmployee();
-        /*
-        Step 1 : request the use entity
-         */
-        // TO-DO
 
 
         /*
