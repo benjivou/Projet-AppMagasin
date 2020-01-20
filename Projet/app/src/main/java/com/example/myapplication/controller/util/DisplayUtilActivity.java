@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.widget.Toast;
 
+import com.example.myapplication.dao.EmployeeDAO;
+import com.example.myapplication.model.EntityEmployee;
+
 import static com.example.myapplication.config.ConfigFront.DEFAULT_PASSWORD;
 import static com.example.myapplication.config.ConfigFront.DURATION_ERROR_MESSAGES;
 
@@ -46,13 +49,10 @@ public abstract class DisplayUtilActivity extends Activity {
         /*
         Step 1 : get the code from the bdd
          */
-        // TO-DO
-
-        // remove this if
-        if (login.equals("root"))
-            truePassword = DEFAULT_PASSWORD;
-
-
+        EntityEmployee employee = EmployeeDAO.getByMatricule(login,this);
+        if (employee == null)
+            return resultat;
+        truePassword = employee.getPassword();
         /*
         Step 2 : check the password
          */
