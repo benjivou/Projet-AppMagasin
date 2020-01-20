@@ -4,9 +4,12 @@ package com.example.myapplication.controller;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageButton;
 
 import androidx.annotation.Nullable;
 
+import com.example.myapplication.Database.DatabaseQueryClass;
 import com.example.myapplication.R;
 
 public class FirstConnexionActivity extends Activity {
