@@ -52,7 +52,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         String CREATE_ARTICLE_TABLE = "CREATE TABLE " + ConfigDAO.TABLE_ARTICLE + "("
                 + ConfigDAO.COLUMN_ARTICLE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + ConfigDAO.COLUMN_RAYON_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + ConfigDAO.COLUMN_RAYON_ID + " INTEGER NOT NULL, "
                 + ConfigDAO.COLUMN_ARTICLE_NAME + " TEXT NOT NULL, "
                 + ConfigDAO.COLUMN_ARTICLE_QUANTITY + " INTEGER NOT NULL, "
                 + ConfigDAO.COLUMN_ARTICLE_PRICE + " INTEGER NOT NULL, " //nullable
