@@ -1,62 +1,44 @@
 package com.example.myapplication.controller;
 
-import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.database.sqlite.SQLiteCantOpenDatabaseException;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
 import android.view.View;
-
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
-import com.example.myapplication.Database.DatabaseHelper;
 import com.example.myapplication.Database.DatabaseQueryClass;
 import com.example.myapplication.R;
 import com.example.myapplication.config.ConfigDAO;
 import com.example.myapplication.config.ConfigFront;
-
+import com.example.myapplication.controller.util.DisplayUtilActivity;
 import com.example.myapplication.dao.EmployeeDAO;
 import com.example.myapplication.model.EntityEmployee;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-
-
 import static com.example.myapplication.config.ConfigFront.DEFAULT_PASSWORD;
 import static com.example.myapplication.config.ConfigFront.USERNAME_SESSION;
-import static com.example.myapplication.controller.util.DisplayUtil.displayError;
-
-import static com.example.myapplication.controller.util.DisplayUtil.loginProcess;
-import static com.example.myapplication.dao.EmployeeDAO.getByMatricule;
 import static com.example.myapplication.dao.roleDAO.ADMIN;
 
 
-public class LoginActivity extends Activity  {
+public class LoginActivity extends DisplayUtilActivity {
     private DatabaseQueryClass databaseQueryClass;
 
-
+    /*
+    Attribut
+     */
     ImageButton mButton;
     EditText mLogin,mPassword;
     private static final String TAG = "LoginActivity";
 
 
-    int counter = 3;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_frame);
-
 
         /*
         Connect the View
@@ -68,12 +50,13 @@ public class LoginActivity extends Activity  {
 
 
         mButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 /*
                 Step 1 : get the login info
                  */
-                boolean[] process = loginProcess(
+                boolean[] process =loginProcess(
                         mLogin.getText().toString(),
                         mPassword.getText().toString()
                 );
@@ -82,8 +65,7 @@ public class LoginActivity extends Activity  {
                 Step 2 : result
                  */
                 if(process[0] == true) {
-                    displayError("Redirecting...",
-                            getBaseContext());
+                  displayError("Redirecting...");
 
                     /*
                     Step 3 : Change Activity
@@ -93,8 +75,7 @@ public class LoginActivity extends Activity  {
                     /*
                       Error : bad pair login / password
                      */
-                    displayError(ConfigFront.ERROR_BAD_PAIR_LOGIN_MDP,
-                            getBaseContext());
+                    displayError(ConfigFront.ERROR_BAD_PAIR_LOGIN_MDP);
 
 
 
@@ -109,11 +90,7 @@ public class LoginActivity extends Activity  {
 
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-       // initBDD();
-    }
+
 
     private void changeActivity(boolean isFirstConnection){
 

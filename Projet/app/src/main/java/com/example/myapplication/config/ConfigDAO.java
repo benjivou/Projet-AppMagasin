@@ -1,7 +1,5 @@
 package com.example.myapplication.config;
 
-import android.os.Environment;
-
 public class ConfigDAO {
     public static final String DB = "DB";
     public static final String AISLE = "Aisle.txt";

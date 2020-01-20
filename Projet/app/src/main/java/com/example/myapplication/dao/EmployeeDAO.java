@@ -13,8 +13,6 @@ import com.example.myapplication.Database.DatabaseHelper;
 import com.example.myapplication.config.ConfigDAO;
 import com.example.myapplication.model.EntityEmployee;
 
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
