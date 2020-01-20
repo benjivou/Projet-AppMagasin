@@ -23,7 +23,6 @@ import static com.example.myapplication.dao.roleDAO.ADMIN;
 
 
 public class LoginActivity extends DisplayUtilActivity {
-    private DatabaseQueryClass databaseQueryClass;
 
     /*
     Attribut
@@ -126,7 +125,7 @@ public class LoginActivity extends DisplayUtilActivity {
 
 
         if(  !this.getDatabasePath(ConfigDAO.DB).exists()) {
-            this.databaseQueryClass = new DatabaseQueryClass(this);
+             new DatabaseQueryClass(this);
 
             // database doesn't exist yet.
 
@@ -138,7 +137,15 @@ public class LoginActivity extends DisplayUtilActivity {
                     ADMIN.getSring()),
                     this);
             Log.d(TAG, "initBDD: We add the root user");
+
+            Log.d(TAG, "initBDD: first root " + EmployeeDAO.getByMatricule("1",this));
             Log.d(TAG, "initBDD: first root " + EmployeeDAO.getByMatricule("root",this));
+            for (EntityEmployee e:
+                    EmployeeDAO.getAllEmployee(this)) {
+                Log.d(TAG, "initBDD: first root " + e.toString());
+            }
+
+            Log.d(TAG, "initBDD: first root " + EmployeeDAO.countEmployee(this));
 
         }
 

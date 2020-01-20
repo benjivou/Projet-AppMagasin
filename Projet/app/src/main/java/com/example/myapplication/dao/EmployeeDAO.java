@@ -14,7 +14,9 @@ import com.example.myapplication.config.ConfigDAO;
 import com.example.myapplication.model.EntityEmployee;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * This class represent a database access for the employee table
@@ -40,7 +42,10 @@ public class EmployeeDAO {
         Cursor cursor = null;
         try {
 
-            cursor = sqLiteDatabase.query(ConfigDAO.TABLE_EMPLOYEE, null, ConfigDAO.COLUMN_EMPLOYEE_ID +" = " + matricule , null, null, null, null, null);
+            cursor = sqLiteDatabase.query(ConfigDAO.TABLE_EMPLOYEE,
+                   null,
+                    ConfigDAO.COLUMN_EMPLOYEE_ID +" = ?"  ,
+                    new String[]{matricule}, null, null, null);
 
             /**
              // If you want to execute raw query then uncomment below 2 lines. And comment out above line.
@@ -60,9 +65,9 @@ public class EmployeeDAO {
                         String role = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_ROLE));
 
 
-                        EmployeeList.add(new EntityEmployee(id, name, sex, password, role));
+                        result = new EntityEmployee(id, name, sex, password, role);
                     }   while (cursor.moveToNext());
-                    result = EmployeeList.get(0);
+
                     return result;
                 }
         } catch (Exception e){
@@ -77,6 +82,12 @@ public class EmployeeDAO {
         return result;
     }
 
+    /**
+     * Get a employee
+     * @param nameWanted
+     * @param context
+     * @return
+     */
     public static ArrayList< EntityEmployee> getByName(String nameWanted, Context context){
 
         DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
@@ -124,7 +135,7 @@ public class EmployeeDAO {
         return employeeList;
     }
     /**
-     *
+     * Insert employee
      * @param entityEmployeedent
      * @param context
      * @return
@@ -140,6 +151,7 @@ public class EmployeeDAO {
         contentValues.put(ConfigDAO.COLUMN_EMPLOYEE_SEX, entityEmployeedent.getSex());
         contentValues.put(ConfigDAO.COLUMN_EMPLOYEE_PASSWORD, entityEmployeedent.getPassword());
         contentValues.put(ConfigDAO.COLUMN_EMPLOYEE_ROLE, entityEmployeedent.getRole());
+        contentValues.put(ConfigDAO.COLUMN_EMPLOYEE_ID, entityEmployeedent.getIdEmployee());
 
         try {
             id = sqLiteDatabase.insertOrThrow(ConfigDAO.TABLE_EMPLOYEE, null, contentValues);
@@ -169,7 +181,14 @@ public class EmployeeDAO {
         Count.close();
         return count;
     }
-    public static boolean  deleteStudentById(int subjectId,Context context) {
+
+    /**
+     * Delete a employee with id employee
+     * @param subjectId
+     * @param context
+     * @return
+     */
+    public static boolean  deleteEmployeeById(int subjectId,Context context) {
         DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getWritableDatabase();
 
@@ -179,6 +198,47 @@ public class EmployeeDAO {
         return row > 0;
     }
 
+    public static ArrayList<EntityEmployee> getAllEmployee(Context context){
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
+        SQLiteDatabase sqLiteDatabase = databaseHelper.getReadableDatabase();
 
+        Cursor cursor = null;
+        try {
+
+            cursor = sqLiteDatabase.query(ConfigDAO.TABLE_EMPLOYEE, null, null, null, null, null, null, null);
+
+            /**
+             // If you want to execute raw query then uncomment below 2 lines. And comment out above line.
+
+             String SELECT_QUERY = String.format("SELECT %s, %s, %s, %s, %s FROM %s", Config.COLUMN_STUDENT_ID, Config.COLUMN_STUDENT_NAME, Config.COLUMN_STUDENT_REGISTRATION, Config.COLUMN_STUDENT_EMAIL, Config.COLUMN_STUDENT_PHONE, Config.TABLE_STUDENT);
+             cursor = sqLiteDatabase.rawQuery(SELECT_QUERY, null);
+             */
+
+            if(cursor!=null)
+                if(cursor.moveToFirst()){
+                    ArrayList<EntityEmployee> studentList = new ArrayList<>();
+                    do {
+                        String id = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_ID));
+                        String name = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_NAME));
+                        String role = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_ROLE));
+                        String password = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_PASSWORD));
+                        String sex = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_SEX));
+
+                        studentList.add(new EntityEmployee(id, name, sex, password, role));
+                    }   while (cursor.moveToNext());
+
+                    return studentList;
+                }
+        } catch (Exception e){
+            Log.d(TAG, "getAllEmployee: Exception: " + e.getMessage());
+            Toast.makeText(context, "Operation failed", Toast.LENGTH_SHORT).show();
+        } finally {
+            if(cursor!=null)
+                cursor.close();
+            sqLiteDatabase.close();
+        }
+
+        return new ArrayList<>();
+    }
 
 }

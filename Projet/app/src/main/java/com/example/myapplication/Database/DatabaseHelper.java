@@ -43,42 +43,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // Create tables SQL execution
         // Table Employee
         String CREATE_EMPLOYEE_TABLE = "CREATE TABLE " + ConfigDAO.TABLE_EMPLOYEE + "("
-                + ConfigDAO.COLUMN_EMPLOYEE_ID + " INTEGER PRIMARY KEY UNIQUE, "
+                + ConfigDAO.COLUMN_EMPLOYEE_ID + " TEXT PRIMARY KEY UNIQUE, "
                 + ConfigDAO.COLUMN_EMPLOYEE_NAME + " TEXT NOT NULL, "
                 + ConfigDAO.COLUMN_EMPLOYEE_SEX + " TEXT NOT NULL, "
                 + ConfigDAO.COLUMN_EMPLOYEE_PASSWORD + " TEXT NOT NULL, " //nullable
                 + ConfigDAO.COLUMN_EMPLOYEE_ROLE + " TEXT NOT NULL" //nullable
                 + ")";
-
-        String CREATE_ARTICLE_TABLE = "CREATE TABLE " + ConfigDAO.TABLE_ARTICLE + "("
-                + ConfigDAO.COLUMN_ARTICLE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + ConfigDAO.COLUMN_RAYON_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + ConfigDAO.COLUMN_ARTICLE_NAME + " TEXT NOT NULL, "
-                + ConfigDAO.COLUMN_ARTICLE_QUANTITY + " INTEGER NOT NULL, "
-                + ConfigDAO.COLUMN_ARTICLE_PRICE + " INTEGER NOT NULL, " //nullable
-                + "FOREIGN KEY (" + ConfigDAO.COLUMN_RAYON_ID + ") REFERENCES " + ConfigDAO.TABLE_RAYON+ "(" + ConfigDAO.COLUMN_RAYON_ID + ") ON UPDATE CASCADE ON DELETE CASCADE, "
-                + ")";
-
         String CREATE_RAYON_TABLE = "CREATE TABLE " + ConfigDAO.TABLE_RAYON+ "("
                 + ConfigDAO.COLUMN_RAYON_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + ConfigDAO.COLUMN_RAYON_NAME + " TEXT NOT NULL, "
                 + ConfigDAO.COLUMN_RAYON_EMPLOYEE + " INTEGER NOT NULL, "
-                + ConfigDAO.COLUMN_ARTICLE_PRICE + " INTEGER NOT NULL, " //nullable
+                + ConfigDAO.COLUMN_ARTICLE_PRICE + " INTEGER NOT NULL " //nullable
                 + ")";
 
-/*
-        String CREATE_ARTICLE_TABLE = "CREATE TABLE " + Config.TABLE_ARTICLE + "("
-                + Config.COLUMN_ARTICLE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + Config.COLUMN_REGISTRATION_NUMBER + " INTEGER NOT NULL, "
-                + Config.COLUMN_ARTICLE_NAME + " TEXT NOT NULL, "
-                + Config.COLUMN_ARTICLE_CODE + " INTEGER NOT NULL, "
-                + Config.COLUMN_ARTICLE_CREDIT + " REAL, " //nullable
-                + "FOREIGN KEY (" + Config.COLUMN_REGISTRATION_NUMBER + ") REFERENCES " + Config.TABLE_EMPLOYEE + "(" + Config.COLUMN_EMPLOYEE_REGISTRATION + ") ON UPDATE CASCADE ON DELETE CASCADE, "
-                + "CONSTRAINT " + Config.EMPLOYEE_SUB_CONSTRAINT + " UNIQUE (" + Config.COLUMN_REGISTRATION_NUMBER + "," + Config.COLUMN_ARTICLE_CODE + ")"
-                + ")";*/
+        String CREATE_ARTICLE_TABLE = "CREATE TABLE " + ConfigDAO.TABLE_ARTICLE + "("
+                + ConfigDAO.COLUMN_ARTICLE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + ConfigDAO.COLUMN_RAYON_ID + " INTEGER NOT NULL, "
+                + ConfigDAO.COLUMN_ARTICLE_NAME + " TEXT NOT NULL, "
+                + ConfigDAO.COLUMN_ARTICLE_QUANTITY + " INTEGER NOT NULL, "
+                + ConfigDAO.COLUMN_ARTICLE_PRICE + " INTEGER NOT NULL, " //nullable
+                + "FOREIGN KEY (" + ConfigDAO.COLUMN_RAYON_ID + ") REFERENCES " + ConfigDAO.TABLE_RAYON+ "(" + ConfigDAO.COLUMN_RAYON_ID + ") ON UPDATE CASCADE ON DELETE CASCADE "
+                + ")";
+
+
 
         db.execSQL(CREATE_EMPLOYEE_TABLE);
-
+        db.execSQL(CREATE_RAYON_TABLE);
+        db.execSQL(CREATE_ARTICLE_TABLE);
 
 
 
