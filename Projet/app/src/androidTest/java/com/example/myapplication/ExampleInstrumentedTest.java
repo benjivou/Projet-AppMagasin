@@ -22,6 +22,7 @@ import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.Matchers.not;
 import static org.junit.Assert.*;
 
 /**
@@ -38,8 +39,9 @@ public class ExampleInstrumentedTest {
      * Fail to connect:
      * "Login do not exist"
      */
+
     @Test
-    public void processBadLogin(){
+    public void processBadLoginTestUnmatch(){
 
         /*
         Write the login
@@ -54,13 +56,31 @@ public class ExampleInstrumentedTest {
         onView(withId(R.id.btnSubmit))
                 .perform(click());
 
-        onView(withText(ConfigFront.ERROR_CREATION_PASSWORD_CORRESPONDANCE_PROBLEM))
-                .inRoot(new ToastMatcher())
-                .check(matches(not(isDisplayed())));
+
+    }
+
+    @Test
+    public void processGoodLoginTestMatchMessage(){
+
+        /*
+        Write the login
+         */
+        onView(withId(R.id.login))
+                .perform((typeText("NOTRootATall")),closeSoftKeyboard());
+        onView(withId(R.id.password))
+                .perform((typeText("NOTRootATall")),closeSoftKeyboard());
+        /*
+        Click on the submit button
+         */
+        onView(withId(R.id.btnSubmit))
+                .perform(click());
+
+
         onView(withText(ConfigFront.ERROR_BAD_PAIR_LOGIN_MDP))
                 .inRoot(new ToastMatcher())
-                .check(matches(withText(ConfigFront.ERROR_BAD_PAIR_LOGIN_MDP)));
+                .check(matches((isDisplayed())));
     }
+
     @Test
     public void procesAdmin() {
 

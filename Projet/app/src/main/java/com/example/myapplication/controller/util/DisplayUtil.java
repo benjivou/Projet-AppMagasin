@@ -43,7 +43,7 @@ public class DisplayUtil {
         /*
         Step 1 : get the code from the bdd
          */
-        // TO-DO
+
         if (login.equals("root"))
             truePassword = DEFAULT_PASSWORD;
 
