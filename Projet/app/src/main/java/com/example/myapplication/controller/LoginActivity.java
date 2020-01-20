@@ -157,14 +157,14 @@ public class LoginActivity extends Activity  {
             // database doesn't exist yet.
 
             EmployeeDAO.insertEmployee(new EntityEmployee(
-                    "1",
+                    "root",
                     "root",
                     "M",
                     DEFAULT_PASSWORD,
                     ADMIN.getSring()),
                     this);
             Log.d(TAG, "initBDD: We add the root user");
-            Log.d(TAG, "initBDD: first root " + EmployeeDAO.getByMatricule("1",this));
+            Log.d(TAG, "initBDD: first root " + EmployeeDAO.getByMatricule("root",this));
 
         }
 

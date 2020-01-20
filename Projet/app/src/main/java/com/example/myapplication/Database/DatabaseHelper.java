@@ -53,7 +53,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + ConfigDAO.COLUMN_RAYON_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + ConfigDAO.COLUMN_RAYON_NAME + " TEXT NOT NULL, "
                 + ConfigDAO.COLUMN_RAYON_EMPLOYEE + " INTEGER NOT NULL, "
-                + ConfigDAO.COLUMN_ARTICLE_PRICE + " INTEGER NOT NULL, " //nullable
+                + ConfigDAO.COLUMN_ARTICLE_PRICE + " INTEGER NOT NULL " //nullable
                 + ")";
 
         String CREATE_ARTICLE_TABLE = "CREATE TABLE " + ConfigDAO.TABLE_ARTICLE + "("
@@ -62,7 +62,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + ConfigDAO.COLUMN_ARTICLE_NAME + " TEXT NOT NULL, "
                 + ConfigDAO.COLUMN_ARTICLE_QUANTITY + " INTEGER NOT NULL, "
                 + ConfigDAO.COLUMN_ARTICLE_PRICE + " INTEGER NOT NULL, " //nullable
-                + "FOREIGN KEY (" + ConfigDAO.COLUMN_RAYON_ID + ") REFERENCES " + ConfigDAO.TABLE_RAYON+ "(" + ConfigDAO.COLUMN_RAYON_ID + ") ON UPDATE CASCADE ON DELETE CASCADE, "
+                + "FOREIGN KEY (" + ConfigDAO.COLUMN_RAYON_ID + ") REFERENCES " + ConfigDAO.TABLE_RAYON+ "(" + ConfigDAO.COLUMN_RAYON_ID + ") ON UPDATE CASCADE ON DELETE CASCADE "
                 + ")";
 
 
