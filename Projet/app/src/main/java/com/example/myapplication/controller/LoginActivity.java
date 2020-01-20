@@ -30,6 +30,7 @@ public class LoginActivity extends DisplayUtilActivity {
      */
     ImageButton mButton;
     EditText mLogin,mPassword;
+
     private static final String TAG = "LoginActivity";
 
 
@@ -66,8 +67,7 @@ public class LoginActivity extends DisplayUtilActivity {
                  */
                 if(process[0] == true) {
                   displayError("Redirecting...");
-
-                    /*
+                    mIdEmployee = mLogin.getText().toString();                    /*
                     Step 3 : Change Activity
                      */
                     changeActivity(process[1]);
@@ -95,11 +95,8 @@ public class LoginActivity extends DisplayUtilActivity {
     private void changeActivity(boolean isFirstConnection){
 
         Intent newActivity;
-        EntityEmployee  employee = new EntityEmployee();
-        /*
-        Step 1 : request the use entity
-         */
-        // TO-DO
+
+
 
 
         /*
@@ -115,7 +112,7 @@ public class LoginActivity extends DisplayUtilActivity {
                         ListeActivity.class
                 );
 
-        newActivity.putExtra(USERNAME_SESSION,employee.getIdEmployee());
+        newActivity.putExtra(USERNAME_SESSION,mIdEmployee);
 
         startActivity(newActivity);
 

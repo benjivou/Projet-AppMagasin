@@ -13,6 +13,7 @@ import static com.example.myapplication.config.ConfigFront.DURATION_ERROR_MESSAG
  */
 public abstract class DisplayUtilActivity extends Activity {
     private  final String TAG = "DisplayUtil";
+    protected String mIdEmployee;
 
 
 
