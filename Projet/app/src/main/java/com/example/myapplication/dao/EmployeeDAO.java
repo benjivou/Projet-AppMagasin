@@ -241,4 +241,32 @@ public class EmployeeDAO {
         return new ArrayList<>();
     }
 
+    public static void insertUpdate(EntityEmployee entityEmployee,Context context) {
+
+        long rowCount = 0;
+
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
+        SQLiteDatabase sqLiteDatabase = databaseHelper.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(ConfigDAO.COLUMN_EMPLOYEE_ID,entityEmployee.getIdEmployee());
+        contentValues.put(ConfigDAO.COLUMN_EMPLOYEE_ROLE, entityEmployee.getRole());
+        contentValues.put(ConfigDAO.COLUMN_EMPLOYEE_PASSWORD, entityEmployee.getPassword());
+        contentValues.put(ConfigDAO.COLUMN_EMPLOYEE_SEX, entityEmployee.getSex());
+        contentValues.put(ConfigDAO.COLUMN_EMPLOYEE_NAME, entityEmployee.getName());
+
+        try {
+            rowCount = sqLiteDatabase.update(ConfigDAO.TABLE_EMPLOYEE, contentValues,
+                    ConfigDAO.COLUMN_EMPLOYEE_ID + " = ? ",
+                    new String[] {String.valueOf(entityEmployee.getIdEmployee())});
+        } catch (SQLiteException e){
+            Log.d(TAG, "insertUpdate: ");
+            Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
+        } finally {
+            sqLiteDatabase.close();
+        }
+
+
+    }
+
 }
