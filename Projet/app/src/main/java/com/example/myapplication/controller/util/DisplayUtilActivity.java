@@ -63,6 +63,10 @@ public abstract class DisplayUtilActivity extends Activity {
         return resultat;
     }
 
+    public String displayUsername(EntityEmployee entityEmployee){
+        return entityEmployee.getIdEmployee()+", " + entityEmployee.getRole();
+    }
+
 
 
 

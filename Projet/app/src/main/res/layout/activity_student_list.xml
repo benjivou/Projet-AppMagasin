@@ -1,79 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_shadow"
-    tools:context=".controller.ListeActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#FFFF"
+    tools:context=".controller.ListeActivity"
+
+    >
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:id="@+id/appBar">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="55dp"
-            android:layout_gravity="right">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            >
 
-            <ImageButton
-                android:id="@+id/btShoppingBasket"
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
+                android:layout_height="55dp"
+                android:layout_gravity="right">
 
-                android:src="@drawable/ic_shopping_basket_black_24dp"></ImageButton>
+                <ImageButton
+                    android:id="@+id/btShoppingBasket"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
 
-            <ImageButton
-                android:id="@+id/btReload"
+                    android:src="@drawable/ic_shopping_basket_black_24dp"></ImageButton>
+
+                <ImageButton
+                    android:id="@+id/btReload"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/btShoppingBasket"
+
+                    android:src="@drawable/ic_reload_black_24dp"></ImageButton>
+
+                <ImageButton
+                    android:id="@+id/btPlus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/btBrowsing"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/ic_plus_symbol"></ImageButton>
+
+                <ImageButton
+                    android:id="@+id/btBrowsing"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_find_replace_black_24dp"
+                    android:layout_alignParentRight="true">
+
+                </ImageButton>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/userInfo"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/btShoppingBasket"
-
-                android:src="@drawable/ic_reload_black_24dp"></ImageButton>
-
-            <ImageButton
-                android:id="@+id/btPlus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@id/btBrowsing"
-                android:layout_alignParentRight="true"
-                android:src="@drawable/ic_plus_symbol"></ImageButton>
-
-            <ImageButton
-                android:id="@+id/btBrowsing"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_find_replace_black_24dp"
-                android:layout_alignParentRight="true">
-
-            </ImageButton>
-
-        </LinearLayout>
-
+                android:layout_height="match_parent"
+                android:text="login"/>
+        </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
 
+
+
+
+
+
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:orientation="horizontal">
+        android:layout_height="50dp"
+        android:id="@+id/listMode"
+        android:layout_gravity="right"
+        android:layout_below="@+id/appBar">
+        <Button
+            android:id="@+id/btModeProduct"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="@string/product_list"
+            android:background="@color/clicked"
+            android:layout_weight="0.5"
+            >
 
-        <TextView
-            android:id="@+id/userInfo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Login"
+        </Button>
 
-            ></TextView>
+        <Button
 
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
 
+            android:text="@string/subject_list"
+            android:background="@color/wait_clicked"
+            android:layout_weight="0.5">
+
+        </Button>
     </LinearLayout>
 
-    <include layout="@layout/content_main" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/listMode"
+        android:layout_marginTop="16dp">
 
+    </androidx.recyclerview.widget.RecyclerView>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</RelativeLayout>
