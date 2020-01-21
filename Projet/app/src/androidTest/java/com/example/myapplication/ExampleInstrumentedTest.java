@@ -1,12 +1,16 @@
 package com.example.myapplication;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
 
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.rule.ActivityTestRule;
 
+import com.example.myapplication.config.ConfigDAO;
 import com.example.myapplication.config.ConfigFront;
+import com.example.myapplication.controller.ListeActivity;
 import com.example.myapplication.controller.LoginActivity;
 
 import org.junit.Rule;
@@ -18,6 +22,7 @@ import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.typeText;
+import static androidx.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
@@ -40,6 +45,7 @@ public class ExampleInstrumentedTest {
      * "Login do not exist"
      */
 
+    @SuppressWarnings("unchecked")
     @Test
     public void processBadLoginTestUnmatch(){
 
@@ -56,7 +62,9 @@ public class ExampleInstrumentedTest {
         onView(withId(R.id.btnSubmit))
                 .perform(click());
 
-
+        onView(withText(ConfigFront.ERROR_CREATION_PASSWORD_CORRESPONDANCE_PROBLEM))
+                .inRoot(new ToastMatcher())
+                .check(doesNotExist());
     }
 
     @Test
@@ -83,6 +91,27 @@ public class ExampleInstrumentedTest {
 
     @Test
     public void procesAdmin() {
+        /*
+        Write the login
+         */
+        onView(withId(R.id.login))
+                .perform((typeText("root")),closeSoftKeyboard());
+        onView(withId(R.id.password))
+                .perform((typeText(ConfigFront.DEFAULT_PASSWORD)),closeSoftKeyboard());
+        /*
+        Click on the submit button
+         */
+        onView(withId(R.id.btnSubmit))
+                .perform(click());
+
+        /*
+        Check the result of the new activity
+         */
+
+        onView(withId(R.id.password2))                      // Check if the password2 field is displayed
+                .check(matches(isDisplayed()));
+
+
 
     }
 }
