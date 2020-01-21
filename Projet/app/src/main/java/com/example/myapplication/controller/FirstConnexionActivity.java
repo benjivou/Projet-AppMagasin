@@ -45,10 +45,10 @@ public class FirstConnexionActivity extends DisplayUtilActivity {
 
         mButton.setOnClickListener(new View.OnClickListener() {
 
-            String p1,p2;
+
             @Override
             public void onClick(View v) {
-
+                String p1,p2;
                 /*
                 Step 1 : get the two passwords
                  */
