@@ -94,10 +94,9 @@
         </Button>
 
         <Button
-
+            android:id="@+id/btModeEmployee"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-
             android:text="@string/subject_list"
             android:background="@color/wait_clicked"
             android:layout_weight="0.5">
@@ -105,13 +104,12 @@
         </Button>
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/listMode"
-        android:layout_marginTop="16dp">
-
-    </androidx.recyclerview.widget.RecyclerView>
+        android:layout_below="@+id/listMode"/>
 
 </RelativeLayout>
+
+
