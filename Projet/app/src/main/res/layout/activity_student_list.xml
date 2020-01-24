@@ -87,7 +87,6 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:text="@string/product_list"
-            android:background="@color/clicked"
             android:layout_weight="0.5"
             >
 
@@ -98,7 +97,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:text="@string/subject_list"
-            android:background="@color/wait_clicked"
+
             android:layout_weight="0.5">
 
         </Button>

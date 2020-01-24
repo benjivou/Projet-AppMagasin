@@ -10,16 +10,16 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.RecyclerView;
+
 
 import com.example.myapplication.R;
 import com.example.myapplication.config.ConfigFront;
-import com.example.myapplication.controller.util.DisplayUtilActivity;
 import com.example.myapplication.controller.util.button.listActivity.ButtonOnglet;
+import com.example.myapplication.controller.util.button.listActivity.ControlOnglet;
 import com.example.myapplication.dao.EmployeeDAO;
 import com.example.myapplication.model.EntityEmployee;
 
-public class ListeActivity extends ButtonOnglet {
+public class ListeActivity extends ControlOnglet {
     private static final String TAG = "ListeActivity";
     /*
     Attribut
@@ -34,7 +34,7 @@ public class ListeActivity extends ButtonOnglet {
 
     TextView mEmployeInfo;
 
-    ListView mListOf;
+
     // Backend
     EntityEmployee mEntityEmployee;
     @Override
@@ -65,25 +65,8 @@ public class ListeActivity extends ButtonOnglet {
 
 
         mEmployeInfo.setText(displayUsername(mEntityEmployee));
-        String[] prenoms = new String[]{
-                "Antoine", "Benoit", "Cyril", "David", "Eloise", "Florent",
-                "Gerard", "Hugo", "Ingrid", "Jonathan", "Kevin", "Logan",
-                "Mathieu", "Noemie", "Olivia", "Philippe", "Quentin", "Romain",
-                "Sophie", "Tristan", "Ulric", "Vincent", "Willy", "Xavier",
-                "Yann", "Zoé"
-        };
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(ListeActivity.this,
-                android.R.layout.simple_list_item_1, prenoms);
-        mListOf.setAdapter(adapter);
-    }
-
-    @Override
-    protected void onOngletEmployee() {
 
     }
 
-    @Override
-    protected void onOngletProduct() {
 
-    }
 }

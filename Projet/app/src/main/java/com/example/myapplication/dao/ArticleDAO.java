@@ -102,7 +102,10 @@ public class ArticleDAO  {
         Cursor cursor = null;
         try {
 
-            cursor = sqLiteDatabase.query(ConfigDAO.TABLE_ARTICLE, null, ConfigDAO.COLUMN_ARTICLE_ID +" = " + matricule , null, null, null, null, null);
+            cursor = sqLiteDatabase.query(ConfigDAO.TABLE_ARTICLE,
+                    null,
+                    ConfigDAO.COLUMN_ARTICLE_ID +" = " + matricule ,
+                    null, null, null, null, null);
 
             /**
              // If you want to execute raw query then uncomment below 2 lines. And comment out above line.
@@ -155,6 +158,52 @@ public class ArticleDAO  {
         try {
 
             cursor = sqLiteDatabase.query(ConfigDAO.TABLE_ARTICLE, null, ConfigDAO.COLUMN_ARTICLE_NAME+" = " + nameWanted , null, null, null, null, null);
+
+            /**
+             // If you want to execute raw query then uncomment below 2 lines. And comment out above line.
+
+             String SELECT_QUERY = String.format("SELECT %s, %s, %s, %s, %s FROM %s", Config.COLUMN_Employee_ID, Config.COLUMN_Employee_NAME, Config.COLUMN_Employee_REGISTRATION, Config.COLUMN_Employee_EMAIL, Config.COLUMN_Employee_PHONE, Config.TABLE_Employee);
+             cursor = sqLiteDatabase.rawQuery(SELECT_QUERY, null);
+             */
+
+            if(cursor!=null)
+                if(cursor.moveToFirst()){
+
+                    do {
+                        int id = cursor.getInt(cursor.getColumnIndex(ConfigDAO.COLUMN_ARTICLE_ID));
+                        String name = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_ARTICLE_NAME));
+                        float price = cursor.getFloat(cursor.getColumnIndex(ConfigDAO.COLUMN_ARTICLE_PRICE));
+                        int quantity = cursor.getInt(cursor.getColumnIndex(ConfigDAO.COLUMN_ARTICLE_QUANTITY));
+
+
+                        ArticleList.add(new EntityArticle(id, name, price, quantity));
+                    }   while (cursor.moveToNext());
+
+                    return ArticleList;
+                }
+        } catch (Exception e){
+            Log.i(TAG, "getAllArticle: "+e.getMessage());
+            Toast.makeText(context, "Operation failed", Toast.LENGTH_SHORT).show();
+        } finally {
+            if(cursor!=null)
+                cursor.close();
+            sqLiteDatabase.close();
+        }
+
+        return ArticleList;
+    }
+
+    public static ArrayList< EntityArticle> getAll( Context context){
+
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
+        SQLiteDatabase sqLiteDatabase = databaseHelper.getReadableDatabase();
+
+        ArrayList<EntityArticle> ArticleList = new ArrayList<>();
+
+        Cursor cursor = null;
+        try {
+
+            cursor = sqLiteDatabase.query(ConfigDAO.TABLE_ARTICLE, null, null, null, null, null, null, null);
 
             /**
              // If you want to execute raw query then uncomment below 2 lines. And comment out above line.

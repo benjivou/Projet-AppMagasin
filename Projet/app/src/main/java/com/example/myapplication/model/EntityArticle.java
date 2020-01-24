@@ -1,6 +1,7 @@
 package com.example.myapplication.model;
 
 
+import androidx.annotation.NonNull;
 
 /**
  * This class represent a article
@@ -27,6 +28,11 @@ public class EntityArticle{
     private float price;
 
     /**
+     * The Aisle Name of the article
+     */
+    private String aisleName;
+
+    /**
      * This is the default constructor
      */
     public EntityArticle(){}
@@ -37,13 +43,15 @@ public class EntityArticle{
      * @param name : String
      * @param price : float
      * @param quantity : int
+     * @param aisleName : String
      */
-    public EntityArticle(int idArticle, String name, float price, int quantity){
+    public EntityArticle(int idArticle, String name, float price, int quantity,String aisleName ){
 
         this.idArticle = idArticle;
         this.name = name;
         this.price = price;
         this.quantity = quantity;
+        this.aisleName = aisleName;
     }
 
     /*Getters & Setters*/
@@ -80,6 +88,13 @@ public class EntityArticle{
         this.price = price;
     }
 
+    @NonNull
+    @Override
+    public String toString() {
+        return getName();
+    }
 
-
+    public String getAisleName() {
+        return this.aisleName;
+    }
 }

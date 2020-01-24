@@ -113,12 +113,6 @@ public class EntityEmployee{
 
     @Override
     public String toString() {
-        return "EntityEmployee{" +
-                "idEmployee=" + idEmployee +
-                ", name='" + name + '\'' +
-                ", sex='" + sex + '\'' +
-                ", password='" + password + '\'' +
-                ", role='" + role + '\'' +
-                '}';
+        return getName();
     }
 }
