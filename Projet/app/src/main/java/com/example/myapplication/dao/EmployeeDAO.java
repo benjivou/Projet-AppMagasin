@@ -24,17 +24,16 @@ import java.util.logging.Logger;
  * @author Leslie Kiav & Benjamin Vouillon
  */
 public class EmployeeDAO extends ManagerDAO {
-    private static final String TAG = "EmployeeDAO";
+    private   final String TAG = "EmployeeDAO";
 
     /**
      *
      * @param matricule Id of the employee
-     * @param context Activity context
      * @return null if the employee didn't exist else the employee
      */
-    public static EntityEmployee getByMatricule(String matricule, Context context){
+    public  EntityEmployee getByMatricule(String matricule){
 
-        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this.mExecutionContext);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getReadableDatabase();
         
         EntityEmployee result = null;
@@ -72,7 +71,7 @@ public class EmployeeDAO extends ManagerDAO {
                 }
         } catch (Exception e){
             Log.i(TAG, "getAllEmployee: "+e.getMessage());
-            Toast.makeText(context, "Operation failed", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this.mExecutionContext, "Operation failed", Toast.LENGTH_SHORT).show();
         } finally {
             if(cursor!=null)
                 cursor.close();
@@ -85,12 +84,11 @@ public class EmployeeDAO extends ManagerDAO {
     /**
      * Get a employee
      * @param nameWanted
-     * @param context
      * @return
      */
-    public static ArrayList< EntityEmployee> getByName(String nameWanted, Context context){
+    public  ArrayList< EntityEmployee> getByName(String nameWanted){
 
-        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this.mExecutionContext);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getReadableDatabase();
 
         ArrayList<EntityEmployee> employeeList = new ArrayList<>();
@@ -125,7 +123,7 @@ public class EmployeeDAO extends ManagerDAO {
                 }
         } catch (Exception e){
             Log.i(TAG, "getAllEmployee: "+e.getMessage());
-            Toast.makeText(context, "Operation failed", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this.mExecutionContext, "Operation failed", Toast.LENGTH_SHORT).show();
         } finally {
             if(cursor!=null)
                 cursor.close();
@@ -137,13 +135,13 @@ public class EmployeeDAO extends ManagerDAO {
     /**
      * Insert employee
      * @param entityEmployeedent
-     * @param context
+
      * @return
      */
-    public static long  insertEmployee(EntityEmployee entityEmployeedent,Context context){
+    public   long  insertEmployee(EntityEmployee entityEmployeedent  ){
 
         long id = -1;
-        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this.mExecutionContext);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
@@ -157,7 +155,7 @@ public class EmployeeDAO extends ManagerDAO {
             id = sqLiteDatabase.insertOrThrow(ConfigDAO.TABLE_EMPLOYEE, null, contentValues);
         } catch (SQLiteException e){
             Log.d(TAG,"Exception: " + e.getMessage());
-            Toast.makeText(context, "Operation failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(this.mExecutionContext, "Operation failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
         } finally {
             sqLiteDatabase.close();
         }
@@ -167,12 +165,11 @@ public class EmployeeDAO extends ManagerDAO {
 
     /**
      * Count the number of Employee in the dB
-     * @param context
      * @return
      */
-    public static int countEmployee(Context context){
+    public   int countEmployee(){
 
-        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this.mExecutionContext);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getReadableDatabase();
 
         Cursor Count= sqLiteDatabase.rawQuery("select count(*) from"+ ConfigDAO.TABLE_EMPLOYEE, null);
@@ -185,11 +182,10 @@ public class EmployeeDAO extends ManagerDAO {
     /**
      * Delete a employee with id employee
      * @param subjectId
-     * @param context
      * @return
      */
-    public static boolean  deleteEmployeeById(int subjectId,Context context) {
-        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
+    public   boolean  deleteEmployeeById(int subjectId) {
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this.mExecutionContext);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getWritableDatabase();
 
         int row = sqLiteDatabase.delete(ConfigDAO.TABLE_EMPLOYEE,
@@ -198,8 +194,8 @@ public class EmployeeDAO extends ManagerDAO {
         return row > 0;
     }
 
-    public static ArrayList<EntityEmployee> getAllEmployee(Context context){
-        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
+    public   ArrayList<EntityEmployee> getAllEmployee(){
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this.mExecutionContext);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getReadableDatabase();
 
         Cursor cursor = null;
@@ -231,7 +227,7 @@ public class EmployeeDAO extends ManagerDAO {
                 }
         } catch (Exception e){
             Log.d(TAG, "getAllEmployee: Exception: " + e.getMessage());
-            Toast.makeText(context, "Operation failed", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this.mExecutionContext, "Operation failed", Toast.LENGTH_SHORT).show();
         } finally {
             if(cursor!=null)
                 cursor.close();
@@ -241,11 +237,11 @@ public class EmployeeDAO extends ManagerDAO {
         return new ArrayList<>();
     }
 
-    public static void insertUpdate(EntityEmployee entityEmployee,Context context) {
+    public   void insertUpdate(EntityEmployee entityEmployee  ) {
 
         long rowCount = 0;
 
-        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this.mExecutionContext);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
@@ -261,7 +257,7 @@ public class EmployeeDAO extends ManagerDAO {
                     new String[] {String.valueOf(entityEmployee.getIdEmployee())});
         } catch (SQLiteException e){
             Log.d(TAG, "insertUpdate: ");
-            Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(this.mExecutionContext, e.getMessage(), Toast.LENGTH_LONG).show();
         } finally {
             sqLiteDatabase.close();
         }

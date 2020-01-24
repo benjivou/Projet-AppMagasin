@@ -1,7 +1,6 @@
 package com.example.myapplication.dao;
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
@@ -22,19 +21,19 @@ import java.util.List;
  */
 public class AisleDAO extends ManagerDAO{
 
-    private static final String TAG = "AisleDAO";
+    private   final String TAG = "AisleDAO";
 
 
     /**
      * Insert a aisle
      * @param entityAisle
-     * @param context
+     *  
      * @return
      */
-    public static long  insertAisle(EntityAisle entityAisle, Context context){
+    public   long  insertAisle(EntityAisle entityAisle ){
 
         long id = -1;
-        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this.mExecutionContext);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
@@ -48,7 +47,7 @@ public class AisleDAO extends ManagerDAO{
             id = sqLiteDatabase.insertOrThrow(ConfigDAO.TABLE_ARTICLE, null, contentValues);
         } catch (SQLiteException e){
             Log.d(TAG,"Exception: " + e.getMessage());
-            Toast.makeText(context, "Operation failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(this.mExecutionContext, "Operation failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
         } finally {
             sqLiteDatabase.close();
         }
@@ -59,11 +58,11 @@ public class AisleDAO extends ManagerDAO{
     /**
      * Delete a aisle
      * @param subjectId
-     * @param context
+     *  
      * @return
      */
-    public static boolean  deleteArticleById(int subjectId,Context context) {
-        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
+    public   boolean  deleteArticleById(int subjectId) {
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this.mExecutionContext);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getWritableDatabase();
 
         int row = sqLiteDatabase.delete(ConfigDAO.TABLE_RAYON,
@@ -74,12 +73,12 @@ public class AisleDAO extends ManagerDAO{
 
     /**
      * Count the number of aisle in the dB
-     * @param context
+     *  
      * @return
      */
-    public static int countArticle(Context context){
+    public int countArticle(){
 
-        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this.mExecutionContext);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getReadableDatabase();
 
         Cursor Count= sqLiteDatabase.rawQuery("select count(*) from"+ ConfigDAO.TABLE_RAYON, null);
@@ -92,12 +91,12 @@ public class AisleDAO extends ManagerDAO{
     /**
      * Get a aisle by id
      * @param matricule Id of the aisle
-     * @param context Activity context
+     *   Activity this.mExecutionContext
      * @return null if the aisle didn't exist else the aisle
      */
-    public static EntityAisle getByMatricule(String matricule, Context context){
+    public   EntityAisle getByMatricule(String matricule ){
 
-        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this.mExecutionContext);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getReadableDatabase();
 
         EntityAisle result = null;
@@ -130,7 +129,7 @@ public class AisleDAO extends ManagerDAO{
                 }
         } catch (Exception e){
             Log.i(TAG, "getAllAisle: "+e.getMessage());
-            Toast.makeText(context, "Operation failed", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this.mExecutionContext, "Operation failed", Toast.LENGTH_SHORT).show();
         } finally {
             if(cursor!=null)
                 cursor.close();
@@ -143,12 +142,12 @@ public class AisleDAO extends ManagerDAO{
     /**
      * Get a aisle by name
      * @param nameWanted
-     * @param context
+     *  
      * @return
      */
-    public static ArrayList< EntityAisle> getByName(String nameWanted, Context context){
+    public   ArrayList< EntityAisle> getByName(String nameWanted ){
 
-        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this.mExecutionContext);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getReadableDatabase();
 
         ArrayList<EntityAisle> AisleList = new ArrayList<>();
@@ -180,7 +179,7 @@ public class AisleDAO extends ManagerDAO{
                 }
         } catch (Exception e){
             Log.i(TAG, "getAllAisle: "+e.getMessage());
-            Toast.makeText(context, "Operation failed", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this.mExecutionContext, "Operation failed", Toast.LENGTH_SHORT).show();
         } finally {
             if(cursor!=null)
                 cursor.close();
