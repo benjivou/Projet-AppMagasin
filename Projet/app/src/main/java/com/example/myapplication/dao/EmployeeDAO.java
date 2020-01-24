@@ -23,7 +23,7 @@ import java.util.logging.Logger;
  * @<version 1.0
  * @author Leslie Kiav & Benjamin Vouillon
  */
-public class EmployeeDAO {
+public class EmployeeDAO extends ManagerDAO {
     private static final String TAG = "EmployeeDAO";
 
     /**

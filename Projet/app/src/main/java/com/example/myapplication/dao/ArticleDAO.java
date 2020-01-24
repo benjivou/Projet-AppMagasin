@@ -20,7 +20,7 @@ import java.util.List;
  * @<version 1.0
  * @author Leslie Kiav & Benjamin Vouillon
  */
-public class ArticleDAO  {
+public class ArticleDAO  extends ManagerDAO{
 
     private static final String TAG = "ArticleDAO";
 
