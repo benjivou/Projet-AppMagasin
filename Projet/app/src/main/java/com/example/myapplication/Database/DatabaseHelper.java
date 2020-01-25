@@ -42,8 +42,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String CREATE_RAYON_TABLE = "CREATE TABLE " + ConfigDAO.TABLE_AISLE + "("
                 + ConfigDAO.COLUMN_RAYON_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + ConfigDAO.COLUMN_RAYON_NAME + " TEXT NOT NULL, "
-                + ConfigDAO.COLUMN_RAYON_EMPLOYEE + " INTEGER NOT NULL, "
-                + ConfigDAO.COLUMN_ARTICLE_PRICE + " INTEGER NOT NULL " //nullable
+                + ConfigDAO.COLUMN_RAYON_EMPLOYEE + " INTEGER NOT NULL "
                 + ")";
 
         String CREATE_EMPLOYEE_TABLE = "CREATE TABLE " + ConfigDAO.TABLE_EMPLOYEE + "("
@@ -59,11 +58,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         String CREATE_ARTICLE_TABLE = "CREATE TABLE " + ConfigDAO.TABLE_ARTICLE + "("
                 + ConfigDAO.COLUMN_ARTICLE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + ConfigDAO.COLUMN_RAYON_ID + " INTEGER NOT NULL, "
+                + ConfigDAO.COLUMN_ARTICLE_AISLE_ID+ " INTEGER NOT NULL, "
                 + ConfigDAO.COLUMN_ARTICLE_NAME + " TEXT NOT NULL, "
                 + ConfigDAO.COLUMN_ARTICLE_QUANTITY + " INTEGER NOT NULL, "
                 + ConfigDAO.COLUMN_ARTICLE_PRICE + " INTEGER NOT NULL, " //nullable
-                + "FOREIGN KEY (" + ConfigDAO.COLUMN_RAYON_ID + ") REFERENCES " + ConfigDAO.TABLE_AISLE + "(" + ConfigDAO.COLUMN_RAYON_ID + ") ON UPDATE CASCADE ON DELETE CASCADE "
+                + "FOREIGN KEY (" + ConfigDAO.COLUMN_ARTICLE_AISLE_ID + ") REFERENCES " + ConfigDAO.TABLE_AISLE + "(" + ConfigDAO.COLUMN_RAYON_ID + ") ON UPDATE CASCADE ON DELETE CASCADE "
                 + ")";
 
 
