@@ -3,6 +3,7 @@ package com.example.myapplication.controller.util;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -58,6 +59,7 @@ public abstract class DisplayUtilActivity extends Activity {
      *          Second : is it the first connexion ?
      */
     public  boolean[] loginProcess(String login, String password){
+        Log.d(TAG, "loginProcess: Your passwoird is " + password);
         boolean[] resultat = {false,false};
         String truePassword = "";
 
@@ -71,6 +73,7 @@ public abstract class DisplayUtilActivity extends Activity {
         /*
         Step 2 : check the password
          */
+        Log.d(TAG, "loginProcess: Your passwoird true is " + truePassword);
         resultat[0] =  !(truePassword.equals("")) &&  password.equals(truePassword);
         resultat[1] = truePassword.equals(DEFAULT_PASSWORD);
 
