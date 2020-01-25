@@ -65,7 +65,7 @@ public class EntityEmployee{
      * @param sex
      * @param role
      */
-    public EntityEmployee(String idEmployee, String name, String sex,  String role){
+    public EntityEmployee(String idEmployee, String name, String sex,String role){
         this.idEmployee = idEmployee;
         this.name = name;
         this.sex = sex;

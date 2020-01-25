@@ -1,4 +1,4 @@
-package com.example.myapplication.controller;
+package com.example.myapplication.controller.PopUp;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -17,14 +18,16 @@ import com.example.myapplication.R;
 import com.example.myapplication.config.ConfigFront;
 import com.example.myapplication.controller.util.DisplayUtilActivity;
 import com.example.myapplication.dao.EmployeeDAO;
-import com.example.myapplication.dao.roleDAO;
+import com.example.myapplication.dao.RoleDAO;
 
+import com.example.myapplication.model.EntityAisle;
 import com.example.myapplication.model.EntityEmployee;
 
-public class AddEmployeePopUp extends DisplayUtilActivity implements RadioGroup.OnCheckedChangeListener{
+public class AddEmployeePopUp extends MainPopUp implements RadioGroup.OnCheckedChangeListener{
 
     ImageButton mButton;
     EditText mEmployeeName, mEmployeeMatricule;
+    Spinner mAisle;
     private static final String TAG = "AddEmployee";
     String mPassword;
     RadioGroup radioGroup;
@@ -41,6 +44,8 @@ public class AddEmployeePopUp extends DisplayUtilActivity implements RadioGroup.
         mEmployeeMatricule = (EditText) findViewById(R.id.txtIsbn);
         radioGroup = (RadioGroup)findViewById(R.id.radioGroup);
 
+        mAisle = (Spinner) findViewById(R.id.txtPublisher);
+
         mPassword = getIntent().getStringExtra(ConfigFront.DEFAULT_PASSWORD);
         Log.d(TAG, "onCreate: matriculeIntent "+mPassword);
 
@@ -54,17 +59,18 @@ public class AddEmployeePopUp extends DisplayUtilActivity implements RadioGroup.
 
             case R.id.woman:
                 mGender = "Woman";
-                EntityEmployee entityEmployeeWoman = new EntityEmployee(mEmployeeMatricule.getText().toString(),mEmployeeName.getText().toString(),mGender,mPassword,roleDAO.USER.getSring());
 
-                EmployeeDAO.insertUpdate(entityEmployeeWoman);
+               // EntityEmployee entityEmployeeWoman = new EntityEmployee(mEmployeeMatricule.getText().toString(),mEmployeeName.getText().toString(),mGender,mPassword,RoleDAO.USER.toString(),mAisle.getSelectedItem());
+
+              // EmployeeDAO.insertUpdate(entityEmployeeWoman);
 
                 break;
 
             case R.id.man:
                 mGender = "man";
-                EntityEmployee entityEmployeeMan = new EntityEmployee(mEmployeeMatricule.getText().toString(),mEmployeeName.getText().toString(),mGender,mPassword,roleDAO.USER.getSring());
+               // EntityEmployee entityEmployeeMan = new EntityEmployee(mEmployeeMatricule.getText().toString(),mEmployeeName.getText().toString(),mGender,mPassword,roleDAO.USER.getSring());
 
-                EmployeeDAO.insertUpdate(entityEmployeeMan);
+                //EmployeeDAO.insertUpdate(entityEmployeeMan);
 
                 break;
         }
