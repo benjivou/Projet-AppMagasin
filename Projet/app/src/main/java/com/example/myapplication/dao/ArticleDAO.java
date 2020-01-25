@@ -217,9 +217,9 @@ public class ArticleDAO  extends ManagerDAO{
         return ArticleList;
     }
 
-    public  ArrayList< EntityArticle> getAll( Context context){
+    public  ArrayList< EntityArticle> getAll( ){
 
-        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this.mExecutionContext);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getReadableDatabase();
 
         ArrayList<EntityArticle> ArticleList = new ArrayList<>();
@@ -257,7 +257,7 @@ public class ArticleDAO  extends ManagerDAO{
                 }
         } catch (Exception e){
             Log.i(TAG, "getAllArticle: "+e.getMessage());
-            Toast.makeText(context, "Operation failed", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this.mExecutionContext, "Operation failed", Toast.LENGTH_SHORT).show();
         } finally {
             if(cursor!=null)
                 cursor.close();
@@ -267,7 +267,7 @@ public class ArticleDAO  extends ManagerDAO{
         return ArticleList;
     }
 
-    public static ArrayList< EntityArticle> getAll( Context context){
+    public  ArrayList< EntityArticle> getAll( Context context){
 
         DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getReadableDatabase();
@@ -294,9 +294,19 @@ public class ArticleDAO  extends ManagerDAO{
                         String name = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_ARTICLE_NAME));
                         float price = cursor.getFloat(cursor.getColumnIndex(ConfigDAO.COLUMN_ARTICLE_PRICE));
                         int quantity = cursor.getInt(cursor.getColumnIndex(ConfigDAO.COLUMN_ARTICLE_QUANTITY));
+                        int articleId = cursor.getInt(cursor.getColumnIndex(ConfigDAO.COLUMN_AISLE_ID));
 
 
-                        ArticleList.add(new EntityArticle(id, name, price, quantity));
+                        ArticleList.add(new EntityArticle(
+                                id,
+                                name,
+                                price,
+                                quantity,
+                                new AisleDAO(
+                                        this.mCurrentRole,
+                                        this.mCurrentAisle,
+                                        this.mExecutionContext).getByMatricule(articleId)
+                        ));
                     }   while (cursor.moveToNext());
 
                     return ArticleList;

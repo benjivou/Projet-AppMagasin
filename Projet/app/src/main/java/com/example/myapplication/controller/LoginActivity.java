@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-import com.example.myapplication.Database.DatabaseQueryClass;
 import com.example.myapplication.R;
 import com.example.myapplication.config.ConfigDAO;
 import com.example.myapplication.config.ConfigFront;
@@ -80,6 +79,11 @@ public class LoginActivity extends DisplayUtilActivity {
             }
         });
 
+        this.mCurrentUser = new EmployeeDAO(
+                ConfigFront.SYSTEM_ROLE,
+                ConfigFront.SYSTEM_AISLE,
+                this
+    );
         /*
         Retrieve the
          */
@@ -123,7 +127,7 @@ public class LoginActivity extends DisplayUtilActivity {
 
 
         if(  !this.getDatabasePath(ConfigDAO.DB).exists()) {
-             new DatabaseQueryClass(this);
+
 
             // database doesn't exist yet.
 

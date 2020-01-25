@@ -55,21 +55,17 @@ public class AddEmployeePopUp extends DisplayUtilActivity implements RadioGroup.
             case R.id.woman:
                 mGender = "Woman";
                 EntityEmployee entityEmployeeWoman = new EntityEmployee(mEmployeeMatricule.getText().toString(),mEmployeeName.getText().toString(),mGender,mPassword,roleDAO.USER.getSring());
-<<<<<<< HEAD
-                EmployeeDAO.insertEmployee(entityEmployeeWoman,this);
-=======
-                EmployeeDAO.insertUpdate(entityEmployeeWoman,this);
->>>>>>> Leslie2
+
+                EmployeeDAO.insertUpdate(entityEmployeeWoman);
+
                 break;
 
             case R.id.man:
                 mGender = "man";
                 EntityEmployee entityEmployeeMan = new EntityEmployee(mEmployeeMatricule.getText().toString(),mEmployeeName.getText().toString(),mGender,mPassword,roleDAO.USER.getSring());
-<<<<<<< HEAD
-                EmployeeDAO.insertEmployee(entityEmployeeMan,this);
-=======
-                EmployeeDAO.insertUpdate(entityEmployeeMan,this);
->>>>>>> Leslie2
+
+                EmployeeDAO.insertUpdate(entityEmployeeMan);
+
                 break;
         }
     }

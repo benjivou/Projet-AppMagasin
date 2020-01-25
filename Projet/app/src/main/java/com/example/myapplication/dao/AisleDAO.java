@@ -1,6 +1,7 @@
 package com.example.myapplication.dao;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
@@ -27,6 +28,7 @@ public class AisleDAO extends ManagerDAO{
     public AisleDAO(RoleDAO mCurrentRole, EntityAisle mCurrentAisle, Context mExecutionContext) {
         super(mCurrentRole, mCurrentAisle, mExecutionContext);
     }
+
 
 
 
