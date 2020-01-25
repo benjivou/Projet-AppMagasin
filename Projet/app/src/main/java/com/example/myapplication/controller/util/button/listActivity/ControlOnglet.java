@@ -42,12 +42,14 @@ public abstract class ControlOnglet extends ButtonOnglet{
 
     @Override
     protected void onOngletProduct() {
+
         // request all article
         mArticleArrayAdapter = new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_list_item_1,
                 mArticleDAO.getAll()
         );
+
         // display
         mListOf.setAdapter(mArticleArrayAdapter);
     }

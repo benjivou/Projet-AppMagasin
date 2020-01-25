@@ -46,13 +46,12 @@ public class AisleDAO extends ManagerDAO{
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(ConfigDAO.COLUMN_RAYON_NAME, entityAisle.getName());
-        contentValues.put(ConfigDAO.COLUMN_RAYON_EMPLOYEE, entityAisle.getEmployee().getIdEmployee()
-        );
+
 
 
 
         try {
-            id = sqLiteDatabase.insertOrThrow(ConfigDAO.TABLE_ARTICLE, null, contentValues);
+            id = sqLiteDatabase.insertOrThrow(ConfigDAO.TABLE_AISLE, null, contentValues);
         } catch (SQLiteException e){
             Log.d(TAG,"Exception: " + e.getMessage());
             Toast.makeText(this.mExecutionContext, "Operation failed: " + e.getMessage(), Toast.LENGTH_LONG).show();

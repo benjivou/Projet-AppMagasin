@@ -14,6 +14,8 @@ public abstract class ButtonOnglet extends SessionManagerActivity implements Vie
 
     protected static final boolean MODE_PRODUCT_IS_CLICKED = true;
 
+    private boolean isModeProductIsClicked;
+
     protected Button
             mOngletProduit,
             mOngletEmployers;
@@ -50,7 +52,11 @@ public abstract class ButtonOnglet extends SessionManagerActivity implements Vie
         mOngletEmployers.setOnClickListener(this);
         mOngletProduit.setOnClickListener(this);
 
+
+        isModeProductIsClicked = false;
         modifOnglet( MODE_PRODUCT_IS_CLICKED);
+
+
 
     }
 
@@ -73,6 +79,9 @@ public abstract class ButtonOnglet extends SessionManagerActivity implements Vie
             // Action
             onOngletEmployee();
         }
+
+        // set the product mode
+        isModeProductIsClicked = ! isModeProductIsClicked;
     }
     /**
      * In this function the Son will define what to do
@@ -80,6 +89,7 @@ public abstract class ButtonOnglet extends SessionManagerActivity implements Vie
     protected abstract void onOngletEmployee();
     protected abstract void onOngletProduct();
 
-
-
+    protected boolean isModeProductIsClicked() {
+        return isModeProductIsClicked;
+    }
 }

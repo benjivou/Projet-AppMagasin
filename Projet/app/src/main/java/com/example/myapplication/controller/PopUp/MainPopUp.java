@@ -1,31 +1,33 @@
 package com.example.myapplication.controller.PopUp;
 
-import android.content.Context;
+import android.app.Activity;
+import android.app.Dialog;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 
-import com.example.myapplication.controller.util.DisplayUtilActivity;
+import com.example.myapplication.R;
 import com.example.myapplication.dao.AisleDAO;
 import com.example.myapplication.dao.ArticleDAO;
 import com.example.myapplication.dao.EmployeeDAO;
-import com.example.myapplication.dao.RoleDAO;
 import com.example.myapplication.model.EntityEmployee;
 
-public abstract class MainPopUp extends DisplayUtilActivity {
+public abstract class MainPopUp extends Dialog {
 
-    protected AisleDAO aisleDAO;
-    protected EmployeeDAO employeeDAO;
-    protected ArticleDAO articleDAO;
+    protected AisleDAO mAisleDAO;
+    protected EmployeeDAO mEmployeeDAO;
+    protected ArticleDAO mArticleDAO;
+    protected Activity mActivity;
 
+    private EntityEmployee mEntityEmployee;
 
-    private EntityEmployee entityEmployee;
-
-    public MainPopUp(EntityEmployee entityEmployee) {
-       this.entityEmployee = entityEmployee;
-       this.aisleDAO = new AisleDAO(entityEmployee.getRoleEnum(),entityEmployee.getEntityAisle(),this);
-       this.employeeDAO= new EmployeeDAO(entityEmployee.getRoleEnum(),entityEmployee.getEntityAisle(),this);
-       this.articleDAO = new ArticleDAO(entityEmployee.getRoleEnum(),entityEmployee.getEntityAisle(),this);
+    public MainPopUp(EntityEmployee entityEmployee, Activity activity) {
+        super(activity, R.style.Theme_AppCompat);
+        this.mEntityEmployee = entityEmployee;
+        this.mActivity = activity;
+       this.mAisleDAO = new AisleDAO(entityEmployee.getRoleEnum(),entityEmployee.getEntityAisle(),this.mActivity);
+       this.mEmployeeDAO = new EmployeeDAO(entityEmployee.getRoleEnum(),entityEmployee.getEntityAisle(),this.mActivity);
+       this.mArticleDAO = new ArticleDAO(entityEmployee.getRoleEnum(),entityEmployee.getEntityAisle(),this.mActivity);
     }
 
 
@@ -37,7 +39,7 @@ public abstract class MainPopUp extends DisplayUtilActivity {
 
 
     public EntityEmployee getEntityEmployee() {
-        return entityEmployee;
+        return mEntityEmployee;
     }
 
 

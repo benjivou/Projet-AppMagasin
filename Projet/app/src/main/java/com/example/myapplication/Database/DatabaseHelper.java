@@ -41,8 +41,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         String CREATE_RAYON_TABLE = "CREATE TABLE " + ConfigDAO.TABLE_AISLE + "("
                 + ConfigDAO.COLUMN_RAYON_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + ConfigDAO.COLUMN_RAYON_NAME + " TEXT NOT NULL, "
-                + ConfigDAO.COLUMN_RAYON_EMPLOYEE + " INTEGER NOT NULL "
+                + ConfigDAO.COLUMN_RAYON_NAME + " TEXT NOT NULL "
+
                 + ")";
 
         String CREATE_EMPLOYEE_TABLE = "CREATE TABLE " + ConfigDAO.TABLE_EMPLOYEE + "("
