@@ -80,11 +80,7 @@ public class LoginActivity extends DisplayUtilActivity {
             }
         });
 
-        this.mCurrentUser = new EmployeeDAO(
-                ConfigFront.SYSTEM_ROLE,
-                ConfigFront.SYSTEM_AISLE,
-                this
-    );
+
         /*
         Retrieve the
          */

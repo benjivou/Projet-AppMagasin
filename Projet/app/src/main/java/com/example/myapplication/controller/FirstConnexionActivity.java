@@ -82,6 +82,7 @@ public class FirstConnexionActivity extends DisplayUtilActivity {
         });
 
 
+
     }
 
     private void changeActivity(){
@@ -92,10 +93,10 @@ public class FirstConnexionActivity extends DisplayUtilActivity {
         Step 1 : register password
          */
 
-        EntityEmployee entityEmployee = EmployeeDAO.getByMatricule(mMatricule,this);
+        EntityEmployee entityEmployee = mCurrentUser.getByMatricule(mMatricule);
         entityEmployee.setPassword(mPassword2.getText().toString());
-        EmployeeDAO.insertUpdate(entityEmployee,this);
-        Log.d(TAG, "changeActivity: DBContent" + EmployeeDAO.getByMatricule(mMatricule,this));
+        mCurrentUser.insertUpdate(entityEmployee);
+        Log.d(TAG, "changeActivity: DBContent" + mCurrentUser.getByMatricule(mMatricule));
 
         /*
         Step 2 : changeActivity + give user id

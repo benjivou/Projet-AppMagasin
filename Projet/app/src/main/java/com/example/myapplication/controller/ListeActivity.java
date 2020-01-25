@@ -35,8 +35,7 @@ public class ListeActivity extends ControlOnglet {
     TextView mEmployeInfo;
 
 
-    // Backend
-    EntityEmployee mEntityEmployee;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,13 +57,8 @@ public class ListeActivity extends ControlOnglet {
 
 
 
-        // get the current employee
-        mEntityEmployee = EmployeeDAO.getByMatricule(getIntent().getStringExtra(ConfigFront.USERNAME_SESSION),this);
-        Log.d(TAG, "onCreate: " + mEntityEmployee.toString());
 
-
-
-        mEmployeInfo.setText(displayUsername(mEntityEmployee));
+        mEmployeInfo.setText(displayUsername(this.getEntityEmployee()));
 
     }
 

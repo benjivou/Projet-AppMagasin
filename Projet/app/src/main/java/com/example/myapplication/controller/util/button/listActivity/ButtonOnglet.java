@@ -7,7 +7,7 @@ import android.widget.Button;
 import com.example.myapplication.R;
 import com.example.myapplication.controller.util.DisplayUtilActivity;
 
-public abstract class ButtonOnglet extends DisplayUtilActivity implements View.OnClickListener{
+public abstract class ButtonOnglet extends SessionManagerActivity implements View.OnClickListener{
     private static final String TAG = "ButtonOnglet";
     private static final String TAG_ONGLET_EMPLOYE = "modeE";
     private static final String TAG_ONGLET_PRODUCT = "modeP";
