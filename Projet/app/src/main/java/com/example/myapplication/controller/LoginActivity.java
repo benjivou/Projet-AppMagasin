@@ -11,8 +11,6 @@ import com.example.myapplication.R;
 import com.example.myapplication.config.ConfigDAO;
 import com.example.myapplication.config.ConfigFront;
 import com.example.myapplication.controller.util.DisplayUtilActivity;
-import com.example.myapplication.dao.EmployeeDAO;
-import com.example.myapplication.dao.RoleDAO;
 import com.example.myapplication.model.EntityAisle;
 import com.example.myapplication.model.EntityEmployee;
 
@@ -120,7 +118,7 @@ public class LoginActivity extends DisplayUtilActivity {
 
 
 
-       // this.getDatabasePath(ConfigDAO.DB).delete(); // Config de Test
+       this.getDatabasePath(ConfigDAO.DB).delete(); // Config de Test
 
 
         if(  !this.getDatabasePath(ConfigDAO.DB).exists()) {

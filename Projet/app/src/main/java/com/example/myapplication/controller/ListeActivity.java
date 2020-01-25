@@ -3,7 +3,6 @@ package com.example.myapplication.controller;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -13,11 +12,8 @@ import androidx.annotation.Nullable;
 
 
 import com.example.myapplication.R;
-import com.example.myapplication.config.ConfigFront;
-import com.example.myapplication.controller.util.button.listActivity.ButtonOnglet;
 import com.example.myapplication.controller.util.button.listActivity.ControlOnglet;
-import com.example.myapplication.dao.EmployeeDAO;
-import com.example.myapplication.model.EntityEmployee;
+
 
 public class ListeActivity extends ControlOnglet {
     private static final String TAG = "ListeActivity";
