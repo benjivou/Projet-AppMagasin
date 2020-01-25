@@ -12,6 +12,8 @@ import com.example.myapplication.config.ConfigDAO;
 import com.example.myapplication.config.ConfigFront;
 import com.example.myapplication.controller.util.DisplayUtilActivity;
 import com.example.myapplication.dao.EmployeeDAO;
+import com.example.myapplication.dao.RoleDAO;
+import com.example.myapplication.model.EntityAisle;
 import com.example.myapplication.model.EntityEmployee;
 
 import static com.example.myapplication.config.ConfigFront.DEFAULT_PASSWORD;
@@ -36,6 +38,7 @@ public class LoginActivity extends DisplayUtilActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_frame);
+
 
         /*
         Connect the View
@@ -73,17 +76,11 @@ public class LoginActivity extends DisplayUtilActivity {
                      */
                     displayError(ConfigFront.ERROR_BAD_PAIR_LOGIN_MDP);
 
-
-
                 }
             }
         });
 
-        this.mCurrentUser = new EmployeeDAO(
-                ConfigFront.SYSTEM_ROLE,
-                ConfigFront.SYSTEM_AISLE,
-                this
-    );
+
         /*
         Retrieve the
          */
@@ -131,23 +128,24 @@ public class LoginActivity extends DisplayUtilActivity {
 
             // database doesn't exist yet.
 
-            EmployeeDAO.insertEmployee(new EntityEmployee(
+            mCurrentUser.insertEmployee(new EntityEmployee(
                     "root",
                     "root",
                     "M",
                     DEFAULT_PASSWORD,
-                    ADMIN.getSring()),
-                    this);
+                    ADMIN.getSring(),
+                    new EntityAisle()
+            ));
             Log.d(TAG, "initBDD: We add the root user");
 
-            Log.d(TAG, "initBDD: first root " + EmployeeDAO.getByMatricule("1",this));
-            Log.d(TAG, "initBDD: first root " + EmployeeDAO.getByMatricule("root",this));
+            Log.d(TAG, "initBDD: first root " + mCurrentUser.getByMatricule("1"));
+            Log.d(TAG, "initBDD: first root " + mCurrentUser.getByMatricule("root"));
             for (EntityEmployee e:
-                    EmployeeDAO.getAllEmployee(this)) {
+                    mCurrentUser.getAllEmployee()) {
                 Log.d(TAG, "initBDD: first root " + e.toString());
             }
 
-            Log.d(TAG, "initBDD: first root " + EmployeeDAO.countEmployee(this));
+            Log.d(TAG, "initBDD: first root " + mCurrentUser.countEmployee());
 
         }
 

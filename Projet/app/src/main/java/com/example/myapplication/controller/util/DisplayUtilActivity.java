@@ -2,8 +2,12 @@ package com.example.myapplication.controller.util;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+
+import com.example.myapplication.config.ConfigFront;
 import com.example.myapplication.dao.EmployeeDAO;
 import com.example.myapplication.model.EntityEmployee;
 
@@ -20,7 +24,17 @@ public abstract class DisplayUtilActivity extends Activity {
 
     protected EmployeeDAO mCurrentUser;
 
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
+        // generate the system user for the first DB Access
+        this.mCurrentUser = new EmployeeDAO(
+                ConfigFront.SYSTEM_ROLE,
+                ConfigFront.SYSTEM_AISLE,
+                this
+        );
+    }
 
     /**
      * Display the error message

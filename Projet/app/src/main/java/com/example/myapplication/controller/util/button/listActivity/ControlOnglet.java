@@ -14,6 +14,8 @@ public abstract class ControlOnglet extends ButtonOnglet{
     private ArrayAdapter<EntityEmployee> mEmployeeArrayAdapter;
     private ArrayAdapter<EntityArticle> mArticleArrayAdapter;
 
+    private ArticleDAO mArticleDAO;
+
 
     @Override
     protected void onOngletEmployee() {
@@ -21,7 +23,7 @@ public abstract class ControlOnglet extends ButtonOnglet{
         mEmployeeArrayAdapter = new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_list_item_1,
-                EmployeeDAO.getAllEmployee(this)
+                mCurrentUser.getAllEmployee()
         );
         mListOf.setAdapter(mEmployeeArrayAdapter);
     }
@@ -32,7 +34,7 @@ public abstract class ControlOnglet extends ButtonOnglet{
         mArticleArrayAdapter = new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_list_item_1,
-                ArticleDAO.getAll(this)
+                mArticleDAO.getAll()
         );
         // display
         mListOf.setAdapter(mArticleArrayAdapter);
