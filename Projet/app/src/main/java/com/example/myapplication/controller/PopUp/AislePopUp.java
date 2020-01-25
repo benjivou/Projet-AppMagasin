@@ -1,4 +1,4 @@
-package com.example.myapplication.controller;
+package com.example.myapplication.controller.PopUp;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -10,17 +10,22 @@ import android.widget.ImageButton;
 import androidx.annotation.Nullable;
 
 import com.example.myapplication.R;
-import com.example.myapplication.controller.util.DisplayUtilActivity;
 import com.example.myapplication.dao.AisleDAO;
+import com.example.myapplication.dao.RoleDAO;
 import com.example.myapplication.model.EntityAisle;
+import com.example.myapplication.model.EntityEmployee;
 
-public class AislePopUp extends DisplayUtilActivity {
+public class AislePopUp extends MainPopUp {
 
     ImageButton mButton;
     EditText mAisle;
-
     private static final String TAG = "AddAisle";
     private Context context;
+
+    public AislePopUp(EntityEmployee entityEmployee) {
+        super(entityEmployee);
+    }
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,7 +43,6 @@ public class AislePopUp extends DisplayUtilActivity {
                 AlertDialog.Builder myPopup = new AlertDialog.Builder(context);
                 EntityAisle entityAisle =  new EntityAisle();
                 entityAisle.setName(mAisle.getText().toString());
-                AisleDAO.insertAisle(entityAisle,context);
 
             }
         });
