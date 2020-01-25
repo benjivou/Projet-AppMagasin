@@ -13,12 +13,19 @@ import com.example.myapplication.model.EntityEmployee;
  */
 public abstract class ManagerDAO {
 
-    private static final String TAG = "ManagerDAO";
-    
-    private RoleDAO mCurrentRole;
-    private EntityAisle mCurrentAisle;
 
+    private static final String TAG = "ManagerDAO";
+
+    protected RoleDAO mCurrentRole;
+    protected EntityAisle mCurrentAisle;
     protected Context mExecutionContext;
+
+    public ManagerDAO(RoleDAO mCurrentRole, EntityAisle mCurrentAisle, Context mExecutionContext) {
+        this.mCurrentRole = mCurrentRole;
+        this.mCurrentAisle = mCurrentAisle;
+        this.mExecutionContext = mExecutionContext;
+    }
+
 
 
     /**
@@ -35,7 +42,7 @@ public abstract class ManagerDAO {
         // normal employee rules
         if(this.mCurrentRole.equals(RoleDAO.USER)){
             // verify the Aisle
-            canI = mCurrentAisle.getName().equals(article.getAisleName());
+            canI = mCurrentAisle.getName().equals(article.getEntityAisle().getName());
         }
 
         Log.d(TAG, "modifyArticlesRules: the user can modify :" + article.getName()  + " , " + canI);

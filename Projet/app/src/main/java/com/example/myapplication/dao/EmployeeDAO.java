@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.myapplication.Database.DatabaseHelper;
 import com.example.myapplication.config.ConfigDAO;
+import com.example.myapplication.model.EntityAisle;
 import com.example.myapplication.model.EntityEmployee;
 
 import java.util.ArrayList;
@@ -26,6 +27,12 @@ import java.util.logging.Logger;
 public class EmployeeDAO extends ManagerDAO {
     private   final String TAG = "EmployeeDAO";
 
+
+    public EmployeeDAO(RoleDAO mCurrentRole, EntityAisle mCurrentAisle, Context mExecutionContext) {
+        super(mCurrentRole, mCurrentAisle, mExecutionContext);
+    }
+
+
     /**
      *
      * @param matricule Id of the employee
@@ -35,7 +42,7 @@ public class EmployeeDAO extends ManagerDAO {
 
         DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this.mExecutionContext);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getReadableDatabase();
-        
+
         EntityEmployee result = null;
 
         Cursor cursor = null;
@@ -62,9 +69,13 @@ public class EmployeeDAO extends ManagerDAO {
                         String sex = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_SEX));
                         String password = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_PASSWORD));
                         String role = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_ROLE));
+                        int aisleId = cursor.getInt(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_AISLE_ID));
+
+                        AisleDAO aisleDAO = new AisleDAO(this.mCurrentRole,this.mCurrentAisle,this.mExecutionContext);
+                        EntityAisle entityAisle = aisleDAO.getByMatricule(aisleId);
 
 
-                        result = new EntityEmployee(id, name, sex, password, role);
+                        result = new EntityEmployee(id, name, sex, password, role,entityAisle);
                     }   while (cursor.moveToNext());
 
                     return result;
@@ -114,9 +125,12 @@ public class EmployeeDAO extends ManagerDAO {
                         String sex = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_SEX));
                         String password = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_PASSWORD));
                         String role = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_ROLE));
+                        int aisleId = cursor.getInt(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_AISLE_ID));
 
+                        AisleDAO aisleDAO = new AisleDAO(this.mCurrentRole,this.mCurrentAisle,this.mExecutionContext);
+                        EntityAisle entityAisle = aisleDAO.getByMatricule(aisleId);
 
-                        employeeList.add(new EntityEmployee(id, name, sex, password, role));
+                        employeeList.add(new EntityEmployee(id, name, sex, password, role,entityAisle));
                     }   while (cursor.moveToNext());
 
                     return employeeList;
@@ -150,6 +164,7 @@ public class EmployeeDAO extends ManagerDAO {
         contentValues.put(ConfigDAO.COLUMN_EMPLOYEE_PASSWORD, entityEmployeedent.getPassword());
         contentValues.put(ConfigDAO.COLUMN_EMPLOYEE_ROLE, entityEmployeedent.getRole());
         contentValues.put(ConfigDAO.COLUMN_EMPLOYEE_ID, entityEmployeedent.getIdEmployee());
+        contentValues.put(ConfigDAO.COLUMN_EMPLOYEE_AISLE_ID, entityEmployeedent.getEntityAisle().getIdAisle());
 
         try {
             id = sqLiteDatabase.insertOrThrow(ConfigDAO.TABLE_EMPLOYEE, null, contentValues);
@@ -219,8 +234,12 @@ public class EmployeeDAO extends ManagerDAO {
                         String role = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_ROLE));
                         String password = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_PASSWORD));
                         String sex = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_SEX));
+                        int aisleId = cursor.getInt(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_AISLE_ID));
 
-                        studentList.add(new EntityEmployee(id, name, sex, password, role));
+                        AisleDAO aisleDAO = new AisleDAO(this.mCurrentRole,this.mCurrentAisle,this.mExecutionContext);
+                        EntityAisle entityAisle = aisleDAO.getByMatricule(aisleId);
+
+                        studentList.add(new EntityEmployee(id, name, sex, password, role,entityAisle));
                     }   while (cursor.moveToNext());
 
                     return studentList;

@@ -13,6 +13,8 @@ public class ConfigDAO {
     public static final String COLUMN_EMPLOYEE_SEX = "sex";
     public static final String COLUMN_EMPLOYEE_PASSWORD = "password";
     public static final String COLUMN_EMPLOYEE_ROLE = "role";
+    public static final String COLUMN_EMPLOYEE_AISLE_ID= "idAisleEmployee";
+
 
 
     public static final String TABLE_ARTICLE= "article" ;
@@ -20,8 +22,9 @@ public class ConfigDAO {
     public static final String COLUMN_ARTICLE_NAME = "name";
     public static final String COLUMN_ARTICLE_QUANTITY= "quantity";
     public static final String COLUMN_ARTICLE_PRICE= "price";
+    public static final String COLUMN_AISLE_ID= "idAisleArticle";
 
-    public static final String TABLE_RAYON= "rayon" ;
+    public static final String TABLE_AISLE = "rayon" ;
     public static final String COLUMN_RAYON_ID = "idRayon" ;
     public static final String COLUMN_RAYON_NAME = "name";
     public static final String COLUMN_RAYON_EMPLOYEE= "employee";

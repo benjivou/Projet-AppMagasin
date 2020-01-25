@@ -27,6 +27,13 @@ public class EntityArticle{
      */
     private float price;
 
+
+    /**
+     * This is the article aisle
+     */
+    private EntityAisle entityAisle;
+
+
     /**
      * The Aisle Name of the article
      */
@@ -37,21 +44,22 @@ public class EntityArticle{
      */
     public EntityArticle(){}
 
+
     /**
      * The copy constructor
      * @param idArticle : int
      * @param name : String
      * @param price : float
      * @param quantity : int
-     * @param aisleName : String
+     * @param entityAisle : EntityAisle
      */
-    public EntityArticle(int idArticle, String name, float price, int quantity,String aisleName ){
+    public EntityArticle(int idArticle, String name, float price, int quantity,EntityAisle entityAisle){
 
         this.idArticle = idArticle;
         this.name = name;
         this.price = price;
         this.quantity = quantity;
-        this.aisleName = aisleName;
+        this.entityAisle = entityAisle;
     }
 
     /*Getters & Setters*/
@@ -86,6 +94,13 @@ public class EntityArticle{
 
     public void setPrice(float price) {
         this.price = price;
+    }
+    public EntityAisle getEntityAisle() {
+        return entityAisle;
+    }
+
+    public void setEntityAisle(EntityAisle entityAisle) {
+        this.entityAisle = entityAisle;
     }
 
     @NonNull
