@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.myapplication.Database.DatabaseHelper;
 import com.example.myapplication.config.ConfigDAO;
+import com.example.myapplication.model.EntityAisle;
 import com.example.myapplication.model.EntityEmployee;
 
 import java.util.ArrayList;
@@ -23,18 +24,21 @@ import java.util.logging.Logger;
  * @<version 1.0
  * @author Leslie Kiav & Benjamin Vouillon
  */
-public class EmployeeDAO {
-    private static final String TAG = "EmployeeDAO";
+public class EmployeeDAO extends ManagerDAO {
+    private   final String TAG = "EmployeeDAO";
+
+    public EmployeeDAO(RoleDAO mCurrentRole, EntityAisle mCurrentAisle, Context mExecutionContext) {
+        super(mCurrentRole, mCurrentAisle, mExecutionContext);
+    }
 
     /**
      *
      * @param matricule Id of the employee
-     * @param context Activity context
      * @return null if the employee didn't exist else the employee
      */
-    public static EntityEmployee getByMatricule(String matricule, Context context){
+    public  EntityEmployee getByMatricule(String matricule){
 
-        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this.mExecutionContext);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getReadableDatabase();
         
         EntityEmployee result = null;
@@ -63,16 +67,20 @@ public class EmployeeDAO {
                         String sex = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_SEX));
                         String password = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_PASSWORD));
                         String role = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_ROLE));
+                        int aisleId = cursor.getInt(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_AISLE_ID));
+
+                        AisleDAO aisleDAO = new AisleDAO(this.mCurrentRole,this.mCurrentAisle,this.mExecutionContext);
+                        EntityAisle entityAisle = aisleDAO.getByMatricule(aisleId);
 
 
-                        result = new EntityEmployee(id, name, sex, password, role);
+                        result = new EntityEmployee(id, name, sex, password, role,entityAisle);
                     }   while (cursor.moveToNext());
 
                     return result;
                 }
         } catch (Exception e){
             Log.i(TAG, "getAllEmployee: "+e.getMessage());
-            Toast.makeText(context, "Operation failed", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this.mExecutionContext, "Operation failed", Toast.LENGTH_SHORT).show();
         } finally {
             if(cursor!=null)
                 cursor.close();
@@ -85,12 +93,11 @@ public class EmployeeDAO {
     /**
      * Get a employee
      * @param nameWanted
-     * @param context
      * @return
      */
-    public static ArrayList< EntityEmployee> getByName(String nameWanted, Context context){
+    public  ArrayList< EntityEmployee> getByName(String nameWanted){
 
-        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this.mExecutionContext);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getReadableDatabase();
 
         ArrayList<EntityEmployee> employeeList = new ArrayList<>();
@@ -116,16 +123,19 @@ public class EmployeeDAO {
                         String sex = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_SEX));
                         String password = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_PASSWORD));
                         String role = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_ROLE));
+                        int aisleId = cursor.getInt(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_AISLE_ID));
 
+                        AisleDAO aisleDAO = new AisleDAO(this.mCurrentRole,this.mCurrentAisle,this.mExecutionContext);
+                        EntityAisle entityAisle = aisleDAO.getByMatricule(aisleId);
 
-                        employeeList.add(new EntityEmployee(id, name, sex, password, role));
+                        employeeList.add(new EntityEmployee(id, name, sex, password, role,entityAisle));
                     }   while (cursor.moveToNext());
 
                     return employeeList;
                 }
         } catch (Exception e){
             Log.i(TAG, "getAllEmployee: "+e.getMessage());
-            Toast.makeText(context, "Operation failed", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this.mExecutionContext, "Operation failed", Toast.LENGTH_SHORT).show();
         } finally {
             if(cursor!=null)
                 cursor.close();
@@ -137,13 +147,13 @@ public class EmployeeDAO {
     /**
      * Insert employee
      * @param entityEmployeedent
-     * @param context
+
      * @return
      */
-    public static long  insertEmployee(EntityEmployee entityEmployeedent,Context context){
+    public   long  insertEmployee(EntityEmployee entityEmployeedent  ){
 
         long id = -1;
-        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this.mExecutionContext);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
@@ -152,12 +162,13 @@ public class EmployeeDAO {
         contentValues.put(ConfigDAO.COLUMN_EMPLOYEE_PASSWORD, entityEmployeedent.getPassword());
         contentValues.put(ConfigDAO.COLUMN_EMPLOYEE_ROLE, entityEmployeedent.getRole());
         contentValues.put(ConfigDAO.COLUMN_EMPLOYEE_ID, entityEmployeedent.getIdEmployee());
+        contentValues.put(ConfigDAO.COLUMN_EMPLOYEE_AISLE_ID, entityEmployeedent.getEntityAisle().getIdAisle());
 
         try {
             id = sqLiteDatabase.insertOrThrow(ConfigDAO.TABLE_EMPLOYEE, null, contentValues);
         } catch (SQLiteException e){
             Log.d(TAG,"Exception: " + e.getMessage());
-            Toast.makeText(context, "Operation failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(this.mExecutionContext, "Operation failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
         } finally {
             sqLiteDatabase.close();
         }
@@ -167,12 +178,11 @@ public class EmployeeDAO {
 
     /**
      * Count the number of Employee in the dB
-     * @param context
      * @return
      */
-    public static int countEmployee(Context context){
+    public   int countEmployee(){
 
-        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this.mExecutionContext);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getReadableDatabase();
 
         Cursor Count= sqLiteDatabase.rawQuery("select count(*) from"+ ConfigDAO.TABLE_EMPLOYEE, null);
@@ -185,11 +195,10 @@ public class EmployeeDAO {
     /**
      * Delete a employee with id employee
      * @param subjectId
-     * @param context
      * @return
      */
-    public static boolean  deleteEmployeeById(int subjectId,Context context) {
-        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
+    public   boolean  deleteEmployeeById(int subjectId) {
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this.mExecutionContext);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getWritableDatabase();
 
         int row = sqLiteDatabase.delete(ConfigDAO.TABLE_EMPLOYEE,
@@ -198,8 +207,8 @@ public class EmployeeDAO {
         return row > 0;
     }
 
-    public static ArrayList<EntityEmployee> getAllEmployee(Context context){
-        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
+    public   ArrayList<EntityEmployee> getAllEmployee(){
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this.mExecutionContext);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getReadableDatabase();
 
         Cursor cursor = null;
@@ -223,15 +232,19 @@ public class EmployeeDAO {
                         String role = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_ROLE));
                         String password = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_PASSWORD));
                         String sex = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_SEX));
+                        int aisleId = cursor.getInt(cursor.getColumnIndex(ConfigDAO.COLUMN_EMPLOYEE_AISLE_ID));
 
-                        studentList.add(new EntityEmployee(id, name, sex, password, role));
+                        AisleDAO aisleDAO = new AisleDAO(this.mCurrentRole,this.mCurrentAisle,this.mExecutionContext);
+                        EntityAisle entityAisle = aisleDAO.getByMatricule(aisleId);
+
+                        studentList.add(new EntityEmployee(id, name, sex, password, role,entityAisle));
                     }   while (cursor.moveToNext());
 
                     return studentList;
                 }
         } catch (Exception e){
             Log.d(TAG, "getAllEmployee: Exception: " + e.getMessage());
-            Toast.makeText(context, "Operation failed", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this.mExecutionContext, "Operation failed", Toast.LENGTH_SHORT).show();
         } finally {
             if(cursor!=null)
                 cursor.close();
@@ -239,6 +252,34 @@ public class EmployeeDAO {
         }
 
         return new ArrayList<>();
+    }
+
+    public   void insertUpdate(EntityEmployee entityEmployee  ) {
+
+        long rowCount = 0;
+
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this.mExecutionContext);
+        SQLiteDatabase sqLiteDatabase = databaseHelper.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(ConfigDAO.COLUMN_EMPLOYEE_ID,entityEmployee.getIdEmployee());
+        contentValues.put(ConfigDAO.COLUMN_EMPLOYEE_ROLE, entityEmployee.getRole());
+        contentValues.put(ConfigDAO.COLUMN_EMPLOYEE_PASSWORD, entityEmployee.getPassword());
+        contentValues.put(ConfigDAO.COLUMN_EMPLOYEE_SEX, entityEmployee.getSex());
+        contentValues.put(ConfigDAO.COLUMN_EMPLOYEE_NAME, entityEmployee.getName());
+
+        try {
+            rowCount = sqLiteDatabase.update(ConfigDAO.TABLE_EMPLOYEE, contentValues,
+                    ConfigDAO.COLUMN_EMPLOYEE_ID + " = ? ",
+                    new String[] {String.valueOf(entityEmployee.getIdEmployee())});
+        } catch (SQLiteException e){
+            Log.d(TAG, "insertUpdate: ");
+            Toast.makeText(this.mExecutionContext, e.getMessage(), Toast.LENGTH_LONG).show();
+        } finally {
+            sqLiteDatabase.close();
+        }
+
+
     }
 
 }

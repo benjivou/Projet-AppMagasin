@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.example.myapplication.Database.DatabaseHelper;
 import com.example.myapplication.config.ConfigDAO;
+import com.example.myapplication.model.EntityAisle;
 import com.example.myapplication.model.EntityArticle;
 
 import java.util.ArrayList;
@@ -20,9 +21,13 @@ import java.util.List;
  * @<version 1.0
  * @author Leslie Kiav & Benjamin Vouillon
  */
-public class ArticleDAO  {
+public class ArticleDAO  extends ManagerDAO{
 
     private static final String TAG = "ArticleDAO";
+
+    public ArticleDAO(RoleDAO mCurrentRole, EntityAisle mCurrentAisle, Context mExecutionContext) {
+        super(mCurrentRole, mCurrentAisle, mExecutionContext);
+    }
 
     /**
      * Insert a article
@@ -40,6 +45,7 @@ public class ArticleDAO  {
         contentValues.put(ConfigDAO.COLUMN_ARTICLE_NAME, entityArticle.getName());
         contentValues.put(ConfigDAO.COLUMN_ARTICLE_PRICE, entityArticle.getPrice());
         contentValues.put(ConfigDAO.COLUMN_ARTICLE_QUANTITY, entityArticle.getQuantity());
+        contentValues.put(ConfigDAO.COLUMN_AISLE_ID, entityArticle.getEntityAisle().getIdAisle());
 
 
         try {
@@ -86,13 +92,14 @@ public class ArticleDAO  {
         return count;
     }
 
+
     /**
      *
      * @param matricule Id of the article
      * @param context Activity context
      * @return null if the article didn't exist else the article
      */
-    public static EntityArticle getByMatricule(String matricule, Context context){
+    public  EntityArticle getByMatricule(String matricule, Context context){
 
         DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getReadableDatabase();
@@ -102,7 +109,10 @@ public class ArticleDAO  {
         Cursor cursor = null;
         try {
 
-            cursor = sqLiteDatabase.query(ConfigDAO.TABLE_ARTICLE, null, ConfigDAO.COLUMN_ARTICLE_ID +" = " + matricule , null, null, null, null, null);
+            cursor = sqLiteDatabase.query(ConfigDAO.TABLE_ARTICLE,
+                    null,
+                    ConfigDAO.COLUMN_ARTICLE_ID +" = " + matricule ,
+                    null, null, null, null, null);
 
             /**
              // If you want to execute raw query then uncomment below 2 lines. And comment out above line.
@@ -119,11 +129,16 @@ public class ArticleDAO  {
                         String name = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_ARTICLE_NAME));
                         float price = cursor.getFloat(cursor.getColumnIndex(ConfigDAO.COLUMN_ARTICLE_PRICE));
                         int quantity = cursor.getInt(cursor.getColumnIndex(ConfigDAO.COLUMN_ARTICLE_QUANTITY));
+                        int aisleId = cursor.getInt(cursor.getColumnIndex(ConfigDAO.COLUMN_AISLE_ID));
+
+                        AisleDAO aisleDAO = new AisleDAO(this.mCurrentRole,this.mCurrentAisle,this.mExecutionContext);
+                        EntityAisle entityAisle = aisleDAO.getByMatricule(aisleId);
 
 
-                        ArticleList.add(new EntityArticle(id, name, price, quantity));
+                        ArticleList.add(new EntityArticle(id, name, price, quantity,entityAisle));
                     }   while (cursor.moveToNext());
                     result = ArticleList.get(0);
+                    Log.d(TAG, "getByMatricule: aisleEntity" + result);
                     return result;
                 }
         } catch (Exception e){
@@ -144,7 +159,7 @@ public class ArticleDAO  {
      * @param context
      * @return
      */
-    public static ArrayList< EntityArticle> getByName(String nameWanted, Context context){
+    public  ArrayList< EntityArticle> getByName(String nameWanted, Context context){
 
         DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getReadableDatabase();
@@ -171,9 +186,71 @@ public class ArticleDAO  {
                         String name = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_ARTICLE_NAME));
                         float price = cursor.getFloat(cursor.getColumnIndex(ConfigDAO.COLUMN_ARTICLE_PRICE));
                         int quantity = cursor.getInt(cursor.getColumnIndex(ConfigDAO.COLUMN_ARTICLE_QUANTITY));
+                        int aisleId = cursor.getInt(cursor.getColumnIndex(ConfigDAO.COLUMN_AISLE_ID));
+
+                        AisleDAO aisleDAO = new AisleDAO(this.mCurrentRole,this.mCurrentAisle,this.mExecutionContext);
+                        EntityAisle entityAisle = aisleDAO.getByMatricule(aisleId);
 
 
-                        ArticleList.add(new EntityArticle(id, name, price, quantity));
+                        ArticleList.add(new EntityArticle(id, name, price, quantity,entityAisle));
+                    }   while (cursor.moveToNext());
+
+                    for (EntityArticle article : ArticleList){
+                        Log.d(TAG, "getByName: listArticle" + ArticleList);
+                    }
+
+                          {
+
+                    }
+
+                    return ArticleList;
+                }
+        } catch (Exception e){
+            Log.i(TAG, "getAllArticle: "+e.getMessage());
+            Toast.makeText(context, "Operation failed", Toast.LENGTH_SHORT).show();
+        } finally {
+            if(cursor!=null)
+                cursor.close();
+            sqLiteDatabase.close();
+        }
+
+        return ArticleList;
+    }
+
+    public  ArrayList< EntityArticle> getAll( Context context){
+
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
+        SQLiteDatabase sqLiteDatabase = databaseHelper.getReadableDatabase();
+
+        ArrayList<EntityArticle> ArticleList = new ArrayList<>();
+
+        Cursor cursor = null;
+        try {
+
+            cursor = sqLiteDatabase.query(ConfigDAO.TABLE_ARTICLE, null, null, null, null, null, null, null);
+
+            /**
+             // If you want to execute raw query then uncomment below 2 lines. And comment out above line.
+
+             String SELECT_QUERY = String.format("SELECT %s, %s, %s, %s, %s FROM %s", Config.COLUMN_Employee_ID, Config.COLUMN_Employee_NAME, Config.COLUMN_Employee_REGISTRATION, Config.COLUMN_Employee_EMAIL, Config.COLUMN_Employee_PHONE, Config.TABLE_Employee);
+             cursor = sqLiteDatabase.rawQuery(SELECT_QUERY, null);
+             */
+
+            if(cursor!=null)
+                if(cursor.moveToFirst()){
+
+                    do {
+                        int id = cursor.getInt(cursor.getColumnIndex(ConfigDAO.COLUMN_ARTICLE_ID));
+                        String name = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_ARTICLE_NAME));
+                        float price = cursor.getFloat(cursor.getColumnIndex(ConfigDAO.COLUMN_ARTICLE_PRICE));
+                        int quantity = cursor.getInt(cursor.getColumnIndex(ConfigDAO.COLUMN_ARTICLE_QUANTITY));
+                        int aisleId = cursor.getInt(cursor.getColumnIndex(ConfigDAO.COLUMN_AISLE_ID));
+
+                        AisleDAO aisleDAO = new AisleDAO(this.mCurrentRole,this.mCurrentAisle,this.mExecutionContext);
+                        EntityAisle entityAisle = aisleDAO.getByMatricule(aisleId);
+
+
+                        ArticleList.add(new EntityArticle(id, name, price, quantity,entityAisle));
                     }   while (cursor.moveToNext());
 
                     return ArticleList;

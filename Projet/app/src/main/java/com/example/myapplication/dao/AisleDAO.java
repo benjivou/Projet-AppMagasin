@@ -20,21 +20,25 @@ import java.util.List;
  * @<version 1.0
  * @author Leslie Kiav & Benjamin Vouillon
  */
-public class AisleDAO {
+public class AisleDAO extends ManagerDAO{
 
-    private static final String TAG = "AisleDAO";
+    private   final String TAG = "AisleDAO";
+
+    public AisleDAO(RoleDAO mCurrentRole, EntityAisle mCurrentAisle, Context mExecutionContext) {
+        super(mCurrentRole, mCurrentAisle, mExecutionContext);
+    }
 
 
     /**
      * Insert a aisle
      * @param entityAisle
-     * @param context
+     *  
      * @return
      */
-    public static long  insertAisle(EntityAisle entityAisle, Context context){
+    public   long  insertAisle(EntityAisle entityAisle ){
 
         long id = -1;
-        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this.mExecutionContext);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
@@ -48,7 +52,7 @@ public class AisleDAO {
             id = sqLiteDatabase.insertOrThrow(ConfigDAO.TABLE_ARTICLE, null, contentValues);
         } catch (SQLiteException e){
             Log.d(TAG,"Exception: " + e.getMessage());
-            Toast.makeText(context, "Operation failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(this.mExecutionContext, "Operation failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
         } finally {
             sqLiteDatabase.close();
         }
@@ -59,14 +63,14 @@ public class AisleDAO {
     /**
      * Delete a aisle
      * @param subjectId
-     * @param context
+     *  
      * @return
      */
-    public static boolean  deleteArticleById(int subjectId,Context context) {
-        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
+    public   boolean  deleteArticleById(int subjectId) {
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this.mExecutionContext);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getWritableDatabase();
 
-        int row = sqLiteDatabase.delete(ConfigDAO.TABLE_RAYON,
+        int row = sqLiteDatabase.delete(ConfigDAO.TABLE_AISLE,
                 ConfigDAO.COLUMN_RAYON_ID + " = ? ", new String[]{String.valueOf(subjectId)});
 
         return row > 0;
@@ -74,15 +78,15 @@ public class AisleDAO {
 
     /**
      * Count the number of aisle in the dB
-     * @param context
+     *  
      * @return
      */
-    public static int countArticle(Context context){
+    public int countArticle(){
 
-        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this.mExecutionContext);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getReadableDatabase();
 
-        Cursor Count= sqLiteDatabase.rawQuery("select count(*) from"+ ConfigDAO.TABLE_RAYON, null);
+        Cursor Count= sqLiteDatabase.rawQuery("select count(*) from"+ ConfigDAO.TABLE_AISLE, null);
         Count.moveToFirst();
         int count= Count.getInt(0);
         Count.close();
@@ -92,12 +96,12 @@ public class AisleDAO {
     /**
      * Get a aisle by id
      * @param matricule Id of the aisle
-     * @param context Activity context
+     *   Activity this.mExecutionContext
      * @return null if the aisle didn't exist else the aisle
      */
-    public static EntityAisle getByMatricule(String matricule, Context context){
+    public   EntityAisle getByMatricule(int matricule ){
 
-        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this.mExecutionContext);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getReadableDatabase();
 
         EntityAisle result = null;
@@ -105,7 +109,7 @@ public class AisleDAO {
         Cursor cursor = null;
         try {
 
-            cursor = sqLiteDatabase.query(ConfigDAO.TABLE_RAYON, null, ConfigDAO.COLUMN_RAYON_ID +" = " + matricule , null, null, null, null, null);
+            cursor = sqLiteDatabase.query(ConfigDAO.TABLE_AISLE, null, ConfigDAO.COLUMN_RAYON_ID +" = " + matricule , null, null, null, null, null);
 
             /**
              // If you want to execute raw query then uncomment below 2 lines. And comment out above line.
@@ -130,7 +134,7 @@ public class AisleDAO {
                 }
         } catch (Exception e){
             Log.i(TAG, "getAllAisle: "+e.getMessage());
-            Toast.makeText(context, "Operation failed", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this.mExecutionContext, "Operation failed", Toast.LENGTH_SHORT).show();
         } finally {
             if(cursor!=null)
                 cursor.close();
@@ -143,12 +147,12 @@ public class AisleDAO {
     /**
      * Get a aisle by name
      * @param nameWanted
-     * @param context
+     *  
      * @return
      */
-    public static ArrayList< EntityAisle> getByName(String nameWanted, Context context){
+    public   ArrayList< EntityAisle> getByName(String nameWanted ){
 
-        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this.mExecutionContext);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getReadableDatabase();
 
         ArrayList<EntityAisle> AisleList = new ArrayList<>();
@@ -156,7 +160,7 @@ public class AisleDAO {
         Cursor cursor = null;
         try {
 
-            cursor = sqLiteDatabase.query(ConfigDAO.TABLE_RAYON, null, ConfigDAO.COLUMN_RAYON_NAME+" = " + nameWanted , null, null, null, null, null);
+            cursor = sqLiteDatabase.query(ConfigDAO.TABLE_AISLE, null, ConfigDAO.COLUMN_RAYON_NAME+" = " + nameWanted , null, null, null, null, null);
 
             /**
              // If you want to execute raw query then uncomment below 2 lines. And comment out above line.
@@ -180,7 +184,7 @@ public class AisleDAO {
                 }
         } catch (Exception e){
             Log.i(TAG, "getAllAisle: "+e.getMessage());
-            Toast.makeText(context, "Operation failed", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this.mExecutionContext, "Operation failed", Toast.LENGTH_SHORT).show();
         } finally {
             if(cursor!=null)
                 cursor.close();

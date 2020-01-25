@@ -16,16 +16,21 @@
             android:text="@string/userfield_sex" />
 
         <RadioGroup
+            android:id="@+id/radioGroup"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.75"
             android:orientation="horizontal">
+
             <RadioButton
+                android:id="@+id/woman"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="@string/userfield_sex_f"
-                android:layout_weight="0.5"/>
+                android:layout_weight="0.5"
+                android:text="@string/userfield_sex_f" />
+
             <RadioButton
+                android:id="@+id/man"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"

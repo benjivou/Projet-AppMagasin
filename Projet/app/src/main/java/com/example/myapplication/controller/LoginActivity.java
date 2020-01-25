@@ -1,7 +1,5 @@
 package com.example.myapplication.controller;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,7 +17,7 @@ import com.example.myapplication.model.EntityEmployee;
 
 import static com.example.myapplication.config.ConfigFront.DEFAULT_PASSWORD;
 import static com.example.myapplication.config.ConfigFront.USERNAME_SESSION;
-import static com.example.myapplication.dao.roleDAO.ADMIN;
+import static com.example.myapplication.dao.RoleDAO.ADMIN;
 
 
 public class LoginActivity extends DisplayUtilActivity {
@@ -121,7 +119,7 @@ public class LoginActivity extends DisplayUtilActivity {
 
 
 
-        this.getDatabasePath(ConfigDAO.DB).delete(); // Config de Test
+       // this.getDatabasePath(ConfigDAO.DB).delete(); // Config de Test
 
 
         if(  !this.getDatabasePath(ConfigDAO.DB).exists()) {

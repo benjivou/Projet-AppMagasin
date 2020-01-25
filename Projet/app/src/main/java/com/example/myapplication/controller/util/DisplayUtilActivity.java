@@ -18,6 +18,7 @@ public abstract class DisplayUtilActivity extends Activity {
     private  final String TAG = "DisplayUtil";
     protected String mIdEmployee;
 
+    protected EmployeeDAO mCurrentUser;
 
 
 
@@ -49,7 +50,7 @@ public abstract class DisplayUtilActivity extends Activity {
         /*
         Step 1 : get the code from the bdd
          */
-        EntityEmployee employee = EmployeeDAO.getByMatricule(login,this);
+        EntityEmployee employee = mCurrentUser.getByMatricule(login);
         if (employee == null)
             return resultat;
         truePassword = employee.getPassword();
@@ -61,6 +62,10 @@ public abstract class DisplayUtilActivity extends Activity {
 
 
         return resultat;
+    }
+
+    public String displayUsername(EntityEmployee entityEmployee){
+        return entityEmployee.getIdEmployee()+", " + entityEmployee.getRole();
     }
 
 

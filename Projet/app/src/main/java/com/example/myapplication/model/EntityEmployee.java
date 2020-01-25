@@ -30,6 +30,12 @@ public class EntityEmployee{
      */
     private String password;
 
+
+    /**
+     * The employee aisle
+     */
+    private EntityAisle entityAisle;
+
     /**
      * The copy constructor
      * @param idEmployee : String
@@ -38,12 +44,13 @@ public class EntityEmployee{
      * @param password : String
      * @param role : String
      */
-    public EntityEmployee(String idEmployee, String name, String sex, String password, String role) {
+    public EntityEmployee(String idEmployee, String name, String sex, String password, String role,EntityAisle entityAisle) {
         this.idEmployee = idEmployee;
         this.name = name;
         this.sex = sex;
         this.password = password;
         this.role = role;
+        this.entityAisle = entityAisle;
     }
 
     /**
@@ -113,12 +120,14 @@ public class EntityEmployee{
 
     @Override
     public String toString() {
-        return "EntityEmployee{" +
-                "idEmployee=" + idEmployee +
-                ", name='" + name + '\'' +
-                ", sex='" + sex + '\'' +
-                ", password='" + password + '\'' +
-                ", role='" + role + '\'' +
-                '}';
+        return getName();
+    }
+
+    public EntityAisle getEntityAisle() {
+        return entityAisle;
+    }
+
+    public void setEntityAisle(EntityAisle entityAisle) {
+        this.entityAisle = entityAisle;
     }
 }

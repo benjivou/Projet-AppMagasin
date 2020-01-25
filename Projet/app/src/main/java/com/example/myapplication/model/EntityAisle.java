@@ -1,7 +1,5 @@
 package com.example.myapplication.model;
 
-import android.app.SearchableInfo;
-
 import java.util.ArrayList;
 
 
@@ -16,7 +14,7 @@ public class EntityAisle {
      * The aisle id
      */
 
-    private int idRayon;
+    private int idAisle;
     /**
      * The aisle name
      */
@@ -30,6 +28,7 @@ public class EntityAisle {
      */
     private ArrayList<EntityArticle> listArticle;
 
+
     /**
      * This is the default constructor
      */
@@ -37,24 +36,24 @@ public class EntityAisle {
 
     /**
      * The copy constructor
-     * @param idRayon : int
+     * @param idAisle : int
      * @param name : String
      */
-    public EntityAisle(int idRayon, String name){
-        this.idRayon = idRayon;
+    public EntityAisle(int idAisle, String name){
+        this.idAisle = idAisle;
         this.name = name;
         this.listArticle = new  ArrayList<EntityArticle>();
     }
 
     /**
      * The copy constructor
-     * @param idRayon : int
+     * @param idAisle : int
      * @param name : String
      * @param employee : EntityEnmployee
      * @param listArticle : EntityArticle
      */
-    public EntityAisle(int idRayon, String name, EntityEmployee employee, ArrayList<EntityArticle> listArticle){
-        this.idRayon = idRayon;
+    public EntityAisle(int idAisle, String name, EntityEmployee employee, ArrayList<EntityArticle> listArticle){
+        this.idAisle = idAisle;
         this.name = name;
         this.employee = employee;
         this.listArticle = new  ArrayList<EntityArticle>();
@@ -63,12 +62,12 @@ public class EntityAisle {
     }
 
     /*Getters & Setters*/
-    public int getIdRayon() {
-        return idRayon;
+    public int getIdAisle() {
+        return idAisle;
     }
 
-    public void setIdRayon(int idRayon) {
-        this.idRayon = idRayon;
+    public void setIdAisle(int idAisle) {
+        this.idAisle = idAisle;
     }
 
     public String getName() {

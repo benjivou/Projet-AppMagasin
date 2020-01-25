@@ -1,28 +1,31 @@
 package com.example.myapplication.controller;
 
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.RecyclerView;
+
 
 import com.example.myapplication.R;
-import com.example.myapplication.controller.util.DisplayUtilActivity;
+import com.example.myapplication.config.ConfigFront;
+import com.example.myapplication.controller.util.button.listActivity.ButtonOnglet;
+import com.example.myapplication.controller.util.button.listActivity.ControlOnglet;
+import com.example.myapplication.dao.EmployeeDAO;
+import com.example.myapplication.model.EntityEmployee;
 
-public class ListeActivity extends DisplayUtilActivity {
+public class ListeActivity extends ControlOnglet {
     private static final String TAG = "ListeActivity";
     /*
     Attribut
      */
     // Frontend
-    Button
-            mOngletProduit,
-            mOngletEmployers;
+
     ImageButton
             mButtonAjouter,
             mButtonRefresh,
@@ -31,9 +34,9 @@ public class ListeActivity extends DisplayUtilActivity {
 
     TextView mEmployeInfo;
 
-    RecyclerView mListOf;
-    // Backend
 
+    // Backend
+    EntityEmployee mEntityEmployee;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,10 +50,23 @@ public class ListeActivity extends DisplayUtilActivity {
         mButtonRefresh = (ImageButton)findViewById(R.id.btReload);
 
         // Let's control the mainContent
-        mOngletEmployers = (Button) findViewById(R.id.btModeProduct);
-        mOngletProduit = (Button) findViewById(R.id.btModeEmployee);
-        mListOf = (RecyclerView)findViewById(R.id.recyclerView);
+        mOngletEmployers = (Button) findViewById(R.id.btModeEmployee);
+        mOngletProduit = (Button) findViewById(R.id.btModeProduct);
+        mListOf = (ListView) findViewById(R.id.listView);
 
         Log.d(TAG, "onCreate: Binding done !");
+
+
+
+        // get the current employee
+        mEntityEmployee = EmployeeDAO.getByMatricule(getIntent().getStringExtra(ConfigFront.USERNAME_SESSION),this);
+        Log.d(TAG, "onCreate: " + mEntityEmployee.toString());
+
+
+
+        mEmployeInfo.setText(displayUsername(mEntityEmployee));
+
     }
+
+
 }

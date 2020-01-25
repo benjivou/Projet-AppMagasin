@@ -1,15 +1,11 @@
 package com.example.myapplication.Database;
 
 import android.content.Context;
-import android.database.sqlite.SQLiteCantOpenDatabaseException;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import com.example.myapplication.config.ConfigDAO;
-
-import java.util.logging.Logger;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String TAG = "DatabaseHelper";
@@ -42,19 +38,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // Create tables SQL execution
         // Table Employee
-        String CREATE_EMPLOYEE_TABLE = "CREATE TABLE " + ConfigDAO.TABLE_EMPLOYEE + "("
-                + ConfigDAO.COLUMN_EMPLOYEE_ID + " TEXT PRIMARY KEY UNIQUE, "
-                + ConfigDAO.COLUMN_EMPLOYEE_NAME + " TEXT NOT NULL, "
-                + ConfigDAO.COLUMN_EMPLOYEE_SEX + " TEXT NOT NULL, "
-                + ConfigDAO.COLUMN_EMPLOYEE_PASSWORD + " TEXT NOT NULL, " //nullable
-                + ConfigDAO.COLUMN_EMPLOYEE_ROLE + " TEXT NOT NULL" //nullable
-                + ")";
-        String CREATE_RAYON_TABLE = "CREATE TABLE " + ConfigDAO.TABLE_RAYON+ "("
+
+        String CREATE_RAYON_TABLE = "CREATE TABLE " + ConfigDAO.TABLE_AISLE + "("
                 + ConfigDAO.COLUMN_RAYON_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + ConfigDAO.COLUMN_RAYON_NAME + " TEXT NOT NULL, "
                 + ConfigDAO.COLUMN_RAYON_EMPLOYEE + " INTEGER NOT NULL, "
                 + ConfigDAO.COLUMN_ARTICLE_PRICE + " INTEGER NOT NULL " //nullable
                 + ")";
+
+        String CREATE_EMPLOYEE_TABLE = "CREATE TABLE " + ConfigDAO.TABLE_EMPLOYEE + "("
+                + ConfigDAO.COLUMN_EMPLOYEE_ID + " TEXT PRIMARY KEY UNIQUE, "
+                + ConfigDAO.COLUMN_EMPLOYEE_NAME + " TEXT NOT NULL, "
+                + ConfigDAO.COLUMN_EMPLOYEE_SEX + " TEXT NOT NULL, "
+                + ConfigDAO.COLUMN_EMPLOYEE_PASSWORD + " TEXT NOT NULL, " //nullable
+                + ConfigDAO.COLUMN_EMPLOYEE_ROLE + " TEXT NOT NULL," //nullable
+                + ConfigDAO.COLUMN_RAYON_ID + " INTEGER NOT NULL," //nullable
+                + "FOREIGN KEY (" + ConfigDAO.COLUMN_RAYON_ID + ") REFERENCES " + ConfigDAO.TABLE_AISLE + "(" + ConfigDAO.COLUMN_RAYON_ID + ") ON UPDATE CASCADE ON DELETE CASCADE "
+                + ")";
+
 
         String CREATE_ARTICLE_TABLE = "CREATE TABLE " + ConfigDAO.TABLE_ARTICLE + "("
                 + ConfigDAO.COLUMN_ARTICLE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -62,7 +63,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + ConfigDAO.COLUMN_ARTICLE_NAME + " TEXT NOT NULL, "
                 + ConfigDAO.COLUMN_ARTICLE_QUANTITY + " INTEGER NOT NULL, "
                 + ConfigDAO.COLUMN_ARTICLE_PRICE + " INTEGER NOT NULL, " //nullable
-                + "FOREIGN KEY (" + ConfigDAO.COLUMN_RAYON_ID + ") REFERENCES " + ConfigDAO.TABLE_RAYON+ "(" + ConfigDAO.COLUMN_RAYON_ID + ") ON UPDATE CASCADE ON DELETE CASCADE "
+                + "FOREIGN KEY (" + ConfigDAO.COLUMN_RAYON_ID + ") REFERENCES " + ConfigDAO.TABLE_AISLE + "(" + ConfigDAO.COLUMN_RAYON_ID + ") ON UPDATE CASCADE ON DELETE CASCADE "
                 + ")";
 
 
