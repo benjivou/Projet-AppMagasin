@@ -1,6 +1,7 @@
 package com.example.myapplication.controller.util.button.listActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -13,6 +14,9 @@ import com.example.myapplication.model.EntityArticle;
 import com.example.myapplication.model.EntityEmployee;
 
 public abstract class ControlOnglet extends ButtonOnglet{
+
+    private static final String TAG = "ControlOnglet";
+
     protected ListView mListOf;
 
     private ArrayAdapter<EntityEmployee> mEmployeeArrayAdapter;
@@ -31,6 +35,27 @@ public abstract class ControlOnglet extends ButtonOnglet{
 
     @Override
     protected void onOngletEmployee() {
+        refreshEmployeeList();
+    }
+
+    @Override
+    protected void onOngletProduct() {
+        refreshProductList();
+
+    }
+
+    public void refreshProductList(){
+        // request all article
+                mArticleArrayAdapter = new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_list_item_1,
+                mArticleDAO.getAll()
+        );
+
+        // display
+        mListOf.setAdapter(mArticleArrayAdapter);
+    }
+    public void refreshEmployeeList(){
         // request all employee
         mEmployeeArrayAdapter = new ArrayAdapter<>(
                 this,
@@ -40,19 +65,10 @@ public abstract class ControlOnglet extends ButtonOnglet{
         mListOf.setAdapter(mEmployeeArrayAdapter);
     }
 
-    @Override
-    protected void onOngletProduct() {
-
-        // request all article
-        mArticleArrayAdapter = new ArrayAdapter<>(
-                this,
-                android.R.layout.simple_list_item_1,
-                mArticleDAO.getAll()
-        );
-
-        // display
-        mListOf.setAdapter(mArticleArrayAdapter);
+    protected void refreshAll(){
+        Log.d(TAG, "refreshAll: U refresh");
+        refreshEmployeeList();
+        refreshProductList();
     }
-
 
 }
