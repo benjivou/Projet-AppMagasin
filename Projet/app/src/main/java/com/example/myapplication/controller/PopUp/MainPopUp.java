@@ -21,11 +21,11 @@ public abstract class MainPopUp extends DisplayUtilActivity {
 
     private EntityEmployee entityEmployee;
 
-    public MainPopUp(EntityEmployee entityEmployee, Context context) {
+    public MainPopUp(EntityEmployee entityEmployee) {
        this.entityEmployee = entityEmployee;
-       this.aisleDAO = new AisleDAO(entityEmployee.getRole(),entityEmployee.getEntityAisle(),);
-       this.employeeDAO= new EmployeeDAO(entityEmployee.getRole(),entityEmployee.getEntityAisle(),);
-       this.articleDAO = new ArticleDAO(entityEmployee.getRole(),entityEmployee.getEntityAisle());
+       this.aisleDAO = new AisleDAO(entityEmployee.getRoleEnum(),entityEmployee.getEntityAisle(),this);
+       this.employeeDAO= new EmployeeDAO(entityEmployee.getRoleEnum(),entityEmployee.getEntityAisle(),this);
+       this.articleDAO = new ArticleDAO(entityEmployee.getRoleEnum(),entityEmployee.getEntityAisle(),this);
     }
 
 

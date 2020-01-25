@@ -34,6 +34,10 @@ public class AddEmployeePopUp extends MainPopUp implements RadioGroup.OnCheckedC
     RadioButton radioButton;
     String mGender;
 
+    public AddEmployeePopUp(EntityEmployee entityEmployee) {
+        super(entityEmployee);
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

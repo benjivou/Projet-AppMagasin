@@ -22,8 +22,8 @@ public class AislePopUp extends MainPopUp {
     private static final String TAG = "AddAisle";
     private Context context;
 
-    public AislePopUp(EntityEmployee entityEmployee, Context context) {
-        super(entityEmployee, context);
+    public AislePopUp(EntityEmployee entityEmployee) {
+        super(entityEmployee);
     }
 
 
@@ -43,7 +43,6 @@ public class AislePopUp extends MainPopUp {
                 AlertDialog.Builder myPopup = new AlertDialog.Builder(context);
                 EntityAisle entityAisle =  new EntityAisle();
                 entityAisle.setName(mAisle.getText().toString());
-                AisleDAO aisleDAO = new AisleDAO(this.)
 
             }
         });

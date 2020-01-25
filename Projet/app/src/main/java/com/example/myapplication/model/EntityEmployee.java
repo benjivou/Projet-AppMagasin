@@ -1,5 +1,7 @@
 package com.example.myapplication.model;
 
+import com.example.myapplication.dao.RoleDAO;
+
 import static com.example.myapplication.config.ConfigFront.DEFAULT_PASSWORD;
 
 /**
@@ -21,10 +23,12 @@ public class EntityEmployee{
      * The employee sex
      */
     private String sex;
+
+
     /**
      * The employee role in the store
      */
-    private String role;
+    private RoleDAO role;
     /**
      * The employee password
      */
@@ -44,7 +48,16 @@ public class EntityEmployee{
      * @param password : String
      * @param role : String
      */
-    public EntityEmployee(String idEmployee, String name, String sex, String password, String role,EntityAisle entityAisle) {
+    public EntityEmployee(String idEmployee, String name, String sex, String password, String role, EntityAisle entityAisle) {
+        this.idEmployee = idEmployee;
+        this.name = name;
+        this.sex = sex;
+        this.password = password;
+        this.role = RoleDAO.convertRole(role);
+        this.entityAisle = entityAisle;
+    }
+
+    public EntityEmployee(String idEmployee, String name, String sex, String password, RoleDAO role, EntityAisle entityAisle) {
         this.idEmployee = idEmployee;
         this.name = name;
         this.sex = sex;
@@ -53,25 +66,6 @@ public class EntityEmployee{
         this.entityAisle = entityAisle;
     }
 
-    /**
-     * This is the default constructor
-     */
-    public EntityEmployee(){}
-
-    /**
-     * The copy constructor
-     * @param idEmployee
-     * @param name
-     * @param sex
-     * @param role
-     */
-    public EntityEmployee(String idEmployee, String name, String sex,String role){
-        this.idEmployee = idEmployee;
-        this.name = name;
-        this.sex = sex;
-        this.password = DEFAULT_PASSWORD;
-        this.role = role;
-    }
 
     /*Getters  & Setters*/
 
@@ -109,15 +103,6 @@ public class EntityEmployee{
         this.password = password;
     }
 
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
     @Override
     public String toString() {
         return getName();
@@ -130,4 +115,19 @@ public class EntityEmployee{
     public void setEntityAisle(EntityAisle entityAisle) {
         this.entityAisle = entityAisle;
     }
+
+    public String getRole() {
+        return role.getSring();
+    }
+
+    public void setRole(String role) {
+        this.role = RoleDAO.convertRole(role) ;
+    }
+    public RoleDAO getRoleEnum(){
+        return this.role;
+    }
+
+
+
+
 }
