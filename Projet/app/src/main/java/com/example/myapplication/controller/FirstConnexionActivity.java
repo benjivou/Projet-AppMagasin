@@ -16,7 +16,6 @@ import com.example.myapplication.config.ConfigFront;
 import com.example.myapplication.config.passwordvalidator.PasswordValidator;
 import com.example.myapplication.config.passwordvalidator.ValidationResult;
 import com.example.myapplication.controller.util.DisplayUtilActivity;
-import com.example.myapplication.dao.EmployeeDAO;
 import com.example.myapplication.model.EntityEmployee;
 
 import static com.example.myapplication.config.ConfigFront.USERNAME_SESSION;
