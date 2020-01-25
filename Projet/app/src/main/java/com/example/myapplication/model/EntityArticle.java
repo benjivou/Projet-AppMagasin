@@ -35,6 +35,11 @@ public class EntityArticle{
 
 
     /**
+     * The Aisle Name of the article
+     */
+    private String aisleName;
+
+    /**
      * This is the default constructor
      */
     public EntityArticle(){}
@@ -46,7 +51,7 @@ public class EntityArticle{
      * @param name : String
      * @param price : float
      * @param quantity : int
-     * @param entityAisle : String
+     * @param entityAisle : EntityAisle
      */
     public EntityArticle(int idArticle, String name, float price, int quantity,EntityAisle entityAisle){
 
@@ -98,6 +103,13 @@ public class EntityArticle{
         this.entityAisle = entityAisle;
     }
 
+    @NonNull
+    @Override
+    public String toString() {
+        return getName();
+    }
 
-
+    public String getAisleName() {
+        return this.aisleName;
+    }
 }

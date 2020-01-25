@@ -27,9 +27,11 @@ import java.util.logging.Logger;
 public class EmployeeDAO extends ManagerDAO {
     private   final String TAG = "EmployeeDAO";
 
+
     public EmployeeDAO(RoleDAO mCurrentRole, EntityAisle mCurrentAisle, Context mExecutionContext) {
         super(mCurrentRole, mCurrentAisle, mExecutionContext);
     }
+
 
     /**
      *
@@ -40,7 +42,7 @@ public class EmployeeDAO extends ManagerDAO {
 
         DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this.mExecutionContext);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getReadableDatabase();
-        
+
         EntityEmployee result = null;
 
         Cursor cursor = null;

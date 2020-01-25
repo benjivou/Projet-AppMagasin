@@ -15,7 +15,7 @@ public abstract class ManagerDAO {
 
 
     private static final String TAG = "ManagerDAO";
-    
+
     protected RoleDAO mCurrentRole;
     protected EntityAisle mCurrentAisle;
     protected Context mExecutionContext;

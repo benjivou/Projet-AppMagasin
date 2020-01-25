@@ -24,15 +24,18 @@ public class AisleDAO extends ManagerDAO{
 
     private   final String TAG = "AisleDAO";
 
+
     public AisleDAO(RoleDAO mCurrentRole, EntityAisle mCurrentAisle, Context mExecutionContext) {
         super(mCurrentRole, mCurrentAisle, mExecutionContext);
     }
 
 
+
+
     /**
      * Insert a aisle
      * @param entityAisle
-     *  
+     *
      * @return
      */
     public   long  insertAisle(EntityAisle entityAisle ){
@@ -63,7 +66,7 @@ public class AisleDAO extends ManagerDAO{
     /**
      * Delete a aisle
      * @param subjectId
-     *  
+     *
      * @return
      */
     public   boolean  deleteArticleById(int subjectId) {
@@ -78,7 +81,7 @@ public class AisleDAO extends ManagerDAO{
 
     /**
      * Count the number of aisle in the dB
-     *  
+     *
      * @return
      */
     public int countArticle(){
@@ -99,7 +102,9 @@ public class AisleDAO extends ManagerDAO{
      *   Activity this.mExecutionContext
      * @return null if the aisle didn't exist else the aisle
      */
+
     public   EntityAisle getByMatricule(int matricule ){
+
 
         DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this.mExecutionContext);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getReadableDatabase();
@@ -147,7 +152,7 @@ public class AisleDAO extends ManagerDAO{
     /**
      * Get a aisle by name
      * @param nameWanted
-     *  
+     *
      * @return
      */
     public   ArrayList< EntityAisle> getByName(String nameWanted ){
