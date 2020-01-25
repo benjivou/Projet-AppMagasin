@@ -1,8 +1,12 @@
 package com.example.myapplication.controller.util.button.listActivity;
 
+import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import androidx.annotation.Nullable;
+
+import com.example.myapplication.config.ConfigFront;
 import com.example.myapplication.dao.ArticleDAO;
 import com.example.myapplication.dao.EmployeeDAO;
 import com.example.myapplication.model.EntityArticle;
@@ -16,6 +20,14 @@ public abstract class ControlOnglet extends ButtonOnglet{
 
     private ArticleDAO mArticleDAO;
 
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mArticleDAO = new ArticleDAO(
+                ConfigFront.SYSTEM_ROLE,
+                ConfigFront.SYSTEM_AISLE,
+                this);
+    }
 
     @Override
     protected void onOngletEmployee() {

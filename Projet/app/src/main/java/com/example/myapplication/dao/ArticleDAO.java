@@ -45,7 +45,7 @@ public class ArticleDAO  extends ManagerDAO{
         contentValues.put(ConfigDAO.COLUMN_ARTICLE_NAME, entityArticle.getName());
         contentValues.put(ConfigDAO.COLUMN_ARTICLE_PRICE, entityArticle.getPrice());
         contentValues.put(ConfigDAO.COLUMN_ARTICLE_QUANTITY, entityArticle.getQuantity());
-        contentValues.put(ConfigDAO.COLUMN_AISLE_ID, entityArticle.getEntityAisle().getIdAisle());
+        contentValues.put(ConfigDAO.COLUMN_ARTICLE_AISLE_ID, entityArticle.getEntityAisle().getIdAisle());
 
 
         try {
@@ -129,7 +129,7 @@ public class ArticleDAO  extends ManagerDAO{
                         String name = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_ARTICLE_NAME));
                         float price = cursor.getFloat(cursor.getColumnIndex(ConfigDAO.COLUMN_ARTICLE_PRICE));
                         int quantity = cursor.getInt(cursor.getColumnIndex(ConfigDAO.COLUMN_ARTICLE_QUANTITY));
-                        int aisleId = cursor.getInt(cursor.getColumnIndex(ConfigDAO.COLUMN_AISLE_ID));
+                        int aisleId = cursor.getInt(cursor.getColumnIndex(ConfigDAO.COLUMN_ARTICLE_AISLE_ID));
 
                         AisleDAO aisleDAO = new AisleDAO(this.mCurrentRole,this.mCurrentAisle,this.mExecutionContext);
                         EntityAisle entityAisle = aisleDAO.getByMatricule(aisleId);
@@ -186,7 +186,7 @@ public class ArticleDAO  extends ManagerDAO{
                         String name = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_ARTICLE_NAME));
                         float price = cursor.getFloat(cursor.getColumnIndex(ConfigDAO.COLUMN_ARTICLE_PRICE));
                         int quantity = cursor.getInt(cursor.getColumnIndex(ConfigDAO.COLUMN_ARTICLE_QUANTITY));
-                        int aisleId = cursor.getInt(cursor.getColumnIndex(ConfigDAO.COLUMN_AISLE_ID));
+                        int aisleId = cursor.getInt(cursor.getColumnIndex(ConfigDAO.COLUMN_ARTICLE_AISLE_ID));
 
                         AisleDAO aisleDAO = new AisleDAO(this.mCurrentRole,this.mCurrentAisle,this.mExecutionContext);
                         EntityAisle entityAisle = aisleDAO.getByMatricule(aisleId);
@@ -244,7 +244,7 @@ public class ArticleDAO  extends ManagerDAO{
                         String name = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_ARTICLE_NAME));
                         float price = cursor.getFloat(cursor.getColumnIndex(ConfigDAO.COLUMN_ARTICLE_PRICE));
                         int quantity = cursor.getInt(cursor.getColumnIndex(ConfigDAO.COLUMN_ARTICLE_QUANTITY));
-                        int articleId = cursor.getInt(cursor.getColumnIndex(ConfigDAO.COLUMN_AISLE_ID));
+                        int articleId = cursor.getInt(cursor.getColumnIndex(ConfigDAO.COLUMN_ARTICLE_AISLE_ID));
 
 
                         ArticleList.add(new EntityArticle(
