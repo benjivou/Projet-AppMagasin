@@ -52,8 +52,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + ConfigDAO.COLUMN_EMPLOYEE_SEX + " TEXT NOT NULL, "
                 + ConfigDAO.COLUMN_EMPLOYEE_PASSWORD + " TEXT NOT NULL, " //nullable
                 + ConfigDAO.COLUMN_EMPLOYEE_ROLE + " TEXT NOT NULL," //nullable
-                + ConfigDAO.COLUMN_RAYON_ID + " INTEGER NOT NULL," //nullable
-                + "FOREIGN KEY (" + ConfigDAO.COLUMN_RAYON_ID + ") REFERENCES " + ConfigDAO.TABLE_AISLE + "(" + ConfigDAO.COLUMN_RAYON_ID + ") ON UPDATE CASCADE ON DELETE CASCADE "
+                + ConfigDAO.COLUMN_EMPLOYEE_AISLE_ID + " INTEGER NOT NULL," //nullable
+                + "FOREIGN KEY (" + ConfigDAO.COLUMN_EMPLOYEE_AISLE_ID + ") REFERENCES " + ConfigDAO.TABLE_AISLE + "(" + ConfigDAO.COLUMN_RAYON_ID + ") ON UPDATE CASCADE ON DELETE CASCADE "
                 + ")";
 
 
