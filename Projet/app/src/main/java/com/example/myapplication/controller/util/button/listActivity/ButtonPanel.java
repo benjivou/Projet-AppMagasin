@@ -12,7 +12,7 @@ import com.example.myapplication.controller.PopUp.MainPopUp;
 /**
  * Created by Benjamin Vouillon on 25,January,2020
  */
-public abstract class ButtonPanel extends ControlOnglet implements DialogInterface.OnDismissListener{
+public abstract class ButtonPanel extends ControlOnglet {
     private static final String TAG = "ButtonPanel";
 
 
@@ -51,7 +51,7 @@ public abstract class ButtonPanel extends ControlOnglet implements DialogInterfa
 
         if (TAG_PANEL_ADD_AISLE.equals((String)v.getTag())){
             AislePopUp aislePopUp = new AislePopUp(getEntityEmployee(),this);
-            aislePopUp.setOnDismissListener(this);
+
             aislePopUp.show();
         }
 
@@ -86,11 +86,6 @@ public abstract class ButtonPanel extends ControlOnglet implements DialogInterfa
 
     }
 
-    @Override
-    public void onDismiss(DialogInterface dialog) {
-
-        Log.d(TAG, "onDismiss: Refresh done");
-    }
 
 
 }

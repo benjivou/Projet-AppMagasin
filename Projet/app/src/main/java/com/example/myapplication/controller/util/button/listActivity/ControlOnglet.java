@@ -13,6 +13,8 @@ import com.example.myapplication.dao.EmployeeDAO;
 import com.example.myapplication.model.EntityArticle;
 import com.example.myapplication.model.EntityEmployee;
 
+import java.util.ArrayList;
+
 public abstract class ControlOnglet extends ButtonOnglet{
 
     private static final String TAG = "ControlOnglet";
@@ -41,34 +43,42 @@ public abstract class ControlOnglet extends ButtonOnglet{
     @Override
     protected void onOngletProduct() {
         refreshProductList();
-
     }
 
     public void refreshProductList(){
         // request all article
-                mArticleArrayAdapter = new ArrayAdapter<>(
-                this,
-                android.R.layout.simple_list_item_1,
-                mArticleDAO.getAll()
-        );
+        setArticleArrayAdapter(  mArticleDAO.getAll());
 
         // display
         mListOf.setAdapter(mArticleArrayAdapter);
     }
     public void refreshEmployeeList(){
         // request all employee
-        mEmployeeArrayAdapter = new ArrayAdapter<>(
-                this,
-                android.R.layout.simple_list_item_1,
-                mCurrentUser.getAllEmployee()
-        );
+        setEmployeeArrayAdapter( mCurrentUser.getAllEmployee());
+
         mListOf.setAdapter(mEmployeeArrayAdapter);
     }
 
-    protected void refreshAll(){
+    public void refreshAll(){
         Log.d(TAG, "refreshAll: U refresh");
         refreshEmployeeList();
         refreshProductList();
     }
 
+    public void setEmployeeArrayAdapter(ArrayList<EntityEmployee>  employeeArrayList) {
+        mEmployeeArrayAdapter = new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_list_item_1,
+                employeeArrayList
+        );
+    }
+
+    public void setArticleArrayAdapter(ArrayList<EntityArticle> articleArrayList) {
+        mArticleArrayAdapter = new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_list_item_1,
+                articleArrayList
+        );
+
+    }
 }
