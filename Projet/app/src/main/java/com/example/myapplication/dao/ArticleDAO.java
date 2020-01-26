@@ -169,7 +169,8 @@ public class ArticleDAO  extends ManagerDAO{
         Cursor cursor = null;
         try {
 
-            cursor = sqLiteDatabase.query(ConfigDAO.TABLE_ARTICLE, null, ConfigDAO.COLUMN_ARTICLE_NAME+" = " + nameWanted , null, null, null, null, null);
+            cursor = sqLiteDatabase.query(ConfigDAO.TABLE_ARTICLE,
+                    null, ConfigDAO.COLUMN_ARTICLE_NAME+" LIKE '" + nameWanted+"'" , null, null, null, null, null);
 
             /**
              // If you want to execute raw query then uncomment below 2 lines. And comment out above line.

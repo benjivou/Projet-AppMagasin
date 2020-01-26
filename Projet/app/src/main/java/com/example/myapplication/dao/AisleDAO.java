@@ -207,7 +207,9 @@ public class AisleDAO extends ManagerDAO{
         Cursor cursor = null;
         try {
 
-            cursor = sqLiteDatabase.query(ConfigDAO.TABLE_AISLE, null, ConfigDAO.COLUMN_RAYON_NAME+" = " + nameWanted , null, null, null, null, null);
+            cursor = sqLiteDatabase.query(ConfigDAO.TABLE_AISLE,
+                    null, ConfigDAO.COLUMN_RAYON_NAME+" LIKE '" + nameWanted+"'" ,
+                    null, null, null, null, null);
 
             /**
              // If you want to execute raw query then uncomment below 2 lines. And comment out above line.

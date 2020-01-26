@@ -49,14 +49,13 @@ public abstract class ControlOnglet extends ButtonOnglet{
         // request all article
         setArticleArrayAdapter(  mArticleDAO.getAll());
 
-        // display
-        mListOf.setAdapter(mArticleArrayAdapter);
+
     }
     public void refreshEmployeeList(){
         // request all employee
         setEmployeeArrayAdapter( mCurrentUser.getAllEmployee());
 
-        mListOf.setAdapter(mEmployeeArrayAdapter);
+
     }
 
     public void refreshAll(){
@@ -71,6 +70,8 @@ public abstract class ControlOnglet extends ButtonOnglet{
                 android.R.layout.simple_list_item_1,
                 employeeArrayList
         );
+
+        mListOf.setAdapter(mEmployeeArrayAdapter);
     }
 
     public void setArticleArrayAdapter(ArrayList<EntityArticle> articleArrayList) {
@@ -79,6 +80,9 @@ public abstract class ControlOnglet extends ButtonOnglet{
                 android.R.layout.simple_list_item_1,
                 articleArrayList
         );
+        // display
+        mListOf.setAdapter(mArticleArrayAdapter);
+
 
     }
 }
