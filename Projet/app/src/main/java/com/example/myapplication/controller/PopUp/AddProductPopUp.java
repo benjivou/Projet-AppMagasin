@@ -35,45 +35,6 @@ public class AddProductPopUp extends SubmitControllerPopUp {
     }
 
     @Override
-    protected void onSubmit() {
-
-        String mq = mProductQuantity.getText().toString();
-        final int mQuantity = Integer.parseInt(mq);
-
-        String mP = mProductPrice.getText().toString();
-        final float mPrice = Float.parseFloat(mP);
-
-        List<EntityAisle> list = new ArrayList<EntityAisle>();
-        ArrayAdapter <EntityAisle> arrayAdapter = new ArrayAdapter<EntityAisle>(this.mActivity,android.R.layout.simple_list_item_1,list);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mProductAisle.setAdapter(arrayAdapter);
-        mProductAisle.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                //getAll le spinner
-                for (EntityAisle ea:
-                        mAisleDAO.getAll()
-                ) {
-                    Log.d(TAG, "onSubmit: aisle " + ea.getName());
-                }
-                //get selected item
-                EntityAisle entityAisle = new EntityAisle(0,mProductAisle.getAdapter().getItem(position).toString());
-
-                //Create Article
-                EntityArticle entityArticle = new EntityArticle(0,mProductName.getText().toString(),mPrice,mQuantity,entityAisle);
-                
-                //Insert Article
-                mArticleDAO.insertArticle(entityArticle);
-                Log.d(TAG, "onItemClick: OnSubmit : article" + entityArticle);
-
-            }
-        });
-
-
-    }
-
-    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.popup_add_product);
@@ -84,7 +45,46 @@ public class AddProductPopUp extends SubmitControllerPopUp {
         mProductAisle = (Spinner) findViewById(R.id.txtAisle);
         this.mButtonSubmit = (ImageButton) findViewById(R.id.btnSubmit);
 
+    }
+
+    @Override
+    protected void onSubmit() {
+
+        String mq = mProductQuantity.getText().toString();
+        final int mQuantity = Integer.parseInt(mq);
+
+        String mP = mProductPrice.getText().toString();
+        final float mPrice = Float.parseFloat(mP);
+
+        List<EntityAisle> list = new ArrayList<EntityAisle>();
+
+        //getAll le spinner
+        for(int i = 0; i< list.size();i++){
+
+            list = mAisleDAO.getAll();
+        }
+        ArrayAdapter arrayAdapter = new ArrayAdapter (this.mActivity,android.R.layout.simple_list_item_1,list);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mProductAisle.setAdapter(arrayAdapter);
+        mProductAisle.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+
+                //get selected item
+                EntityAisle entityAisle = new EntityAisle(0,mProductAisle.getAdapter().getItem(position).toString());
+
+                //Create Article
+                EntityArticle entityArticle = new EntityArticle(0,mProductName.getText().toString(),mPrice,mQuantity,entityAisle);
+
+                //Insert Article
+                mArticleDAO.insertArticle(entityArticle);
+                Log.d(TAG, "onItemClick: OnSubmit : article" + entityArticle);
+
+            }
+        });
 
 
     }
+
 }

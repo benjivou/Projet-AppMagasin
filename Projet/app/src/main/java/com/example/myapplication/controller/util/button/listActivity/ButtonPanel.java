@@ -70,7 +70,6 @@ public abstract class ButtonPanel extends ControlOnglet {
             if (isModeProductIsClicked()){
                 Log.d(TAG, "onClick: start Product dialog");
                 AddProductPopUp addProductPopUp = new AddProductPopUp(getEntityEmployee(),this);
-                addProductPopUp.setOnDismissListener(this);
                 addProductPopUp.show();
             }
             else {
