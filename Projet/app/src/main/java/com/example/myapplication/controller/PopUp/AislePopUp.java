@@ -37,6 +37,8 @@ public class AislePopUp extends SubmitControllerPopUp{
     protected void onSubmit() {
         EntityAisle entityAisle = new EntityAisle(0,mAisle.getText().toString());
         mAisleDAO.insertAisle(entityAisle);
+
+
         Log.d(TAG, "onSubmit: the list of Aisle");
         for (EntityAisle ea:
                 mAisleDAO.getAll()
@@ -44,7 +46,7 @@ public class AislePopUp extends SubmitControllerPopUp{
             Log.d(TAG, "onSubmit: aisle " + ea.getName());
         }
 
-       
+
     }
 
 

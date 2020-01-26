@@ -89,7 +89,7 @@ public abstract class ButtonOnglet extends SessionManagerActivity implements Vie
     protected abstract void onOngletEmployee();
     protected abstract void onOngletProduct();
 
-    protected boolean isModeProductIsClicked() {
+    public boolean isModeProductIsClicked() {
         return isModeProductIsClicked;
     }
 }

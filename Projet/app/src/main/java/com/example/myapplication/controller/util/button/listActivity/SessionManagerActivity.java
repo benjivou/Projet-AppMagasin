@@ -26,7 +26,7 @@ public abstract class SessionManagerActivity extends DisplayUtilActivity {
         Log.d(TAG, "onCreate: " + mEntityEmployee.toString());
     }
 
-    protected EntityEmployee getEntityEmployee(){
+    public EntityEmployee getEntityEmployee(){
         return this.mEntityEmployee;
     }
 }
