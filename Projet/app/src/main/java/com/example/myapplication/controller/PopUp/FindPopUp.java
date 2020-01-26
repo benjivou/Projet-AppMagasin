@@ -16,8 +16,8 @@ import com.example.myapplication.model.EntityEmployee;
  */
 public class FindPopUp extends SubmitControllerPopUp{
     private static final String TAG = "FindPopUp";
-    private static String TITLE_PRODUCT = "Recherche de produit";
-    private static String TITLE_EMPLOYEE = "Recherche de employee";
+    private static String TITLE_PRODUCT = "Recherche par nom de produit";
+    private static String TITLE_EMPLOYEE = "Recherche par nom d’utilisateur";
 
     TextView mTextView ;
     EditText mEditText ;
