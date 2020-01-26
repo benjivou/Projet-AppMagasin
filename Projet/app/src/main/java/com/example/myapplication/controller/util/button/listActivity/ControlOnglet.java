@@ -2,6 +2,8 @@ package com.example.myapplication.controller.util.button.listActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -15,7 +17,7 @@ import com.example.myapplication.model.EntityEmployee;
 
 import java.util.ArrayList;
 
-public abstract class ControlOnglet extends ButtonOnglet{
+public abstract class ControlOnglet extends ButtonOnglet implements AdapterView.OnItemClickListener {
 
     private static final String TAG = "ControlOnglet";
 
@@ -72,6 +74,7 @@ public abstract class ControlOnglet extends ButtonOnglet{
         );
 
         mListOf.setAdapter(mEmployeeArrayAdapter);
+        mListOf.setOnItemClickListener(this);
     }
 
     public void setArticleArrayAdapter(ArrayList<EntityArticle> articleArrayList) {
@@ -84,5 +87,13 @@ public abstract class ControlOnglet extends ButtonOnglet{
         mListOf.setAdapter(mArticleArrayAdapter);
 
 
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        // depending of the type of the current list
+        if(isModeProductIsClicked()){
+
+        }
     }
 }
