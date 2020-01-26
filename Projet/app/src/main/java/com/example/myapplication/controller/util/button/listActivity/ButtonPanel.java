@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
+import com.example.myapplication.controller.PopUp.AddProductPopUp;
 import com.example.myapplication.controller.PopUp.AislePopUp;
 import com.example.myapplication.controller.PopUp.MainPopUp;
 
@@ -67,6 +68,9 @@ public abstract class ButtonPanel extends ControlOnglet implements DialogInterfa
             // product mode
             if (isModeProductIsClicked()){
                 Log.d(TAG, "onClick: start Product dialog");
+                AddProductPopUp addProductPopUp = new AddProductPopUp(getEntityEmployee(),this);
+                addProductPopUp.setOnDismissListener(this);
+                addProductPopUp.show();
             }
             else {
                 Log.d(TAG, "onClick: start Employee dialog");

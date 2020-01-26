@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -28,7 +29,6 @@ public class AddProductPopUp extends SubmitControllerPopUp {
 
     EditText mProductName,mProductQuantity, mProductPrice;
     Spinner mProductAisle;
-    ImageButton mSubmit;
 
     public AddProductPopUp(EntityEmployee entityEmployee, ButtonPanel activity) {
         super(entityEmployee, activity);
@@ -50,10 +50,20 @@ public class AddProductPopUp extends SubmitControllerPopUp {
         mProductAisle.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                mProductAisle.setSelection(position);
-                EntityAisle entityAisle = new EntityAisle(0,mProductAisle.getSelectedItem().toString());
 
+                //getAll le spinner
+                for (EntityAisle ea:
+                        mAisleDAO.getAll()
+                ) {
+                    Log.d(TAG, "onSubmit: aisle " + ea.getName());
+                }
+                //get selected item
+                EntityAisle entityAisle = new EntityAisle(0,mProductAisle.getAdapter().getItem(position).toString());
+
+                //Create Article
                 EntityArticle entityArticle = new EntityArticle(0,mProductName.getText().toString(),mPrice,mQuantity,entityAisle);
+                
+                //Insert Article
                 mArticleDAO.insertArticle(entityArticle);
                 Log.d(TAG, "onItemClick: OnSubmit : article" + entityArticle);
 
