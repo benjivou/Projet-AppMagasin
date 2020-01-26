@@ -118,7 +118,7 @@ public class LoginActivity extends DisplayUtilActivity {
 
 
 
-       this.getDatabasePath(ConfigDAO.DB).delete(); // Config de Test
+       //this.getDatabasePath(ConfigDAO.DB).delete(); // Config de Test
 
 
         if(  !this.getDatabasePath(ConfigDAO.DB).exists()) {
@@ -136,7 +136,6 @@ public class LoginActivity extends DisplayUtilActivity {
             ));
             Log.d(TAG, "initBDD: We add the root user");
 
-            Log.d(TAG, "initBDD: first root " + mCurrentUser.getByMatricule("1"));
             Log.d(TAG, "initBDD: first root " + mCurrentUser.getByMatricule("root"));
             for (EntityEmployee e:
                     mCurrentUser.getAllEmployee()) {

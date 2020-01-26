@@ -41,8 +41,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         String CREATE_RAYON_TABLE = "CREATE TABLE " + ConfigDAO.TABLE_AISLE + "("
                 + ConfigDAO.COLUMN_RAYON_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + ConfigDAO.COLUMN_RAYON_NAME + " TEXT NOT NULL, "
-                + ConfigDAO.COLUMN_RAYON_EMPLOYEE + " INTEGER NOT NULL "
+                + ConfigDAO.COLUMN_RAYON_NAME + " TEXT NOT NULL "
+
                 + ")";
 
         String CREATE_EMPLOYEE_TABLE = "CREATE TABLE " + ConfigDAO.TABLE_EMPLOYEE + "("
@@ -52,7 +52,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + ConfigDAO.COLUMN_EMPLOYEE_PASSWORD + " TEXT NOT NULL, " //nullable
                 + ConfigDAO.COLUMN_EMPLOYEE_ROLE + " TEXT NOT NULL," //nullable
                 + ConfigDAO.COLUMN_EMPLOYEE_AISLE_ID + " INTEGER NOT NULL," //nullable
-                + "FOREIGN KEY (" + ConfigDAO.COLUMN_EMPLOYEE_AISLE_ID + ") REFERENCES " + ConfigDAO.TABLE_AISLE + "(" + ConfigDAO.COLUMN_RAYON_ID + ") ON UPDATE CASCADE ON DELETE CASCADE "
+                + "FOREIGN KEY (" + ConfigDAO.COLUMN_EMPLOYEE_AISLE_ID + ") REFERENCES " + ConfigDAO.TABLE_AISLE + "(" + ConfigDAO.COLUMN_RAYON_ID + ") "
                 + ")";
 
 
@@ -62,7 +62,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + ConfigDAO.COLUMN_ARTICLE_NAME + " TEXT NOT NULL, "
                 + ConfigDAO.COLUMN_ARTICLE_QUANTITY + " INTEGER NOT NULL, "
                 + ConfigDAO.COLUMN_ARTICLE_PRICE + " INTEGER NOT NULL, " //nullable
-                + "FOREIGN KEY (" + ConfigDAO.COLUMN_ARTICLE_AISLE_ID + ") REFERENCES " + ConfigDAO.TABLE_AISLE + "(" + ConfigDAO.COLUMN_RAYON_ID + ") ON UPDATE CASCADE ON DELETE CASCADE "
+                + "FOREIGN KEY (" + ConfigDAO.COLUMN_ARTICLE_AISLE_ID + ") REFERENCES " + ConfigDAO.TABLE_AISLE + "(" + ConfigDAO.COLUMN_RAYON_ID + ")  "
                 + ")";
 
 
@@ -70,7 +70,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_EMPLOYEE_TABLE);
         db.execSQL(CREATE_RAYON_TABLE);
         db.execSQL(CREATE_ARTICLE_TABLE);
-
+        db.execSQL("PRAGMA foreign_keys=ON;");
 
 
        /* db.execSQL(CREATE_SUBJECT_TABLE);*/
@@ -95,7 +95,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         super.onOpen(db);
 
         //enable foreign key constraints like ON UPDATE CASCADE, ON DELETE CASCADE
-        db.execSQL("PRAGMA foreign_keys=ON;");
+
     }
 
     /*

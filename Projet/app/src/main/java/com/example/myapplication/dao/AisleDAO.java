@@ -46,13 +46,12 @@ public class AisleDAO extends ManagerDAO{
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(ConfigDAO.COLUMN_RAYON_NAME, entityAisle.getName());
-        contentValues.put(ConfigDAO.COLUMN_RAYON_EMPLOYEE, entityAisle.getEmployee().getIdEmployee()
-        );
+
 
 
 
         try {
-            id = sqLiteDatabase.insertOrThrow(ConfigDAO.TABLE_ARTICLE, null, contentValues);
+            id = sqLiteDatabase.insertOrThrow(ConfigDAO.TABLE_AISLE, null, contentValues);
         } catch (SQLiteException e){
             Log.d(TAG,"Exception: " + e.getMessage());
             Toast.makeText(this.mExecutionContext, "Operation failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
@@ -149,13 +148,56 @@ public class AisleDAO extends ManagerDAO{
         return result;
     }
 
+    public ArrayList<EntityAisle> getAll(){
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this.mExecutionContext);
+        SQLiteDatabase sqLiteDatabase = databaseHelper.getReadableDatabase();
+
+        ArrayList<EntityAisle> AisleList = new ArrayList<>();
+
+        Cursor cursor = null;
+        try {
+
+            cursor = sqLiteDatabase.query(ConfigDAO.TABLE_AISLE, null,null , null, null, null, null, null);
+
+            /**
+             // If you want to execute raw query then uncomment below 2 lines. And comment out above line.
+
+             String SELECT_QUERY = String.format("SELECT %s, %s, %s, %s, %s FROM %s", Config.COLUMN_Employee_ID, Config.COLUMN_Employee_NAME, Config.COLUMN_Employee_REGISTRATION, Config.COLUMN_Employee_EMAIL, Config.COLUMN_Employee_PHONE, Config.TABLE_Employee);
+             cursor = sqLiteDatabase.rawQuery(SELECT_QUERY, null);
+             */
+
+            if(cursor!=null)
+                if(cursor.moveToFirst()){
+
+                    do {
+                        int id = cursor.getInt(cursor.getColumnIndex(ConfigDAO.COLUMN_RAYON_ID));
+                        String name = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_RAYON_NAME));
+
+
+                        AisleList.add(new EntityAisle(id, name));
+                    }   while (cursor.moveToNext());
+
+                    return AisleList;
+                }
+        } catch (Exception e){
+            Log.i(TAG, "getAllAisle: "+e.getMessage());
+            Toast.makeText(this.mExecutionContext, "Operation failed", Toast.LENGTH_SHORT).show();
+        } finally {
+            if(cursor!=null)
+                cursor.close();
+            sqLiteDatabase.close();
+        }
+
+        return AisleList;
+    }
+
     /**
      * Get a aisle by name
      * @param nameWanted
      *
      * @return
      */
-    public   ArrayList< EntityAisle> getByName(String nameWanted ){
+    public ArrayList<EntityAisle> getByName(String nameWanted ){
 
         DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this.mExecutionContext);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getReadableDatabase();

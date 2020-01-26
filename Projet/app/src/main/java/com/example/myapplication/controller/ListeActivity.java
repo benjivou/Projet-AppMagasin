@@ -12,21 +12,19 @@ import androidx.annotation.Nullable;
 
 
 import com.example.myapplication.R;
+import com.example.myapplication.controller.util.button.listActivity.ButtonOnglet;
+import com.example.myapplication.controller.util.button.listActivity.ButtonPanel;
 import com.example.myapplication.controller.util.button.listActivity.ControlOnglet;
 
 
-public class ListeActivity extends ControlOnglet {
+public class ListeActivity extends ButtonPanel {
     private static final String TAG = "ListeActivity";
     /*
     Attribut
      */
     // Frontend
 
-    ImageButton
-            mButtonAjouter,
-            mButtonRefresh,
-            mButtonFind,
-            mButtonAddAisle;
+
 
     TextView mEmployeInfo;
 
@@ -50,8 +48,6 @@ public class ListeActivity extends ControlOnglet {
         mListOf = (ListView) findViewById(R.id.listView);
 
         Log.d(TAG, "onCreate: Binding done !");
-
-
 
 
         mEmployeInfo.setText(displayUsername(this.getEntityEmployee()));

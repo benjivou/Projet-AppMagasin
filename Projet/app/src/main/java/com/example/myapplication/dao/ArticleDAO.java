@@ -23,7 +23,7 @@ import java.util.List;
  */
 public class ArticleDAO  extends ManagerDAO{
 
-    private static final String TAG = "ArticleDAO";
+    private  final String TAG = "ArticleDAO";
 
     public ArticleDAO(RoleDAO mCurrentRole, EntityAisle mCurrentAisle, Context mExecutionContext) {
         super(mCurrentRole, mCurrentAisle, mExecutionContext);
@@ -32,27 +32,27 @@ public class ArticleDAO  extends ManagerDAO{
     /**
      * Insert a article
      * @param entityArticle
-     * @param context
+
      * @return
      */
-    public static long  insertArticle(EntityArticle entityArticle, Context context){
+    public  long  insertArticle(EntityArticle entityArticle){
 
         long id = -1;
-        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this.mExecutionContext);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(ConfigDAO.COLUMN_ARTICLE_NAME, entityArticle.getName());
         contentValues.put(ConfigDAO.COLUMN_ARTICLE_PRICE, entityArticle.getPrice());
         contentValues.put(ConfigDAO.COLUMN_ARTICLE_QUANTITY, entityArticle.getQuantity());
-        contentValues.put(ConfigDAO.COLUMN_AISLE_ID, entityArticle.getEntityAisle().getIdAisle());
+        contentValues.put(ConfigDAO.COLUMN_ARTICLE_AISLE_ID, entityArticle.getEntityAisle().getIdAisle());
 
 
         try {
             id = sqLiteDatabase.insertOrThrow(ConfigDAO.TABLE_ARTICLE, null, contentValues);
         } catch (SQLiteException e){
             Log.d(TAG,"Exception: " + e.getMessage());
-            Toast.makeText(context, "Operation failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(this.mExecutionContext, "Operation failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
         } finally {
             sqLiteDatabase.close();
         }
@@ -63,11 +63,11 @@ public class ArticleDAO  extends ManagerDAO{
     /**
      * Delete a article
      * @param subjectId
-     * @param context
+
      * @return
      */
-    public static boolean  deleteArticleById(int subjectId,Context context) {
-        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
+    public  boolean  deleteArticleById(int subjectId) {
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this.mExecutionContext);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getWritableDatabase();
 
         int row = sqLiteDatabase.delete(ConfigDAO.TABLE_ARTICLE,
@@ -77,12 +77,12 @@ public class ArticleDAO  extends ManagerDAO{
     }
     /**
      * Count the number of article in the dB
-     * @param context
+
      * @return
      */
-    public static int countArticle(Context context){
+    public  int countArticle(){
 
-        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this.mExecutionContext);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getReadableDatabase();
 
         Cursor Count= sqLiteDatabase.rawQuery("select count(*) from"+ ConfigDAO.TABLE_ARTICLE, null);
@@ -96,12 +96,12 @@ public class ArticleDAO  extends ManagerDAO{
     /**
      *
      * @param matricule Id of the article
-     * @param context Activity context
+ Activity this.mExecutionContext
      * @return null if the article didn't exist else the article
      */
-    public  EntityArticle getByMatricule(String matricule, Context context){
+    public  EntityArticle getByMatricule(String matricule ){
 
-        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this.mExecutionContext);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getReadableDatabase();
 
         EntityArticle result = null;
@@ -129,7 +129,7 @@ public class ArticleDAO  extends ManagerDAO{
                         String name = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_ARTICLE_NAME));
                         float price = cursor.getFloat(cursor.getColumnIndex(ConfigDAO.COLUMN_ARTICLE_PRICE));
                         int quantity = cursor.getInt(cursor.getColumnIndex(ConfigDAO.COLUMN_ARTICLE_QUANTITY));
-                        int aisleId = cursor.getInt(cursor.getColumnIndex(ConfigDAO.COLUMN_AISLE_ID));
+                        int aisleId = cursor.getInt(cursor.getColumnIndex(ConfigDAO.COLUMN_ARTICLE_AISLE_ID));
 
                         AisleDAO aisleDAO = new AisleDAO(this.mCurrentRole,this.mCurrentAisle,this.mExecutionContext);
                         EntityAisle entityAisle = aisleDAO.getByMatricule(aisleId);
@@ -143,7 +143,7 @@ public class ArticleDAO  extends ManagerDAO{
                 }
         } catch (Exception e){
             Log.i(TAG, "getAllArticle: "+e.getMessage());
-            Toast.makeText(context, "Operation failed", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this.mExecutionContext, "Operation failed", Toast.LENGTH_SHORT).show();
         } finally {
             if(cursor!=null)
                 cursor.close();
@@ -156,12 +156,12 @@ public class ArticleDAO  extends ManagerDAO{
     /**
      * Get a employee
      * @param nameWanted
-     * @param context
+
      * @return
      */
-    public  ArrayList< EntityArticle> getByName(String nameWanted, Context context){
+    public  ArrayList< EntityArticle> getByName(String nameWanted ){
 
-        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this.mExecutionContext);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getReadableDatabase();
 
         ArrayList<EntityArticle> ArticleList = new ArrayList<>();
@@ -186,7 +186,7 @@ public class ArticleDAO  extends ManagerDAO{
                         String name = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_ARTICLE_NAME));
                         float price = cursor.getFloat(cursor.getColumnIndex(ConfigDAO.COLUMN_ARTICLE_PRICE));
                         int quantity = cursor.getInt(cursor.getColumnIndex(ConfigDAO.COLUMN_ARTICLE_QUANTITY));
-                        int aisleId = cursor.getInt(cursor.getColumnIndex(ConfigDAO.COLUMN_AISLE_ID));
+                        int aisleId = cursor.getInt(cursor.getColumnIndex(ConfigDAO.COLUMN_ARTICLE_AISLE_ID));
 
                         AisleDAO aisleDAO = new AisleDAO(this.mCurrentRole,this.mCurrentAisle,this.mExecutionContext);
                         EntityAisle entityAisle = aisleDAO.getByMatricule(aisleId);
@@ -207,7 +207,7 @@ public class ArticleDAO  extends ManagerDAO{
                 }
         } catch (Exception e){
             Log.i(TAG, "getAllArticle: "+e.getMessage());
-            Toast.makeText(context, "Operation failed", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this.mExecutionContext, "Operation failed", Toast.LENGTH_SHORT).show();
         } finally {
             if(cursor!=null)
                 cursor.close();
@@ -244,57 +244,7 @@ public class ArticleDAO  extends ManagerDAO{
                         String name = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_ARTICLE_NAME));
                         float price = cursor.getFloat(cursor.getColumnIndex(ConfigDAO.COLUMN_ARTICLE_PRICE));
                         int quantity = cursor.getInt(cursor.getColumnIndex(ConfigDAO.COLUMN_ARTICLE_QUANTITY));
-                        int aisleId = cursor.getInt(cursor.getColumnIndex(ConfigDAO.COLUMN_AISLE_ID));
-
-                        AisleDAO aisleDAO = new AisleDAO(this.mCurrentRole,this.mCurrentAisle,this.mExecutionContext);
-                        EntityAisle entityAisle = aisleDAO.getByMatricule(aisleId);
-
-
-                        ArticleList.add(new EntityArticle(id, name, price, quantity,entityAisle));
-                    }   while (cursor.moveToNext());
-
-                    return ArticleList;
-                }
-        } catch (Exception e){
-            Log.i(TAG, "getAllArticle: "+e.getMessage());
-            Toast.makeText(this.mExecutionContext, "Operation failed", Toast.LENGTH_SHORT).show();
-        } finally {
-            if(cursor!=null)
-                cursor.close();
-            sqLiteDatabase.close();
-        }
-
-        return ArticleList;
-    }
-
-    public  ArrayList< EntityArticle> getAll( Context context){
-
-        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(context);
-        SQLiteDatabase sqLiteDatabase = databaseHelper.getReadableDatabase();
-
-        ArrayList<EntityArticle> ArticleList = new ArrayList<>();
-
-        Cursor cursor = null;
-        try {
-
-            cursor = sqLiteDatabase.query(ConfigDAO.TABLE_ARTICLE, null, null, null, null, null, null, null);
-
-            /**
-             // If you want to execute raw query then uncomment below 2 lines. And comment out above line.
-
-             String SELECT_QUERY = String.format("SELECT %s, %s, %s, %s, %s FROM %s", Config.COLUMN_Employee_ID, Config.COLUMN_Employee_NAME, Config.COLUMN_Employee_REGISTRATION, Config.COLUMN_Employee_EMAIL, Config.COLUMN_Employee_PHONE, Config.TABLE_Employee);
-             cursor = sqLiteDatabase.rawQuery(SELECT_QUERY, null);
-             */
-
-            if(cursor!=null)
-                if(cursor.moveToFirst()){
-
-                    do {
-                        int id = cursor.getInt(cursor.getColumnIndex(ConfigDAO.COLUMN_ARTICLE_ID));
-                        String name = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_ARTICLE_NAME));
-                        float price = cursor.getFloat(cursor.getColumnIndex(ConfigDAO.COLUMN_ARTICLE_PRICE));
-                        int quantity = cursor.getInt(cursor.getColumnIndex(ConfigDAO.COLUMN_ARTICLE_QUANTITY));
-                        int articleId = cursor.getInt(cursor.getColumnIndex(ConfigDAO.COLUMN_AISLE_ID));
+                        int articleId = cursor.getInt(cursor.getColumnIndex(ConfigDAO.COLUMN_ARTICLE_AISLE_ID));
 
 
                         ArticleList.add(new EntityArticle(
@@ -313,7 +263,7 @@ public class ArticleDAO  extends ManagerDAO{
                 }
         } catch (Exception e){
             Log.i(TAG, "getAllArticle: "+e.getMessage());
-            Toast.makeText(context, "Operation failed", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this.mExecutionContext, "Operation failed", Toast.LENGTH_SHORT).show();
         } finally {
             if(cursor!=null)
                 cursor.close();
