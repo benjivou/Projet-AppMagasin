@@ -2,6 +2,10 @@ package com.example.myapplication.controller.PopUp;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
@@ -9,7 +13,13 @@ import android.widget.Spinner;
 import androidx.annotation.Nullable;
 
 import com.example.myapplication.R;
+import com.example.myapplication.controller.util.button.listActivity.ButtonPanel;
+import com.example.myapplication.model.EntityAisle;
+import com.example.myapplication.model.EntityArticle;
 import com.example.myapplication.model.EntityEmployee;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddProductPopUp extends SubmitControllerPopUp {
 
@@ -20,20 +30,35 @@ public class AddProductPopUp extends SubmitControllerPopUp {
     Spinner mProductAisle;
     ImageButton mSubmit;
 
-    public AddProductPopUp(EntityEmployee entityEmployee, Activity activity) {
+    public AddProductPopUp(EntityEmployee entityEmployee, ButtonPanel activity) {
         super(entityEmployee, activity);
     }
 
     @Override
     protected void onSubmit() {
 
-    String mq = mProductQuantity.getText().toString();
-    int mQuantity = Integer.parseInt(mq);
+        String mq = mProductQuantity.getText().toString();
+        final int mQuantity = Integer.parseInt(mq);
 
-    String mP = mProductPrice.getText().toString();
-    float mPrice = Float.parseFloat(mP);
+        String mP = mProductPrice.getText().toString();
+        final float mPrice = Float.parseFloat(mP);
 
-    
+        List<EntityAisle> list = new ArrayList<EntityAisle>();
+        ArrayAdapter <EntityAisle> arrayAdapter = new ArrayAdapter<EntityAisle>(this.mActivity,android.R.layout.simple_list_item_1,list);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mProductAisle.setAdapter(arrayAdapter);
+        mProductAisle.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                mProductAisle.setSelection(position);
+                EntityAisle entityAisle = new EntityAisle(0,mProductAisle.getSelectedItem().toString());
+
+                EntityArticle entityArticle = new EntityArticle(0,mProductName.getText().toString(),mPrice,mQuantity,entityAisle);
+                mArticleDAO.insertArticle(entityArticle);
+                Log.d(TAG, "onItemClick: OnSubmit : article" + entityArticle);
+
+            }
+        });
 
 
     }
