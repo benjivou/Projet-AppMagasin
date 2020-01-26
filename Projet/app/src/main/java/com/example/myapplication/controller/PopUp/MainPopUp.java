@@ -7,6 +7,9 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 
 import com.example.myapplication.R;
+import com.example.myapplication.controller.ListeActivity;
+import com.example.myapplication.controller.util.DisplayUtilActivity;
+import com.example.myapplication.controller.util.button.listActivity.ButtonPanel;
 import com.example.myapplication.dao.AisleDAO;
 import com.example.myapplication.dao.ArticleDAO;
 import com.example.myapplication.dao.EmployeeDAO;
@@ -14,6 +17,7 @@ import com.example.myapplication.model.EntityEmployee;
 
 public abstract class MainPopUp extends Dialog {
 
+    // Attributs
     protected AisleDAO mAisleDAO;
     protected EmployeeDAO mEmployeeDAO;
     protected ArticleDAO mArticleDAO;
@@ -21,10 +25,15 @@ public abstract class MainPopUp extends Dialog {
 
     private EntityEmployee mEntityEmployee;
 
-    public MainPopUp(EntityEmployee entityEmployee, Activity activity) {
+    protected ButtonPanel mCOwner;
+
+
+
+    public MainPopUp(EntityEmployee entityEmployee, ButtonPanel activity) {
         super(activity, R.style.Theme_AppCompat);
         this.mEntityEmployee = entityEmployee;
         this.mActivity = activity;
+        this.mCOwner =activity;
        this.mAisleDAO = new AisleDAO(entityEmployee.getRoleEnum(),entityEmployee.getEntityAisle(),this.mActivity);
        this.mEmployeeDAO = new EmployeeDAO(entityEmployee.getRoleEnum(),entityEmployee.getEntityAisle(),this.mActivity);
        this.mArticleDAO = new ArticleDAO(entityEmployee.getRoleEnum(),entityEmployee.getEntityAisle(),this.mActivity);

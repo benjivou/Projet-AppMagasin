@@ -1,17 +1,17 @@
 package com.example.myapplication.controller.PopUp;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.Context;
+
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
 import com.example.myapplication.R;
+import com.example.myapplication.controller.ListeActivity;
 import com.example.myapplication.controller.util.button.listActivity.ButtonPanel;
 import com.example.myapplication.dao.AisleDAO;
 import com.example.myapplication.dao.RoleDAO;
@@ -29,7 +29,7 @@ public class AislePopUp extends SubmitControllerPopUp{
 
 
 
-    public AislePopUp(EntityEmployee entityEmployee, Activity activity) {
+    public AislePopUp(EntityEmployee entityEmployee, ButtonPanel activity) {
         super(entityEmployee,activity);
     }
 
@@ -43,7 +43,8 @@ public class AislePopUp extends SubmitControllerPopUp{
              ) {
             Log.d(TAG, "onSubmit: aisle " + ea.getName());
         }
-        Log.d(TAG, "onSubmit: this new aisle is add the database");
+
+       
     }
 
 
