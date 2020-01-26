@@ -7,11 +7,12 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.example.myapplication.controller.PopUp.AislePopUp;
+import com.example.myapplication.controller.PopUp.MainPopUp;
 
 /**
  * Created by Benjamin Vouillon on 25,January,2020
  */
-public abstract class ButtonPanel extends ControlOnglet implements DialogInterface.OnDismissListener {
+public abstract class ButtonPanel extends ControlOnglet implements DialogInterface.OnDismissListener{
     private static final String TAG = "ButtonPanel";
 
 
@@ -87,10 +88,6 @@ public abstract class ButtonPanel extends ControlOnglet implements DialogInterfa
 
     @Override
     public void onDismiss(DialogInterface dialog) {
-
-        Log.d(TAG, "onDismiss: U are in the onDismiss Dialog state");
-
-        refreshAll();
 
         Log.d(TAG, "onDismiss: Refresh done");
     }
