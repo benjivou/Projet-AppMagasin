@@ -30,6 +30,11 @@ public class AddProductPopUp extends SubmitControllerPopUp {
     EditText mProductName,mProductQuantity, mProductPrice;
     Spinner mProductAisle;
 
+    // back-end attribute
+    EntityAisle mSelectedAisle;
+    private ArrayList<EntityAisle> mListAisle;
+    private ArrayList<String> mListNameAisle;
+
     public AddProductPopUp(EntityEmployee entityEmployee, ButtonPanel activity) {
         super(entityEmployee, activity);
     }
@@ -43,46 +48,59 @@ public class AddProductPopUp extends SubmitControllerPopUp {
         mProductQuantity = (EditText)findViewById(R.id.txtQuantity);
         mProductPrice = (EditText) findViewById(R.id.txtPrice);
         mProductAisle = (Spinner) findViewById(R.id.txtAisle);
-        this.mButtonSubmit = (ImageButton) findViewById(R.id.btnSubmit);
 
+
+
+        List<EntityAisle> list = new ArrayList<EntityAisle>();
+
+        //getAll le spinner
+        mListAisle = mAisleDAO.getAll();
+        mListNameAisle = modifyType(mListAisle);
+
+
+
+
+        ArrayAdapter<EntityAisle> arrayAdapter = new ArrayAdapter<EntityAisle> (this.mActivity,android.R.layout.simple_list_item_1,list);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mProductAisle.setAdapter(arrayAdapter);
+        mProductAisle.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //get selected item
+                mSelectedAisle = (EntityAisle) parent.getSelectedItem();
+
+                Log.d(TAG, "onItemClick: Selected item is : " + mSelectedAisle);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+
+
+        });
+
+        this.mButtonSubmit = (ImageButton) findViewById(R.id.btnSubmit);
     }
 
     @Override
     protected void onSubmit() {
 
         String mq = mProductQuantity.getText().toString();
-        final int mQuantity = Integer.parseInt(mq);
+        int mQuantity = Integer.parseInt(mq);
 
         String mP = mProductPrice.getText().toString();
-        final float mPrice = Float.parseFloat(mP);
-
-        List<EntityAisle> list = new ArrayList<EntityAisle>();
-
-        //getAll le spinner
-        for(int i = 0; i< list.size();i++){
-
-            list = mAisleDAO.getAll();
-        }
-        ArrayAdapter arrayAdapter = new ArrayAdapter (this.mActivity,android.R.layout.simple_list_item_1,list);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mProductAisle.setAdapter(arrayAdapter);
-        mProductAisle.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        float mPrice = Float.parseFloat(mP);
 
 
-                //get selected item
-                EntityAisle entityAisle = new EntityAisle(0,mProductAisle.getAdapter().getItem(position).toString());
 
-                //Create Article
-                EntityArticle entityArticle = new EntityArticle(0,mProductName.getText().toString(),mPrice,mQuantity,entityAisle);
+        //Create Article
+        EntityArticle entityArticle = new EntityArticle(0,mProductName.getText().toString(),mPrice,mQuantity,mSelectedAisle);
 
-                //Insert Article
-                mArticleDAO.insertArticle(entityArticle);
-                Log.d(TAG, "onItemClick: OnSubmit : article" + entityArticle);
+        //Insert Article
+        mArticleDAO.insertArticle(entityArticle);
+        Log.d(TAG, "onItemClick: OnSubmit : article" + entityArticle);
 
-            }
-        });
 
 
     }

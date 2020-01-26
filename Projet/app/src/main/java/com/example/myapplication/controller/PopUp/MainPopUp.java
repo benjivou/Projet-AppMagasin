@@ -13,7 +13,10 @@ import com.example.myapplication.controller.util.button.listActivity.ButtonPanel
 import com.example.myapplication.dao.AisleDAO;
 import com.example.myapplication.dao.ArticleDAO;
 import com.example.myapplication.dao.EmployeeDAO;
+import com.example.myapplication.model.EntityAisle;
 import com.example.myapplication.model.EntityEmployee;
+
+import java.util.ArrayList;
 
 public abstract class MainPopUp extends Dialog {
 
@@ -51,5 +54,16 @@ public abstract class MainPopUp extends Dialog {
         return mEntityEmployee;
     }
 
+    protected ArrayList<String> modifyType(ArrayList<EntityAisle> listAisle){
 
+        ArrayList <EntityAisle> listAisle1 = listAisle;
+        ArrayList <String> newList = new ArrayList<String>(listAisle1.size());
+
+        for ( EntityAisle entityAisle: listAisle1) {
+            newList.add(String.valueOf(entityAisle));
+
+        }
+
+        return null;
+    }
 }
