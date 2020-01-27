@@ -50,8 +50,6 @@ public abstract class ControlOnglet extends ButtonOnglet implements AdapterView.
     public void refreshProductList(){
         // request all article
         setArticleArrayAdapter(  mArticleDAO.getAll());
-
-
     }
     public void refreshEmployeeList(){
         // request all employee
