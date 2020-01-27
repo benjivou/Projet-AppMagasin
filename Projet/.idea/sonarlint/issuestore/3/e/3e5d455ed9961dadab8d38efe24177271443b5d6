@@ -1,0 +1,6 @@
+
+qsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Õñ¦
+Lsquid:S1659"0Declare "mEmployeeMatricule" on a separate line.(›½¼®úÿÿÿÿ
+>squid:S1659""Declare "mMan" on a separate line.(ï½è‘ıÿÿÿÿ
+squid:S1186-"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(œüÎÑúÿÿÿÿ
+>squid:S1068"'Remove this unused "TAG" private field.(ÇÕÌË

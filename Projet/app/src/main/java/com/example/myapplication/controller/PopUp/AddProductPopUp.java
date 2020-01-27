@@ -1,6 +1,7 @@
 package com.example.myapplication.controller.PopUp;
 
 import android.app.Activity;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,7 +14,9 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+
 import com.example.myapplication.R;
+import com.example.myapplication.config.ConfigFront;
 import com.example.myapplication.controller.util.button.listActivity.ButtonPanel;
 import com.example.myapplication.model.EntityAisle;
 import com.example.myapplication.model.EntityArticle;
@@ -22,18 +25,16 @@ import com.example.myapplication.model.EntityEmployee;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddProductPopUp extends SubmitControllerPopUp {
+import static android.provider.Settings.System.getString;
+
+public class AddProductPopUp extends AisleSpinnerPopUp{
 
     // Tag
     private static final String TAG = "AddProduct";
 
     EditText mProductName,mProductQuantity, mProductPrice;
-    Spinner mProductAisle;
 
-    // back-end attribute
-    EntityAisle mSelectedAisle;
-    private ArrayList<EntityAisle> mListAisle;
-    private ArrayList<String> mListNameAisle;
+
 
     public AddProductPopUp(EntityEmployee entityEmployee, ButtonPanel activity) {
         super(entityEmployee, activity);
@@ -49,38 +50,6 @@ public class AddProductPopUp extends SubmitControllerPopUp {
         mProductPrice = (EditText) findViewById(R.id.txtPrice);
         mProductAisle = (Spinner) findViewById(R.id.txtAisle);
 
-
-
-        List<EntityAisle> list = new ArrayList<EntityAisle>();
-
-        //getAll le spinner
-        mListAisle = mAisleDAO.getAll();
-        mListNameAisle = modifyType(mListAisle);
-
-
-
-
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String> (this.mActivity,android.R.layout.simple_list_item_1,mListNameAisle);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mProductAisle.setAdapter(arrayAdapter);
-        mProductAisle.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                //get selected item
-                mSelectedAisle = (EntityAisle)mListAisle.get(position);
-
-                Log.d(TAG, "onItemClick: Selected item is : " + mSelectedAisle);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-
-
-        });
-
-        mSelectedAisle = mListAisle.get(0);
         this.mButtonSubmit = (ImageButton) findViewById(R.id.btnSubmit);
     }
 
@@ -102,8 +71,30 @@ public class AddProductPopUp extends SubmitControllerPopUp {
         mArticleDAO.insertArticle(entityArticle);
         Log.d(TAG, "onItemClick: OnSubmit : article" + entityArticle);
 
+    }
+
+    @Override
+    protected boolean isAllFieldsValide() {
+
+        // Quantity field wrong
+        if(mProductQuantity.getText().toString().isEmpty() || Integer.parseInt(mProductQuantity.getText().toString())<0){
+
+            this.mBtActivity.displayError(ConfigFront.ERROR_PRODUCTFIELD_QUANTITY);
+            return false;
+        }
+        // Price field wrong
+        if(mProductPrice.getText().toString().isEmpty() || Float.parseFloat(mProductPrice.getText().toString())<0){
+            this.mBtActivity.displayError(ConfigFront.ERROR_PRODUCTFIELD_PRIX);
+            return false;
+        }
+
+        return true;
+
+
 
 
     }
+
+
 
 }

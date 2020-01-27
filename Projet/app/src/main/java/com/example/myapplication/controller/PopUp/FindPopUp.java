@@ -61,4 +61,9 @@ public class FindPopUp extends SubmitControllerPopUp{
             );
         }
     }
+
+    @Override
+    protected boolean isAllFieldsValide() {
+        return true;
+    }
 }

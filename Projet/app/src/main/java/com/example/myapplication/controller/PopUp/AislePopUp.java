@@ -62,7 +62,15 @@ public class AislePopUp extends SubmitControllerPopUp{
 
     }
 
+    @Override
+    protected boolean isAllFieldsValide() {
+        // Check if the aisleDao do not exist
+        boolean res =  this.mAisleDAO.getByName(mAisle.getText().toString()).size() == 0;
 
+        return res;
+
+
+    }
 
 
 }
