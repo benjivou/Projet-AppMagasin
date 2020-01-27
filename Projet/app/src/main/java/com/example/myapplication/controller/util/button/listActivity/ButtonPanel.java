@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
+import com.example.myapplication.controller.PopUp.AddEmployeePopUp;
+import com.example.myapplication.controller.PopUp.AddProductPopUp;
 import com.example.myapplication.controller.PopUp.AislePopUp;
 import com.example.myapplication.controller.PopUp.FindPopUp;
 import com.example.myapplication.controller.PopUp.MainPopUp;
@@ -52,7 +54,6 @@ public abstract class ButtonPanel extends ControlOnglet {
 
         if (TAG_PANEL_ADD_AISLE.equals((String)v.getTag())){
             AislePopUp aislePopUp = new AislePopUp(getEntityEmployee(),this);
-
             aislePopUp.show();
         }
 
@@ -68,9 +69,13 @@ public abstract class ButtonPanel extends ControlOnglet {
             // product mode
             if (isModeProductIsClicked()){
                 Log.d(TAG, "onClick: start Product dialog");
+                AddProductPopUp addProductPopUp = new AddProductPopUp(getEntityEmployee(),this);
+                addProductPopUp.show();
             }
             else {
                 Log.d(TAG, "onClick: start Employee dialog");
+                AddEmployeePopUp addEmployeePopUp = new AddEmployeePopUp(getEntityEmployee(),this);
+                addEmployeePopUp.show();
             }
         }
         if(TAG_PANEL_FIND.equals((String)v.getTag())){

@@ -1,11 +1,9 @@
 package com.example.myapplication.controller.PopUp;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.Context;
+
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;

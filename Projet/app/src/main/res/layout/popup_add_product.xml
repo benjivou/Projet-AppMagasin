@@ -57,7 +57,7 @@
             android:text="@string/prductfield_quantity" />
 
         <EditText
-            android:id="@+id/txtQuantité"
+            android:id="@+id/txtQuantity"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.75"
