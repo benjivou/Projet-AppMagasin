@@ -60,14 +60,14 @@ public class AddProductPopUp extends SubmitControllerPopUp {
 
 
 
-        ArrayAdapter<EntityAisle> arrayAdapter = new ArrayAdapter<EntityAisle> (this.mActivity,android.R.layout.simple_list_item_1,list);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String> (this.mActivity,android.R.layout.simple_list_item_1,mListNameAisle);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mProductAisle.setAdapter(arrayAdapter);
         mProductAisle.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //get selected item
-                mSelectedAisle = (EntityAisle) parent.getSelectedItem();
+                mSelectedAisle = (EntityAisle)mListAisle.get(position);
 
                 Log.d(TAG, "onItemClick: Selected item is : " + mSelectedAisle);
             }
@@ -80,6 +80,7 @@ public class AddProductPopUp extends SubmitControllerPopUp {
 
         });
 
+        mSelectedAisle = mListAisle.get(0);
         this.mButtonSubmit = (ImageButton) findViewById(R.id.btnSubmit);
     }
 

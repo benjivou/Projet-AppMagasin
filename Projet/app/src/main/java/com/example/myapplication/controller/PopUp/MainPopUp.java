@@ -57,13 +57,13 @@ public abstract class MainPopUp extends Dialog {
     protected ArrayList<String> modifyType(ArrayList<EntityAisle> listAisle){
 
         ArrayList <EntityAisle> listAisle1 = listAisle;
-        ArrayList <String> newList = new ArrayList<String>(listAisle1.size());
+        ArrayList <String> newList = new ArrayList<String>();
 
         for ( EntityAisle entityAisle: listAisle1) {
-            newList.add(String.valueOf(entityAisle));
+            newList.add(entityAisle.getName());
 
         }
 
-        return null;
+        return newList;
     }
 }
