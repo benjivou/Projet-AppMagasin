@@ -202,12 +202,12 @@ public class EmployeeDAO extends ManagerDAO {
      * @param subjectId
      * @return
      */
-    public   boolean  deleteEmployeeById(int subjectId) {
+    public   boolean  deleteEmployeeById(String subjectId) {
         DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this.mExecutionContext);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getWritableDatabase();
 
         int row = sqLiteDatabase.delete(ConfigDAO.TABLE_EMPLOYEE,
-                ConfigDAO.COLUMN_EMPLOYEE_ID + " = ? ", new String[]{String.valueOf(subjectId)});
+                ConfigDAO.COLUMN_EMPLOYEE_ID + " LIKE ? ", new String[]{String.valueOf(subjectId)});
 
         return row > 0;
     }

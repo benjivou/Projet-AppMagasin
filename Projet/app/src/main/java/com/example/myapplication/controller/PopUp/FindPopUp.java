@@ -8,13 +8,14 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 
 import com.example.myapplication.R;
+import com.example.myapplication.controller.PopUp.abstractpopup.SubmitControllerPopUp;
 import com.example.myapplication.controller.util.button.listActivity.ButtonPanel;
 import com.example.myapplication.model.EntityEmployee;
 
 /**
  * Created by Benjamin Vouillon on 26,January,2020
  */
-public class FindPopUp extends SubmitControllerPopUp{
+public class FindPopUp extends SubmitControllerPopUp {
     private static final String TAG = "FindPopUp";
     private static String TITLE_PRODUCT = "Recherche par nom de produit";
     private static String TITLE_EMPLOYEE = "Recherche par nom d’utilisateur";

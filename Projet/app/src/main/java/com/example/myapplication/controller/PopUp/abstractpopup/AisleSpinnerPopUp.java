@@ -1,8 +1,7 @@
-package com.example.myapplication.controller.PopUp;
+package com.example.myapplication.controller.PopUp.abstractpopup;
 
 import android.util.Log;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -13,7 +12,6 @@ import com.example.myapplication.model.EntityAisle;
 import com.example.myapplication.model.EntityEmployee;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Benjamin Vouillon on 27,January,2020

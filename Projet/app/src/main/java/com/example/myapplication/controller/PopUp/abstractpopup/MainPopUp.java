@@ -1,4 +1,4 @@
-package com.example.myapplication.controller.PopUp;
+package com.example.myapplication.controller.PopUp.abstractpopup;
 
 import android.app.Activity;
 import android.app.Dialog;

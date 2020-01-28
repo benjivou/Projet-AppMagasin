@@ -1,11 +1,9 @@
-package com.example.myapplication.controller.PopUp;
+package com.example.myapplication.controller.PopUp.abstractpopup;
 
-import android.app.Activity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 
-import com.example.myapplication.config.ConfigFront;
 import com.example.myapplication.controller.util.button.listActivity.ButtonPanel;
 import com.example.myapplication.model.EntityEmployee;
 

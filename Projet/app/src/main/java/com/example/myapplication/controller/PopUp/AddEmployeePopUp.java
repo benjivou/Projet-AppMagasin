@@ -1,8 +1,6 @@
 package com.example.myapplication.controller.PopUp;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
@@ -12,13 +10,10 @@ import android.widget.Spinner;
 import androidx.annotation.Nullable;
 
 import com.example.myapplication.R;
-import com.example.myapplication.config.ConfigDAO;
 import com.example.myapplication.config.ConfigFront;
+import com.example.myapplication.controller.PopUp.abstractpopup.AisleSpinnerPopUp;
 import com.example.myapplication.controller.util.button.listActivity.ButtonPanel;
-import com.example.myapplication.dao.EmployeeDAO;
 import com.example.myapplication.dao.RoleDAO;
-import com.example.myapplication.model.EntityAisle;
-import com.example.myapplication.model.EntityArticle;
 import com.example.myapplication.model.EntityEmployee;
 
 public class AddEmployeePopUp extends AisleSpinnerPopUp implements RadioGroup.OnCheckedChangeListener {

@@ -1,33 +1,22 @@
 package com.example.myapplication.controller.PopUp;
 
-import android.app.Activity;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
 
 import com.example.myapplication.R;
 import com.example.myapplication.config.ConfigFront;
+import com.example.myapplication.controller.PopUp.abstractpopup.AisleSpinnerPopUp;
 import com.example.myapplication.controller.util.button.listActivity.ButtonPanel;
-import com.example.myapplication.model.EntityAisle;
 import com.example.myapplication.model.EntityArticle;
 import com.example.myapplication.model.EntityEmployee;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static android.provider.Settings.System.getString;
-
-public class AddProductPopUp extends AisleSpinnerPopUp{
+public class AddProductPopUp extends AisleSpinnerPopUp {
 
     // Tag
     private static final String TAG = "AddProduct";
