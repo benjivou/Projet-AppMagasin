@@ -275,8 +275,8 @@ public class EmployeeDAO extends ManagerDAO {
 
         try {
             rowCount = sqLiteDatabase.update(ConfigDAO.TABLE_EMPLOYEE, contentValues,
-                    ConfigDAO.COLUMN_EMPLOYEE_ID + " = ? ",
-                    new String[] {String.valueOf(entityEmployee.getIdEmployee())});
+                    ConfigDAO.COLUMN_EMPLOYEE_ID + " LIKE ? ",
+                    new String[] {entityEmployee.getIdEmployee()});
         } catch (SQLiteException e){
             Log.d(TAG, "insertUpdate: ");
             Toast.makeText(this.mExecutionContext, e.getMessage(), Toast.LENGTH_LONG).show();

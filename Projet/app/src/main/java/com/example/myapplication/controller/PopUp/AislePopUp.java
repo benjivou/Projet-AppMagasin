@@ -44,7 +44,6 @@ public class AislePopUp extends SubmitControllerPopUp {
 
     }
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,8 +51,6 @@ public class AislePopUp extends SubmitControllerPopUp {
         
         mAisle  = (EditText)findViewById(R.id.txtNomRayon);
         this.mButtonSubmit = (ImageButton) findViewById(R.id.btnSubmit);
-
-
 
     }
 
@@ -63,8 +60,6 @@ public class AislePopUp extends SubmitControllerPopUp {
         boolean res =  this.mAisleDAO.getByName(mAisle.getText().toString()).size() == 0;
 
         return res;
-
-
     }
 
 
