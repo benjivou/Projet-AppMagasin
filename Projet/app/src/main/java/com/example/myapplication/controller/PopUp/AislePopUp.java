@@ -1,24 +1,19 @@
 package com.example.myapplication.controller.PopUp;
 
-import android.app.Activity;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
 import com.example.myapplication.R;
-import com.example.myapplication.controller.ListeActivity;
+import com.example.myapplication.controller.PopUp.abstractpopup.SubmitControllerPopUp;
 import com.example.myapplication.controller.util.button.listActivity.ButtonPanel;
-import com.example.myapplication.dao.AisleDAO;
-import com.example.myapplication.dao.RoleDAO;
 import com.example.myapplication.model.EntityAisle;
 import com.example.myapplication.model.EntityEmployee;
 
-public class AislePopUp extends SubmitControllerPopUp{
+public class AislePopUp extends SubmitControllerPopUp {
 
 
     // Tag
@@ -49,7 +44,6 @@ public class AislePopUp extends SubmitControllerPopUp{
 
     }
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,11 +52,15 @@ public class AislePopUp extends SubmitControllerPopUp{
         mAisle  = (EditText)findViewById(R.id.txtNomRayon);
         this.mButtonSubmit = (ImageButton) findViewById(R.id.btnSubmit);
 
-
-
     }
 
+    @Override
+    protected boolean isAllFieldsValide() {
+        // Check if the aisleDao do not exist
+        boolean res =  this.mAisleDAO.getByName(mAisle.getText().toString()).size() == 0;
 
+        return res;
+    }
 
 
 }

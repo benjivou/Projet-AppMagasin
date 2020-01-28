@@ -1,0 +1,4 @@
+
+qsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Õñ¦
+tsquid:S3008"XRename this field "TITLE_PRODUCT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µ¥Óúüÿÿÿÿ
+usquid:S3008"YRename this field "TITLE_EMPLOYEE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ô±„Úþÿÿÿÿ

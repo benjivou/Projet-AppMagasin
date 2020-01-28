@@ -2,9 +2,7 @@ package com.example.myapplication.config;
 
 public class ConfigDAO {
     public static final String DB = "DB";
-    public static final String AISLE = "Aisle.txt";
-    public static final String EMPLOYEE ="Employee.txt";
-    public static final String ARTICLE = "Article.txt";
+
 
     /*Table Employee*/
     public static final String TABLE_EMPLOYEE = "employee" ;
