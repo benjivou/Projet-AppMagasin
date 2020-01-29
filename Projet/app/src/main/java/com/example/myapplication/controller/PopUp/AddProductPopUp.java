@@ -39,6 +39,9 @@ public class AddProductPopUp extends AisleSpinnerPopUp {
         mProductPrice = (EditText) findViewById(R.id.txtPrice);
         mProductAisle = (Spinner) findViewById(R.id.txtAisle);
 
+
+        // prepare the button and the comportment
+
         this.mButtonSubmit = (ImageButton) findViewById(R.id.btnSubmit);
     }
 
@@ -54,7 +57,12 @@ public class AddProductPopUp extends AisleSpinnerPopUp {
 
 
         //Create Article
-        EntityArticle entityArticle = new EntityArticle(0,mProductName.getText().toString(),mPrice,mQuantity,mSelectedAisle);
+        EntityArticle entityArticle = new EntityArticle(
+                0,
+                mProductName.getText().toString(),
+                mPrice,
+                mQuantity,
+                mSelectedAisle);
 
         //Insert Article
         mArticleDAO.insertArticle(entityArticle);
@@ -68,12 +76,12 @@ public class AddProductPopUp extends AisleSpinnerPopUp {
         // Quantity field wrong
         if(mProductQuantity.getText().toString().isEmpty() || Integer.parseInt(mProductQuantity.getText().toString())<0){
 
-            this.mBtActivity.displayError(ConfigFront.ERROR_PRODUCTFIELD_QUANTITY);
+            this.mCOwner.displayError(ConfigFront.ERROR_PRODUCTFIELD_QUANTITY);
             return false;
         }
         // Price field wrong
         if(mProductPrice.getText().toString().isEmpty() || Float.parseFloat(mProductPrice.getText().toString())<0){
-            this.mBtActivity.displayError(ConfigFront.ERROR_PRODUCTFIELD_PRIX);
+            this.mCOwner.displayError(ConfigFront.ERROR_PRODUCTFIELD_PRIX);
             return false;
         }
 
@@ -83,6 +91,8 @@ public class AddProductPopUp extends AisleSpinnerPopUp {
 
 
     }
+
+
 
 
 

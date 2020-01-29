@@ -73,7 +73,7 @@ public class ArticleDAO  extends ManagerDAO{
 
         int row = sqLiteDatabase.delete(ConfigDAO.TABLE_ARTICLE,
                 ConfigDAO.COLUMN_ARTICLE_ID + " = ? ", new String[]{String.valueOf(subjectId)});
-
+        Log.d(TAG, "deleteArticleById: here the dbanswer");
         return row > 0;
     }
     /**

@@ -80,11 +80,11 @@ public class AddEmployeePopUp extends AisleSpinnerPopUp implements RadioGroup.On
     @Override
     protected boolean isAllFieldsValide() {
         if(mEmployeeName.getText().toString().isEmpty()){
-            this.mBtActivity.displayError(ConfigFront.ERROR_USERFIELD_NAME);
+            this.mCOwner.displayError(ConfigFront.ERROR_USERFIELD_NAME);
             return false;
         }
         if(mEmployeeMatricule.getText().toString().isEmpty()){
-            this.mBtActivity.displayError(ConfigFront.ERROR_USERFIELD_ID);
+            this.mCOwner.displayError(ConfigFront.ERROR_USERFIELD_ID);
             return false;
         }
         return true;
