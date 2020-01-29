@@ -10,6 +10,7 @@ import com.example.myapplication.R;
 import com.example.myapplication.controller.ListeActivity;
 import com.example.myapplication.controller.util.DisplayUtilActivity;
 import com.example.myapplication.controller.util.button.listActivity.ButtonPanel;
+import com.example.myapplication.controller.util.button.listActivity.ControlOnglet;
 import com.example.myapplication.dao.AisleDAO;
 import com.example.myapplication.dao.ArticleDAO;
 import com.example.myapplication.dao.EmployeeDAO;
@@ -28,11 +29,11 @@ public abstract class MainPopUp extends Dialog {
 
     private EntityEmployee mEntityEmployee;
 
-    protected ButtonPanel mCOwner;
+    protected ControlOnglet mCOwner;
 
 
 
-    public MainPopUp(EntityEmployee entityEmployee, ButtonPanel activity) {
+    public MainPopUp(EntityEmployee entityEmployee, ControlOnglet activity) {
         super(activity, R.style.Theme_AppCompat);
         this.mEntityEmployee = entityEmployee;
         this.mActivity = activity;

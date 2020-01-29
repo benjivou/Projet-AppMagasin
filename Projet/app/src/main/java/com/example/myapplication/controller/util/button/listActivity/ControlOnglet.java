@@ -10,6 +10,7 @@ import android.widget.ListView;
 import androidx.annotation.Nullable;
 
 import com.example.myapplication.config.ConfigFront;
+import com.example.myapplication.controller.PopUp.ShowProductPopUp;
 import com.example.myapplication.dao.ArticleDAO;
 import com.example.myapplication.dao.EmployeeDAO;
 import com.example.myapplication.model.EntityArticle;
@@ -26,6 +27,9 @@ public abstract class ControlOnglet extends ButtonOnglet implements AdapterView.
     private ArrayAdapter<EntityEmployee> mEmployeeArrayAdapter;
     private ArrayAdapter<EntityArticle> mArticleArrayAdapter;
 
+    private ArrayList<EntityArticle> mArticleList;
+    private ArrayList<EntityEmployee> mEmployeeList;
+
     private ArticleDAO mArticleDAO;
 
     @Override
@@ -35,6 +39,12 @@ public abstract class ControlOnglet extends ButtonOnglet implements AdapterView.
                 ConfigFront.SYSTEM_ROLE,
                 ConfigFront.SYSTEM_AISLE,
                 this);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mListOf.setOnItemClickListener(this);
     }
 
     @Override
@@ -49,11 +59,13 @@ public abstract class ControlOnglet extends ButtonOnglet implements AdapterView.
 
     public void refreshProductList(){
         // request all article
-        setArticleArrayAdapter(  mArticleDAO.getAll());
+        this.mArticleList = mArticleDAO.getAll();
+        setArticleArrayAdapter(  this.mArticleList);
     }
     public void refreshEmployeeList(){
         // request all employee
-        setEmployeeArrayAdapter( mCurrentUser.getAllEmployee());
+        this.mEmployeeList = mCurrentUser.getAllEmployee();
+        setEmployeeArrayAdapter( this.mEmployeeList);
 
 
     }
@@ -89,8 +101,16 @@ public abstract class ControlOnglet extends ButtonOnglet implements AdapterView.
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Log.d(TAG, "onItemClick: list clicked");
         // depending of the type of the current list
         if(isModeProductIsClicked()){
+            EntityArticle entityArticle = this.mArticleList.get(position);
+
+            ShowProductPopUp pop =  new ShowProductPopUp(
+                this.getEntityEmployee(),
+                    this,
+                    entityArticle);
+            pop.show();
 
         }
     }
