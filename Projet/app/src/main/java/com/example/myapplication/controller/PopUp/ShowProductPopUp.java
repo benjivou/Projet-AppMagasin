@@ -182,6 +182,14 @@ public class ShowProductPopUp extends DeleteProductPopUp {
             this.mButtonPrice.setVisibility(View.INVISIBLE);
             this.mButtonQuantity.setVisibility(View.INVISIBLE);
             this.mButtonAisle.setVisibility(View.INVISIBLE);
+            this.mDeleteBtn.setVisibility(View.INVISIBLE);
+        }
+
+        /*
+         if you are a normal user U could not modify the aisle
+         */
+        if (!this.mCOwner.isAdmin()){
+            this.mButtonAisle.setVisibility(View.INVISIBLE);
         }
     }
 }

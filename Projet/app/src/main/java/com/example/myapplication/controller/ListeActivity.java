@@ -3,6 +3,7 @@ package com.example.myapplication.controller;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -13,6 +14,7 @@ import androidx.annotation.Nullable;
 
 import com.example.myapplication.R;
 import com.example.myapplication.controller.util.button.listActivity.ButtonPanel;
+import com.example.myapplication.dao.RoleDAO;
 
 
 public class ListeActivity extends ButtonPanel {
@@ -49,7 +51,15 @@ public class ListeActivity extends ButtonPanel {
 
 
         mEmployeInfo.setText(displayUsername(this.getEntityEmployee()));
-
+        Log.d(TAG, "onCreate: your user role is "+ this.getEntityEmployee().getRole());
+        Log.d(TAG, "onCreate: Are U normal user of the mag "+
+                this.getEntityEmployee().getRole().equals(RoleDAO.USER.getSring()));
+        // to block the access of the user to Admin parameters
+        if (!isAdmin()) {
+            Log.i(TAG, "onCreate: U are a Standard user");
+            this.mOngletEmployers.setVisibility(View.INVISIBLE);
+            this.mButtonAddAisle.setVisibility(View.INVISIBLE);
+        }
     }
 
 

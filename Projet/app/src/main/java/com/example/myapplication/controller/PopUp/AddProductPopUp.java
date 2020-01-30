@@ -2,6 +2,7 @@ package com.example.myapplication.controller.PopUp;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
@@ -13,8 +14,11 @@ import com.example.myapplication.R;
 import com.example.myapplication.config.ConfigFront;
 import com.example.myapplication.controller.PopUp.abstractpopup.AisleSpinnerPopUp;
 import com.example.myapplication.controller.util.button.listActivity.ButtonPanel;
+import com.example.myapplication.model.EntityAisle;
 import com.example.myapplication.model.EntityArticle;
 import com.example.myapplication.model.EntityEmployee;
+
+import java.util.ArrayList;
 
 public class AddProductPopUp extends AisleSpinnerPopUp {
 
@@ -43,6 +47,22 @@ public class AddProductPopUp extends AisleSpinnerPopUp {
         // prepare the button and the comportment
 
         this.mButtonSubmit = (ImageButton) findViewById(R.id.btnSubmit);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        /*
+        Check if the user can select the  real value of the aisle
+         */
+        if (!this.mCOwner.isAdmin()){
+            this.mProductAisle.setVisibility(View.INVISIBLE);
+            ArrayList<EntityAisle> list = new ArrayList<EntityAisle>();
+            list.add(this.mCOwner.getEntityEmployee().getEntityAisle());
+            setContentOfSpinner(list);
+        }
+
     }
 
     @Override
