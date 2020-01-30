@@ -96,7 +96,7 @@ public class ShowProductPopUp extends DeleteProductPopUp {
             this.mCOwner.refreshProductList();
         }
         catch(Exception e ){ // if the formular is not valid don't do anything just remove the pop-up
-
+            Log.e(TAG, "onSubmit: error when submit productPopup ",e );
             Log.d(TAG, "onSubmit: invalid formular");
         }
     }

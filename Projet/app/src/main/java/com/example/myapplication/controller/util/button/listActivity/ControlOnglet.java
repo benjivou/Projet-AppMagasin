@@ -10,6 +10,7 @@ import android.widget.ListView;
 import androidx.annotation.Nullable;
 
 import com.example.myapplication.config.ConfigFront;
+import com.example.myapplication.controller.PopUp.ShowEmployeePopUp;
 import com.example.myapplication.controller.PopUp.ShowProductPopUp;
 import com.example.myapplication.dao.ArticleDAO;
 import com.example.myapplication.dao.EmployeeDAO;
@@ -72,8 +73,12 @@ public abstract class ControlOnglet extends ButtonOnglet implements AdapterView.
 
     public void refreshAll(){
         Log.d(TAG, "refreshAll: U refresh");
-        refreshEmployeeList();
-        refreshProductList();
+
+        if (isModeProductIsClicked())
+            refreshProductList();
+        else
+            refreshEmployeeList();
+
     }
 
     public void setEmployeeArrayAdapter(ArrayList<EntityEmployee>  employeeArrayList) {
@@ -112,6 +117,17 @@ public abstract class ControlOnglet extends ButtonOnglet implements AdapterView.
                     entityArticle);
             pop.show();
 
+        }
+        else{
+            EntityEmployee entityEmployee = this.mEmployeeList.get(position);
+            Log.d(TAG, "onItemClick: u select "+ entityEmployee.getIdEmployee());
+            ShowEmployeePopUp pop = new ShowEmployeePopUp(
+                    this.getEntityEmployee(),
+                    this,
+                    entityEmployee
+                    );
+
+            pop.show();
         }
     }
 }

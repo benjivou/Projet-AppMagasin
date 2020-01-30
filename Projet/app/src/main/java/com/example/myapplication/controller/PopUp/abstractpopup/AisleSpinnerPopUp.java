@@ -7,10 +7,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.example.myapplication.config.ConfigFront;
-import com.example.myapplication.controller.util.button.listActivity.ButtonPanel;
 import com.example.myapplication.controller.util.button.listActivity.ControlOnglet;
 import com.example.myapplication.model.EntityAisle;
-import com.example.myapplication.model.EntityArticle;
 import com.example.myapplication.model.EntityEmployee;
 
 import java.util.ArrayList;
@@ -18,7 +16,7 @@ import java.util.ArrayList;
 /**
  * Created by Benjamin Vouillon on 27,January,2020
  */
-public abstract class AisleSpinnerPopUp extends SubmitControllerPopUp implements AdapterView.OnItemSelectedListener {
+public abstract class AisleSpinnerPopUp extends MainPopUp implements AdapterView.OnItemSelectedListener {
 
     private static final String TAG = "AisleSpinnerPopUp";
     

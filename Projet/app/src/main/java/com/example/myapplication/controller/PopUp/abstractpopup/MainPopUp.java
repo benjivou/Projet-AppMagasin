@@ -3,6 +3,8 @@ package com.example.myapplication.controller.PopUp.abstractpopup;
 import android.app.Activity;
 import android.app.Dialog;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 
 import androidx.annotation.Nullable;
 
@@ -19,8 +21,11 @@ import com.example.myapplication.model.EntityEmployee;
 
 import java.util.ArrayList;
 
-public abstract class MainPopUp extends Dialog {
+public abstract class MainPopUp extends Dialog implements View.OnClickListener {
+    private static final String TAG_BUTTON_SUBMIT = "submit";
 
+    // Front
+    protected ImageButton mButtonSubmit;
     // Attributs
     protected AisleDAO mAisleDAO;
     protected EmployeeDAO mEmployeeDAO;
@@ -67,4 +72,28 @@ public abstract class MainPopUp extends Dialog {
 
         return newList;
     }
+
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mButtonSubmit.setTag(TAG_BUTTON_SUBMIT);
+        mButtonSubmit.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(TAG_BUTTON_SUBMIT.equals(v.getTag()) &&isAllFieldsValide() ){
+            onSubmit();
+            dismiss();
+        }
+    }
+    protected abstract void onSubmit();
+
+    /**
+     * Check if we can submit this formular
+     * @return
+     */
+    protected abstract boolean isAllFieldsValide();
 }

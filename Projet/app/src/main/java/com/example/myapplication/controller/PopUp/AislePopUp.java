@@ -8,12 +8,12 @@ import android.widget.ImageButton;
 import androidx.annotation.Nullable;
 
 import com.example.myapplication.R;
-import com.example.myapplication.controller.PopUp.abstractpopup.SubmitControllerPopUp;
+import com.example.myapplication.controller.PopUp.abstractpopup.MainPopUp;
 import com.example.myapplication.controller.util.button.listActivity.ButtonPanel;
 import com.example.myapplication.model.EntityAisle;
 import com.example.myapplication.model.EntityEmployee;
 
-public class AislePopUp extends SubmitControllerPopUp {
+public class AislePopUp extends MainPopUp {
 
 
     // Tag
