@@ -227,8 +227,8 @@ public class ArticleDAO  extends ManagerDAO{
 
         try {
             rowCount = sqLiteDatabase.update(ConfigDAO.TABLE_ARTICLE, contentValues,
-                    ConfigDAO.COLUMN_ARTICLE_ID + " = ? ",
-                    new String[] {String.valueOf( entityArticle.getIdArticle())});
+                    ConfigDAO.COLUMN_ARTICLE_ID + " =  " + entityArticle.getIdArticle(),
+                    null);
         } catch (SQLiteException e){
             Log.d(TAG, "insertUpdate: ");
             Toast.makeText(this.mExecutionContext, e.getMessage(), Toast.LENGTH_LONG).show();

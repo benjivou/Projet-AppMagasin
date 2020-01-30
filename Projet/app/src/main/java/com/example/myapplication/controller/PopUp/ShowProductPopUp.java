@@ -83,7 +83,8 @@ public class ShowProductPopUp extends DeleteProductPopUp {
 
 
             //Create Article
-            EntityArticle entityArticle = new EntityArticle(0,
+            EntityArticle entityArticle = new EntityArticle(
+                    Integer.valueOf(mProductRef.getText().toString()),
                     mProductName.getText().toString(),
                     mPrice,
                     mQuantity,
@@ -91,7 +92,8 @@ public class ShowProductPopUp extends DeleteProductPopUp {
 
             //Insert Article
             mArticleDAO.insertUpdate(entityArticle);
-            Log.d(TAG, "onItemClick: OnSubmit : article" + entityArticle);
+            Log.d(TAG, "onItemClick: OnSubmit : article " + entityArticle);
+            this.mCOwner.refreshProductList();
         }
         catch(Exception e ){ // if the formular is not valid don't do anything just remove the pop-up
 
