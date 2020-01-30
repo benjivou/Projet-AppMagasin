@@ -1,4 +1,3 @@
 
+usquid:UselessImportCheck"JRemove this unused import 'com.example.myapplication.model.EntityArticle'.(É—ˆ¢8•†…ÿ-
 rsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¦¤›Å
-usquid:UselessImportCheck
-"JRemove this unused import 'com.example.myapplication.model.EntityArticle'.(É—ˆ¢8•†…ÿ-
