@@ -1,0 +1,6 @@
+
+squid:S1450"cRemove the "mArticleArrayAdapter" field and declare it as a local variable in the relevant methods.(èğ²ƒûÿÿÿÿ
+rsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¦¤›Å
+{squid:S1450"dRemove the "mEmployeeArrayAdapter" field and declare it as a local variable in the relevant methods.(Ğªùº
+zsquid:S1450"\Remove the "mEmployeeList" field and declare it as a local variable in the relevant methods.(½œ­ì8´Õëş-
+isquid:UselessImportCheck"FRemove this unused import 'com.example.myapplication.dao.EmployeeDAO'.(ëë!

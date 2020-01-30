@@ -32,7 +32,7 @@ public abstract class ManagerDAO {
      * Say what product the client can see
      * @return the String of SQL constrint of the user
      */
-    protected boolean modifyArticlesRules(EntityArticle article){
+    public boolean modifyArticlesRules(EntityArticle article){
         boolean canI = false;
 
         // admin rule

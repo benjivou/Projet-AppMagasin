@@ -151,23 +151,23 @@ public class EmployeeDAO extends ManagerDAO {
     }
     /**
      * Insert employee
-     * @param entityEmployeedent
+     * @param entityEmployee
 
      * @return
      */
-    public   long  insertEmployee(EntityEmployee entityEmployeedent  ){
+    public   long  insertEmployee(EntityEmployee entityEmployee  ){
 
         long id = -1;
         DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this.mExecutionContext);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put(ConfigDAO.COLUMN_EMPLOYEE_NAME, entityEmployeedent.getName());
-        contentValues.put(ConfigDAO.COLUMN_EMPLOYEE_SEX, entityEmployeedent.getSex());
-        contentValues.put(ConfigDAO.COLUMN_EMPLOYEE_PASSWORD, entityEmployeedent.getPassword());
-        contentValues.put(ConfigDAO.COLUMN_EMPLOYEE_ROLE, entityEmployeedent.getRole());
-        contentValues.put(ConfigDAO.COLUMN_EMPLOYEE_ID, entityEmployeedent.getIdEmployee());
-        contentValues.put(ConfigDAO.COLUMN_EMPLOYEE_AISLE_ID, entityEmployeedent.getEntityAisle().getIdAisle());
+        contentValues.put(ConfigDAO.COLUMN_EMPLOYEE_NAME, entityEmployee.getName());
+        contentValues.put(ConfigDAO.COLUMN_EMPLOYEE_SEX, entityEmployee.getSex());
+        contentValues.put(ConfigDAO.COLUMN_EMPLOYEE_PASSWORD, entityEmployee.getPassword());
+        contentValues.put(ConfigDAO.COLUMN_EMPLOYEE_ROLE, entityEmployee.getRole());
+        contentValues.put(ConfigDAO.COLUMN_EMPLOYEE_ID, entityEmployee.getIdEmployee());
+        contentValues.put(ConfigDAO.COLUMN_EMPLOYEE_AISLE_ID, entityEmployee.getEntityAisle().getIdAisle());
 
         try {
             id = sqLiteDatabase.insertOrThrow(ConfigDAO.TABLE_EMPLOYEE, null, contentValues);
@@ -202,12 +202,12 @@ public class EmployeeDAO extends ManagerDAO {
      * @param subjectId
      * @return
      */
-    public   boolean  deleteEmployeeById(int subjectId) {
+    public   boolean  deleteEmployeeById(String subjectId) {
         DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this.mExecutionContext);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getWritableDatabase();
 
         int row = sqLiteDatabase.delete(ConfigDAO.TABLE_EMPLOYEE,
-                ConfigDAO.COLUMN_EMPLOYEE_ID + " = ? ", new String[]{String.valueOf(subjectId)});
+                ConfigDAO.COLUMN_EMPLOYEE_ID + " LIKE ? ", new String[]{String.valueOf(subjectId)});
 
         return row > 0;
     }
@@ -259,7 +259,7 @@ public class EmployeeDAO extends ManagerDAO {
         return new ArrayList<>();
     }
 
-    public   void insertUpdate(EntityEmployee entityEmployee  ) {
+    public  void insertUpdate(EntityEmployee entityEmployee  ) {
 
         long rowCount = 0;
 
@@ -267,19 +267,22 @@ public class EmployeeDAO extends ManagerDAO {
         SQLiteDatabase sqLiteDatabase = databaseHelper.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put(ConfigDAO.COLUMN_EMPLOYEE_ID,entityEmployee.getIdEmployee());
-        contentValues.put(ConfigDAO.COLUMN_EMPLOYEE_ROLE, entityEmployee.getRole());
-        contentValues.put(ConfigDAO.COLUMN_EMPLOYEE_PASSWORD, entityEmployee.getPassword());
-        contentValues.put(ConfigDAO.COLUMN_EMPLOYEE_SEX, entityEmployee.getSex());
         contentValues.put(ConfigDAO.COLUMN_EMPLOYEE_NAME, entityEmployee.getName());
+        contentValues.put(ConfigDAO.COLUMN_EMPLOYEE_SEX, entityEmployee.getSex());
+        contentValues.put(ConfigDAO.COLUMN_EMPLOYEE_PASSWORD, entityEmployee.getPassword());
+        contentValues.put(ConfigDAO.COLUMN_EMPLOYEE_ROLE, entityEmployee.getRole());
+        contentValues.put(ConfigDAO.COLUMN_EMPLOYEE_ID, entityEmployee.getIdEmployee());
+        contentValues.put(ConfigDAO.COLUMN_EMPLOYEE_AISLE_ID, entityEmployee.getEntityAisle().getIdAisle());
 
         try {
+            
             rowCount = sqLiteDatabase.update(ConfigDAO.TABLE_EMPLOYEE, contentValues,
-                    ConfigDAO.COLUMN_EMPLOYEE_ID + " = ? ",
-                    new String[] {String.valueOf(entityEmployee.getIdEmployee())});
+                    ConfigDAO.COLUMN_EMPLOYEE_ID +" = ?"  ,
+                    new String[]{entityEmployee.getIdEmployee()}
+                    );
+            Log.i(TAG, "insertUpdate: U execute the query");
         } catch (SQLiteException e){
-            Log.d(TAG, "insertUpdate: ");
-            Toast.makeText(this.mExecutionContext, e.getMessage(), Toast.LENGTH_LONG).show();
+            Log.e(TAG, "insertUpdate: ",  e);
         } finally {
             sqLiteDatabase.close();
         }

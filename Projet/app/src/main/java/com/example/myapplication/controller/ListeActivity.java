@@ -12,9 +12,7 @@ import androidx.annotation.Nullable;
 
 
 import com.example.myapplication.R;
-import com.example.myapplication.controller.util.button.listActivity.ButtonOnglet;
 import com.example.myapplication.controller.util.button.listActivity.ButtonPanel;
-import com.example.myapplication.controller.util.button.listActivity.ControlOnglet;
 
 
 public class ListeActivity extends ButtonPanel {

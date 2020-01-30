@@ -22,11 +22,12 @@
             android:orientation="horizontal"
             android:gravity="center">
 
-            <TextView
+            <EditText
                 android:id="@+id/txtName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/none"
+                android:focusable="false"
                 android:layout_weight="0.75"
                 />
             <ImageButton
@@ -59,11 +60,12 @@
             android:orientation="horizontal"
             android:gravity="center">
 
-            <TextView
-                android:id="@+id/txtQuantité"
+            <EditText
+                android:id="@+id/txtQuantity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/none"
+                android:focusable="false"
                 android:layout_weight="0.75"
                 />
             <ImageButton
@@ -94,18 +96,19 @@
             android:orientation="horizontal"
             android:gravity="center">
 
-            <TextView
+            <EditText
                 android:id="@+id/txtPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/none"
+                android:focusable="false"
                 android:layout_weight="0.75"
                 />
             <ImageButton
                 android:id="@+id/btnModifyPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_mode_edit_black_24dp"></ImageButton>
+                android:src="@drawable/ic_mode_edit_black_24dp"/>
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
@@ -128,11 +131,12 @@
             android:orientation="horizontal"
             android:gravity="center">
 
-            <TextView
+            <EditText
                 android:id="@+id/txtRef"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/none"
+                android:focusable="false"
                 android:layout_weight="0.75"
                  />
 
@@ -147,7 +151,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.25"
-            android:text= "@string/prductfield_aisle"/>
+            android:text="@string/prductfield_aisle" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -189,7 +193,6 @@
                 android:id="@+id/btnSubmit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:src="@drawable/ic_done_black_24dp"/>
 
             <ImageButton

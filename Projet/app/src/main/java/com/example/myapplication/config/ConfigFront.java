@@ -21,4 +21,12 @@ public class ConfigFront {
     public static final String  USERNAME_SESSION = " Username";
     public static final RoleDAO SYSTEM_ROLE = RoleDAO.ADMIN;
     public static final EntityAisle SYSTEM_AISLE = new EntityAisle() ;
+
+    public static final String ERROR_USERFIELD_NAME = "Nom à définir ";
+    public static final String ERROR_USERFIELD_ID = "Matricule à définir ";
+    public static final String ERROR_PRODUCTFIELD_QUANTITY = "Quantité négative ";
+    public static final String ERROR_PRODUCTFIELD_PRIX = "Prix négatif";
+    public static final String ERROR_FIELD_NO_AISLE = "Créez une allée avant tout";
+
+
 }
