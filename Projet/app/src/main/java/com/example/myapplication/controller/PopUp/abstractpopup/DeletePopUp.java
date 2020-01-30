@@ -27,6 +27,7 @@ public abstract class DeletePopUp extends AisleSpinnerPopUp {
 
         // Tag the button
         mDeleteBtn.setTag(DELETE_BTN);
+        mDeleteBtn.setOnClickListener(this);
     }
 
     @Override

@@ -1,0 +1,7 @@
+
+wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ï¦™üÿÿÿÿ
+‘squid:UselessImportCheck
+"fRemove this unused import 'com.example.myapplication.controller.util.button.listActivity.ButtonPanel'.(æÜÀÀ8ÆÈëş-
+\squid:S1155?">Use isEmpty() to check whether the collection is empty or not.(æ¾»ö8æĞÇş-
+Lsquid:S19051".Remove this unnecessary cast to "EntityAisle".(¾Ê¸8Å×ëÂş-
+usquid:UselessImportCheck"JRemove this unused import 'com.example.myapplication.model.EntityArticle'.(É—ˆ¢8ğáÖ”ÿ-

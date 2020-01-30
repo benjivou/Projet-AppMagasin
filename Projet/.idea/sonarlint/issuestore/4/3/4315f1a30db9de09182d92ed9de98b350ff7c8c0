@@ -1,0 +1,4 @@
+
+‘squid:UselessImportCheck"fRemove this unused import 'com.example.myapplication.controller.util.button.listActivity.ButtonPanel'.(æÜÀÀ8êæÈëş-
+Rsquid:S1066&"/Merge this if statement with the enclosing one.(«©‰éùÿÿÿÿ8ôŠØÆş-
+wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ï¦™üÿÿÿÿ
