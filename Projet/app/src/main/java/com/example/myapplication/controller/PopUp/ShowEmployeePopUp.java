@@ -89,6 +89,7 @@ public class ShowEmployeePopUp extends DeletePopUp {
             Log.e(TAG, "onSubmit: error when submit employeePopup ",e );
             Log.d(TAG, "onSubmit: invalid formular");
         }
+        this.mCOwner.refreshAll();
     }
 
     @Override
