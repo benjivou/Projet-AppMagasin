@@ -40,6 +40,7 @@ public class ExampleInstrumentedTest {
         activityActivityTestRule.getActivity().getDatabasePath(ConfigDAO.DB).delete(); // Config de Test
         Log.i(TAG, "prepareDB: The DB is flushed");
         activityActivityTestRule = new ActivityTestRule<LoginActivity>(LoginActivity.class);
+
     }
     /**
      * Fail to connect:
@@ -90,29 +91,35 @@ public class ExampleInstrumentedTest {
                 .check(matches((isDisplayed())));
     }
 
-  /*  @Test
+    @Test
     public void procesAdmin() {
-        *//*
+        /*
         Write the login
-         *//*
+         */
         onView(withId(R.id.login))
                 .perform((typeText("root")),closeSoftKeyboard());
         onView(withId(R.id.password))
                 .perform((typeText(ConfigFront.DEFAULT_PASSWORD)),closeSoftKeyboard());
-        *//*
+        /*
         Click on the submit button
-         *//*
+         */
         onView(withId(R.id.btnSubmit))
                 .perform(click());
 
-        *//*
+        /*
         Check the result of the new activity
-         *//*
+         */
+        onView(withId(R.id.password))
+                .perform((typeText("Tutu1234")),closeSoftKeyboard());
+        onView(withId(R.id.password2))
+                .perform((typeText("Tutu1234")),closeSoftKeyboard());
 
         onView(withId(R.id.password2))                      // Check if the password2 field is displayed
                 .check(matches(isDisplayed()));
+        onView(withId(R.id.btnSubmit))
+                .perform(click());
 
 
 
-    }*/
+    }
 }
