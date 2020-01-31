@@ -24,12 +24,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public static DatabaseHelper getInstance(Context context) {
-        if(databaseHelper==null){
-            synchronized (DatabaseHelper.class) {
-                if(databaseHelper==null)
-                    databaseHelper = new DatabaseHelper(context);
-            }
+
+        synchronized (DatabaseHelper.class) {
+            if(databaseHelper==null)
+                databaseHelper = new DatabaseHelper(context);
         }
+
         return databaseHelper;
     }
 
@@ -73,8 +73,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("PRAGMA foreign_keys=ON;");
 
 
-       /* db.execSQL(CREATE_SUBJECT_TABLE);*/
-        // TO-DO
+
 
         Log.d(TAG, "onCreate: "+ "DB Create");
 
@@ -84,7 +83,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop older table if existed
         db.execSQL("DROP TABLE IF EXISTS " + ConfigDAO.TABLE_EMPLOYEE);
-        /*db.execSQL("DROP TABLE IF EXISTS " + Config.TABLE_SUBJECT);*/
+
 
         // Create tables again
         onCreate(db);
