@@ -1,14 +1,0 @@
-
-squid:S1319—"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(ûËÓÈøÿÿÿÿ
-squid:S1319È"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(”ÿ¶üÿÿÿÿ
-osquid:S00117Í"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(­øôêüÿÿÿÿ
-esquid:S1192Œ"NDefine a constant instead of duplicating this literal "getAllAisle: " 3 times.(¾Õã
-nsquid:S1192"QDefine a constant instead of duplicating this literal "Operation failed" 3 times.(ĞÕÅ£ÿÿÿÿÿ
-isquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Æçç
-osquid:S00117›"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(­øôêüÿÿÿÿ
-Ksquid:S1066~"/Merge this if statement with the enclosing one.(ä²œ¼øÿÿÿÿ
-=squid:S1170"!Make this final field static too.(É™ª‰ûÿÿÿÿ
-nsquid:S00117["QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˜Ã‰¶üÿÿÿÿ
-ksquid:S00116"NRename this field "TAG" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(É™ª‰ûÿÿÿÿ
-Lsquid:S1066ª"/Merge this if statement with the enclosing one.(ä²œ¼øÿÿÿÿ
-Lsquid:S1066Ş"/Merge this if statement with the enclosing one.(ä²œ¼øÿÿÿÿ

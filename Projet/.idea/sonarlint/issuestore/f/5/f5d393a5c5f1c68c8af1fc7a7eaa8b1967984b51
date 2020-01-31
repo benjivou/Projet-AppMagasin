@@ -1,14 +1,0 @@
-
-nsquid:S00117Y"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(öÓü¬øÿÿÿÿ
-[squid:UselessImportCheck"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8©Áòéş-
-fsquid:S00116"NRename this field "TAG" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ş±£²
-Œsquid:S1319f"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(’ìïùÿÿÿÿ
-{squid:UselessImportCheck"KRemove this unused import 'com.example.myapplication.model.EntityEmployee'.(âÊ€·ÿÿÿÿÿ8¿¬ûéş-
-Isquid:S1481‹",Remove this unused "article" local variable.(Öá×şÿÿÿÿ
-Ksquid:S1066{"/Merge this if statement with the enclosing one.(ä²œ¼øÿÿÿÿ
-Lsquid:S1066³"/Merge this if statement with the enclosing one.(ä²œ¼øÿÿÿÿ
-squid:S1319Ÿ"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(øˆûÿÿÿÿ
-jsquid:S00117¤"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(³ÂÄ“
-Qsquid:S1481Ù"-Remove this unused "rowCount" local variable.(«üÀ½øÿÿÿÿ8¹¾êş-
-8squid:S1170"!Make this final field static too.(ş±£²
-isquid:S00117k"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(³ÂÄ“

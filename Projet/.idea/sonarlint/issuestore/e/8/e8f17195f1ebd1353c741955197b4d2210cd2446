@@ -1,15 +1,0 @@
-
-Ksquid:S1066@"/Merge this if statement with the enclosing one.(ä²œ¼øÿÿÿÿ
-Œsquid:S1319d"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(²™¤ïøÿÿÿÿ
-Gsquid:S1481A"1Remove this unused "EmployeeList" local variable.(çî
-Qsquid:S1481ˆ"-Remove this unused "rowCount" local variable.(«üÀ½øÿÿÿÿ8•˜¨½ÿ-
-Ksquid:S1066{"/Merge this if statement with the enclosing one.(ä²œ¼øÿÿÿÿ
-vsquid:S00117Á"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(æÖ ¡üÿÿÿÿ8•˜¨½ÿ-
-Ssquid:S1066è"/Merge this if statement with the enclosing one.(ä²œ¼øÿÿÿÿ8•˜¨½ÿ-
-”squid:S1319×"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(‹Úæûşÿÿÿÿ8•˜¨½ÿ-
-Ysquid:UselessImportCheck"5Remove this unused import 'java.util.logging.Logger'.(ƒ¥óš
-[squid:UselessImportCheck"2Remove this unused import 'java.util.Collections'.(¢³ïÓşÿÿÿÿ
-8squid:S1170"!Make this final field static too.(ù¿§Û
-fsquid:S00116"NRename this field "TAG" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ù¿§Û
-hsquid:S00117A"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(çî
-msquid:S1192U"QDefine a constant instead of duplicating this literal "Operation failed" 3 times.(ĞÕÅ£ÿÿÿÿÿ

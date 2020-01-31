@@ -1,12 +1,0 @@
-
-hsquid:S11922"QDefine a constant instead of duplicating this literal " TEXT NOT NULL, " 4 times.(‰Ÿ˜ç
-nsquid:S001170"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(™„Ç³øÿÿÿÿ
-Dsquid:S1185^"(Remove this method to simply inherit it.(Žöå“ùÿÿÿÿ
-jsquid:S1192*"NDefine a constant instead of duplicating this literal "CREATE TABLE " 3 times.(âÜ°Èþÿÿÿÿ
-bsquid:CommentedOutCodeLineL"<This block of commented-out lines of code should be removed.(°»«®
-gsquid:CommentedOutCodeLineW"<This block of commented-out lines of code should be removed.(à¥…ûýÿÿÿÿ
-wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÃØ­·ùÿÿÿÿ
-ksquid:S1192="TDefine a constant instead of duplicating this literal " INTEGER NOT NULL, " 3 times.(óÊãð
-isquid:S00117;"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‡½³ä
-nsquid:S00117*"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(âÜ°Èþÿÿÿÿ
-Usquid:S2168"9Remove this dangerous instance of double-checked locking.(ÄÉžÂþÿÿÿÿ

@@ -1,7 +1,0 @@
-
-wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ï¦™üÿÿÿÿ
-psquid:S2293B"YReplace the type specification in this constructor call with the diamond operator ("<>").(‰«×õ
-‘squid:UselessImportCheck"fRemove this unused import 'com.example.myapplication.controller.util.button.listActivity.ButtonPanel'.(æÜÀÀ8™ÍÉëş-
-~squid:UselessImportCheck"ZRemove this unused import 'com.example.myapplication.controller.util.DisplayUtilActivity'.(û²¥Æ
-ssquid:UselessImportCheck"ORemove this unused import 'com.example.myapplication.controller.ListeActivity'.(æ¯äæ
-Dsquid:S11855"(Remove this method to simply inherit it.(Û½Ê€şÿÿÿÿ
