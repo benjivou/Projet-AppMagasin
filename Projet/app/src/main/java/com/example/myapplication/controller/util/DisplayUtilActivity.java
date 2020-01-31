@@ -1,7 +1,6 @@
 package com.example.myapplication.controller.util;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;

@@ -1,13 +1,10 @@
 package com.example.myapplication;
 
-import com.example.myapplication.config.ConfigFront;
 import com.example.myapplication.config.passwordvalidator.PasswordValidator;
 
+import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-
-
-import org.junit.Test;
 
 
 
@@ -63,11 +60,5 @@ public class ValidationTests {
 
 	}
 
-	@Test
-	public  void testErrorMessage(){
-		PasswordValidator pv = new PasswordValidator();
-		assertEquals(pv.validateWithMessages("123aaaaa").equals(ConfigFront.ERROR_CREATION_PASSWORD_CORRESPONDANCE_PROBLEM), false);
-		assertEquals(pv.validateWithMessages("123aaaaa").equals(ConfigFront.ERROR_CREATION_PASSWORD_MISSING_MAJ), true);
-	}
-	
+
 }

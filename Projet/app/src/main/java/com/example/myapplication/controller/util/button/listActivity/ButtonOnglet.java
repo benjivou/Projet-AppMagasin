@@ -2,11 +2,9 @@ package com.example.myapplication.controller.util.button.listActivity;
 
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 
 import com.example.myapplication.R;
-import com.example.myapplication.controller.util.DisplayUtilActivity;
 
 public abstract class ButtonOnglet extends SessionManagerActivity implements View.OnClickListener {
     private static final String TAG = "ButtonOnglet";

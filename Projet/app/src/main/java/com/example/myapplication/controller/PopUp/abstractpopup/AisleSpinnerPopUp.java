@@ -7,7 +7,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.example.myapplication.config.ConfigFront;
-import com.example.myapplication.controller.util.button.listActivity.ButtonPanel;
+import com.example.myapplication.controller.util.button.listActivity.ControlOnglet;
 import com.example.myapplication.model.EntityAisle;
 import com.example.myapplication.model.EntityEmployee;
 
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 /**
  * Created by Benjamin Vouillon on 27,January,2020
  */
-public abstract class AisleSpinnerPopUp extends SubmitControllerPopUp implements AdapterView.OnItemSelectedListener {
+public abstract class AisleSpinnerPopUp extends MainPopUp implements AdapterView.OnItemSelectedListener {
 
     private static final String TAG = "AisleSpinnerPopUp";
     
@@ -31,20 +31,13 @@ public abstract class AisleSpinnerPopUp extends SubmitControllerPopUp implements
         super.onStart();
         
         //getAll aisle
-        mListAisle = mAisleDAO.getAll();
-        checkList();
-        mListNameAisle = modifyType(mListAisle);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<> (this.mActivity,android.R.layout.simple_list_item_1,mListNameAisle);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mProductAisle.setAdapter(arrayAdapter);
+
+        setContentOfSpinner(mAisleDAO.getAll());
         mProductAisle.setOnItemSelectedListener(this);
-
-
-
 
     }
 
-    public AisleSpinnerPopUp(EntityEmployee entityEmployee, ButtonPanel activity) {
+    public AisleSpinnerPopUp(EntityEmployee entityEmployee, ControlOnglet activity) {
         super(entityEmployee, activity);
     }
 
@@ -62,14 +55,55 @@ public abstract class AisleSpinnerPopUp extends SubmitControllerPopUp implements
     }
 
     /**
-     * Check if we have some aisle else kill the pop-up
+     * Check if we have some aisle else display an error message
      */
     private void checkList(){
         if(mListAisle.size() == 0){
-            this.mBtActivity.displayError(ConfigFront.ERROR_FIELD_NO_AISLE);
+            this.mCOwner.displayError(ConfigFront.ERROR_FIELD_NO_AISLE);
 
         }else{
             mSelectedAisle = mListAisle.get(0);
         }
+    }
+
+    /**
+     * Set the Spinner to the position of this aisle
+     * @param entityAisle the entity is necessary in the attribute mListAisle
+     */
+    protected void setSpinnerToAisle(EntityAisle entityAisle){
+        /*
+        get the position of the aisle
+         */
+        int count = 0;
+        for (EntityAisle ea:
+                this.mListAisle
+             ) {
+
+            if (entityAisle.equals(ea)){
+                break;
+            }
+
+            count++;
+        }
+
+        /*
+        Set the spinner position
+         */
+        this.mProductAisle.setSelection(count);
+    }
+
+    /**
+     * Set the spinner content to the list
+     * @param entityAisleArrayList
+     */
+    protected void setContentOfSpinner(ArrayList<EntityAisle> entityAisleArrayList){
+
+        this.mListAisle = entityAisleArrayList;
+        checkList();
+        this.mListNameAisle = modifyType(mListAisle);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<> (this.mActivity,android.R.layout.simple_list_item_1,mListNameAisle);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mProductAisle.setAdapter(arrayAdapter);
+        mProductAisle.setOnItemSelectedListener(this);
     }
 }

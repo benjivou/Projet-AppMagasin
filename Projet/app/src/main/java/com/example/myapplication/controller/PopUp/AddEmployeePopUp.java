@@ -1,6 +1,7 @@
 package com.example.myapplication.controller.PopUp;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
@@ -18,7 +19,7 @@ import com.example.myapplication.model.EntityEmployee;
 
 public class AddEmployeePopUp extends AisleSpinnerPopUp implements RadioGroup.OnCheckedChangeListener {
 
-
+    private static final String TAG = "AddEmployeePopUp";
     EditText mEmployeeName,mEmployeeMatricule;
     RadioButton mRadioButton;
     RadioGroup mRadioGroup;
@@ -56,12 +57,12 @@ public class AddEmployeePopUp extends AisleSpinnerPopUp implements RadioGroup.On
         EntityEmployee employee = new EntityEmployee(
                 mId,
                 mName,
-                mPassword,
                 mSex,
+                mPassword,
                 RoleDAO.USER,
                 mSelectedAisle
         );
-
+        Log.d(TAG, "onSubmit: the new employee have as new password " + employee.getPassword() );
         this.mEmployeeDAO.insertEmployee(employee);
     }
 
@@ -80,11 +81,11 @@ public class AddEmployeePopUp extends AisleSpinnerPopUp implements RadioGroup.On
     @Override
     protected boolean isAllFieldsValide() {
         if(mEmployeeName.getText().toString().isEmpty()){
-            this.mBtActivity.displayError(ConfigFront.ERROR_USERFIELD_NAME);
+            this.mCOwner.displayError(ConfigFront.ERROR_USERFIELD_NAME);
             return false;
         }
         if(mEmployeeMatricule.getText().toString().isEmpty()){
-            this.mBtActivity.displayError(ConfigFront.ERROR_USERFIELD_ID);
+            this.mCOwner.displayError(ConfigFront.ERROR_USERFIELD_ID);
             return false;
         }
         return true;

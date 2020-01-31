@@ -2,8 +2,6 @@ package com.example.myapplication.model;
 
 import com.example.myapplication.dao.RoleDAO;
 
-import static com.example.myapplication.config.ConfigFront.DEFAULT_PASSWORD;
-
 /**
  * This class represent a employee
  * @<version 1.0

@@ -12,10 +12,8 @@ import com.example.myapplication.Database.DatabaseHelper;
 import com.example.myapplication.config.ConfigDAO;
 import com.example.myapplication.model.EntityAisle;
 import com.example.myapplication.model.EntityArticle;
-import com.example.myapplication.model.EntityEmployee;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * This class represent a database access for the employee table
@@ -73,7 +71,7 @@ public class ArticleDAO  extends ManagerDAO{
 
         int row = sqLiteDatabase.delete(ConfigDAO.TABLE_ARTICLE,
                 ConfigDAO.COLUMN_ARTICLE_ID + " = ? ", new String[]{String.valueOf(subjectId)});
-
+        Log.d(TAG, "deleteArticleById: here the dbanswer");
         return row > 0;
     }
     /**
@@ -227,8 +225,8 @@ public class ArticleDAO  extends ManagerDAO{
 
         try {
             rowCount = sqLiteDatabase.update(ConfigDAO.TABLE_ARTICLE, contentValues,
-                    ConfigDAO.COLUMN_ARTICLE_ID + " = ? ",
-                    new String[] {String.valueOf( entityArticle.getIdArticle())});
+                    ConfigDAO.COLUMN_ARTICLE_ID + " =  " + entityArticle.getIdArticle(),
+                    null);
         } catch (SQLiteException e){
             Log.d(TAG, "insertUpdate: ");
             Toast.makeText(this.mExecutionContext, e.getMessage(), Toast.LENGTH_LONG).show();

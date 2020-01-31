@@ -1,6 +1,6 @@
 package com.example.myapplication.model;
 
-import java.util.ArrayList;
+import java.util.Objects;
 
 
 /**
@@ -19,14 +19,7 @@ public class EntityAisle {
      * The aisle name
      */
     private String name;
-    /**
-     * The employee responsible of the aisle
-     */
-    private EntityEmployee employee;
-    /**
-     * The article list
-     */
-    private ArrayList<EntityArticle> listArticle;
+
 
 
     /**
@@ -42,24 +35,8 @@ public class EntityAisle {
     public EntityAisle(int idAisle, String name){
         this.idAisle = idAisle;
         this.name = name;
-        this.listArticle = new  ArrayList<EntityArticle>();
     }
 
-    /**
-     * The copy constructor
-     * @param idAisle : int
-     * @param name : String
-     * @param employee : EntityEnmployee
-     * @param listArticle : EntityArticle
-     */
-    public EntityAisle(int idAisle, String name, EntityEmployee employee, ArrayList<EntityArticle> listArticle){
-        this.idAisle = idAisle;
-        this.name = name;
-        this.employee = employee;
-        this.listArticle = new  ArrayList<EntityArticle>();
-        this.listArticle = listArticle;
-
-    }
 
     /*Getters & Setters*/
     public int getIdAisle() {
@@ -79,22 +56,20 @@ public class EntityAisle {
         this.name = name;
     }
 
-    public EntityEmployee getEmployee() {
-        return employee;
+
+
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        EntityAisle that = (EntityAisle) o;
+        return idAisle == that.idAisle;
     }
 
-    public void setEmployee(EntityEmployee employee) {
-        this.employee = employee;
+    @Override
+    public int hashCode() {
+        return Objects.hash(idAisle);
     }
-
-
-    public ArrayList<EntityArticle> getListArticle() {
-        return listArticle;
-    }
-
-    public void setListArticle(ArrayList<EntityArticle> listArticle) {
-        this.listArticle = listArticle;
-    }
-
-
 }

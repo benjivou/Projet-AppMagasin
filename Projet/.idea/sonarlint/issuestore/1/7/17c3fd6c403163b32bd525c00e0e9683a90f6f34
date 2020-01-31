@@ -1,5 +1,0 @@
-
-Xsquid:UselessImportCheck"4Remove this unused import 'android.content.Context'.(©Κ‰θ
-8squid:S1170"!Make this final field static too.(±ς¨
-fsquid:S00116"NRename this field "TAG" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(±ς¨
-msquid:S2068N"V'Password' detected in this expression, review this potentially hard-coded credential.(°τη‚

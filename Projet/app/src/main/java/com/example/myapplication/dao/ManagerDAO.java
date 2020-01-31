@@ -5,7 +5,6 @@ import android.util.Log;
 
 import com.example.myapplication.model.EntityAisle;
 import com.example.myapplication.model.EntityArticle;
-import com.example.myapplication.model.EntityEmployee;
 
 /**
  * The goal is to Manage the permission of user
@@ -32,7 +31,7 @@ public abstract class ManagerDAO {
      * Say what product the client can see
      * @return the String of SQL constrint of the user
      */
-    protected boolean modifyArticlesRules(EntityArticle article){
+    public boolean modifyArticlesRules(EntityArticle article){
         boolean canI = false;
 
         // admin rule
