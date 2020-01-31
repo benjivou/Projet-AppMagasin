@@ -92,6 +92,7 @@ public class FirstConnexionActivity extends DisplayUtilActivity {
          */
 
         EntityEmployee entityEmployee = mCurrentUser.getByMatricule(mMatricule);
+        Log.d(TAG, "changeActivity: the current user is " + entityEmployee.toString());
         entityEmployee.setPassword(mPassword2.getText().toString());
         mCurrentUser.insertUpdate(entityEmployee);
         Log.d(TAG, "changeActivity: DBContent" + mCurrentUser.getByMatricule(mMatricule));

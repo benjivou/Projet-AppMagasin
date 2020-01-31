@@ -1,11 +1,15 @@
 package com.example.myapplication;
 
+import android.util.Log;
+
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.rule.ActivityTestRule;
 
+import com.example.myapplication.config.ConfigDAO;
 import com.example.myapplication.config.ConfigFront;
 import com.example.myapplication.controller.LoginActivity;
 
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,9 +31,16 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
  */
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
+    private static final String TAG = "ExampleInstrumentedTest";
     @Rule
     public ActivityTestRule<LoginActivity> activityActivityTestRule = new ActivityTestRule<LoginActivity>(LoginActivity.class);
 
+    @Before
+    public void prepareDB(){
+        activityActivityTestRule.getActivity().getDatabasePath(ConfigDAO.DB).delete(); // Config de Test
+        Log.i(TAG, "prepareDB: The DB is flushed");
+        activityActivityTestRule = new ActivityTestRule<LoginActivity>(LoginActivity.class);
+    }
     /**
      * Fail to connect:
      * "Login do not exist"

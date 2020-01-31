@@ -68,7 +68,7 @@ public class AisleDAO extends ManagerDAO{
      *
      * @return
      */
-    public   boolean  deleteArticleById(int subjectId) {
+    public   boolean  deleteById(int subjectId) {
         DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this.mExecutionContext);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getWritableDatabase();
 
@@ -156,8 +156,8 @@ public class AisleDAO extends ManagerDAO{
 
         Cursor cursor = null;
         try {
-
-            cursor = sqLiteDatabase.query(ConfigDAO.TABLE_AISLE, null,null , null, null, null, null, null);
+            // constraint of not sys_admin
+            cursor = sqLiteDatabase.query(ConfigDAO.TABLE_AISLE, null,ConfigDAO.COLUMN_RAYON_ID + " > 1" , null, null, null, null, null);
 
             /**
              // If you want to execute raw query then uncomment below 2 lines. And comment out above line.
@@ -172,7 +172,6 @@ public class AisleDAO extends ManagerDAO{
                     do {
                         int id = cursor.getInt(cursor.getColumnIndex(ConfigDAO.COLUMN_RAYON_ID));
                         String name = cursor.getString(cursor.getColumnIndex(ConfigDAO.COLUMN_RAYON_NAME));
-
 
                         AisleList.add(new EntityAisle(id, name));
                     }   while (cursor.moveToNext());

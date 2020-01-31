@@ -11,6 +11,7 @@ import com.example.myapplication.R;
 import com.example.myapplication.config.ConfigDAO;
 import com.example.myapplication.config.ConfigFront;
 import com.example.myapplication.controller.util.DisplayUtilActivity;
+import com.example.myapplication.dao.AisleDAO;
 import com.example.myapplication.model.EntityAisle;
 import com.example.myapplication.model.EntityEmployee;
 
@@ -118,7 +119,7 @@ public class LoginActivity extends DisplayUtilActivity {
 
 
 
-       //this.getDatabasePath(ConfigDAO.DB).delete(); // Config de Test
+        this.getDatabasePath(ConfigDAO.DB).delete(); // Config de Test
 
 
         if(  !this.getDatabasePath(ConfigDAO.DB).exists()) {
@@ -126,14 +127,37 @@ public class LoginActivity extends DisplayUtilActivity {
 
             // database doesn't exist yet.
 
+
+
+            AisleDAO aisleInputer = new AisleDAO(
+                    ConfigFront.SYSTEM_ROLE,
+                    ConfigFront.SYSTEM_AISLE,
+                    this
+            );
+
+            EntityAisle sysAisle =new EntityAisle(
+                    1,
+                    "admin_Sys");
+
+
+            /*
+            Insert the special aisle
+             */
+            aisleInputer.insertAisle(sysAisle);
+            /*
+            Insert the root user
+             */
             mCurrentUser.insertEmployee(new EntityEmployee(
                     "root",
                     "root",
                     "M",
                     DEFAULT_PASSWORD,
                     ADMIN.getSring(),
-                    new EntityAisle()
+                    sysAisle
             ));
+
+
+
             Log.d(TAG, "initBDD: We add the root user");
 
             Log.d(TAG, "initBDD: first root " + mCurrentUser.getByMatricule("root"));
