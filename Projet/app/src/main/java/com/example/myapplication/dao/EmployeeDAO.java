@@ -71,7 +71,7 @@ public class EmployeeDAO extends ManagerDAO {
 
                         AisleDAO aisleDAO = new AisleDAO(this.mCurrentRole,this.mCurrentAisle,this.mExecutionContext);
                         EntityAisle entityAisle = aisleDAO.getByMatricule(aisleId);
-
+                        Log.i(TAG, "getByMatricule: aisle "+entityAisle.getName());
 
                         result = new EntityEmployee(id, name, sex, password, role,entityAisle);
                     }   while (cursor.moveToNext());
