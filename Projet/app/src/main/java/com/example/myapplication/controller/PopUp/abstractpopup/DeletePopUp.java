@@ -4,7 +4,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
-import com.example.myapplication.controller.util.button.listActivity.ButtonPanel;
 import com.example.myapplication.controller.util.button.listActivity.ControlOnglet;
 import com.example.myapplication.model.EntityEmployee;
 

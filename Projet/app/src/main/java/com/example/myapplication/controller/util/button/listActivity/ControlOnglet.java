@@ -13,7 +13,6 @@ import com.example.myapplication.config.ConfigFront;
 import com.example.myapplication.controller.PopUp.ShowEmployeePopUp;
 import com.example.myapplication.controller.PopUp.ShowProductPopUp;
 import com.example.myapplication.dao.ArticleDAO;
-import com.example.myapplication.dao.EmployeeDAO;
 import com.example.myapplication.model.EntityArticle;
 import com.example.myapplication.model.EntityEmployee;
 

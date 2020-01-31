@@ -1,13 +1,10 @@
 package com.example.myapplication;
 
-import com.example.myapplication.config.ConfigFront;
 import com.example.myapplication.config.passwordvalidator.PasswordValidator;
 
+import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-
-
-import org.junit.Test;
 
 
 

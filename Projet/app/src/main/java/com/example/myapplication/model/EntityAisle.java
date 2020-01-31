@@ -1,6 +1,5 @@
 package com.example.myapplication.model;
 
-import java.util.ArrayList;
 import java.util.Objects;
 
 

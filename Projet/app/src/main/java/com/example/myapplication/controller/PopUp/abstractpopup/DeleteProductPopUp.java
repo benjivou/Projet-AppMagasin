@@ -2,7 +2,6 @@ package com.example.myapplication.controller.PopUp.abstractpopup;
 
 import android.util.Log;
 
-import com.example.myapplication.controller.util.button.listActivity.ButtonPanel;
 import com.example.myapplication.controller.util.button.listActivity.ControlOnglet;
 import com.example.myapplication.model.EntityArticle;
 import com.example.myapplication.model.EntityEmployee;

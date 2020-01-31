@@ -3,7 +3,6 @@ package com.example.myapplication.controller.PopUp;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -11,10 +10,8 @@ import androidx.annotation.Nullable;
 
 import com.example.myapplication.R;
 import com.example.myapplication.controller.PopUp.abstractpopup.DeletePopUp;
-import com.example.myapplication.controller.util.button.listActivity.ButtonPanel;
 import com.example.myapplication.controller.util.button.listActivity.ControlOnglet;
 import com.example.myapplication.model.EntityAisle;
-import com.example.myapplication.model.EntityArticle;
 import com.example.myapplication.model.EntityEmployee;
 
 import java.util.ArrayList;

@@ -9,7 +9,6 @@ import android.widget.Spinner;
 
 import androidx.annotation.Nullable;
 
-
 import com.example.myapplication.R;
 import com.example.myapplication.config.ConfigFront;
 import com.example.myapplication.controller.PopUp.abstractpopup.AisleSpinnerPopUp;

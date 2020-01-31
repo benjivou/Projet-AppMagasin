@@ -9,9 +9,6 @@ import android.widget.ImageButton;
 import androidx.annotation.Nullable;
 
 import com.example.myapplication.R;
-import com.example.myapplication.controller.ListeActivity;
-import com.example.myapplication.controller.util.DisplayUtilActivity;
-import com.example.myapplication.controller.util.button.listActivity.ButtonPanel;
 import com.example.myapplication.controller.util.button.listActivity.ControlOnglet;
 import com.example.myapplication.dao.AisleDAO;
 import com.example.myapplication.dao.ArticleDAO;

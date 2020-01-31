@@ -5,7 +5,6 @@ import android.util.Log;
 
 import com.example.myapplication.model.EntityAisle;
 import com.example.myapplication.model.EntityArticle;
-import com.example.myapplication.model.EntityEmployee;
 
 /**
  * The goal is to Manage the permission of user

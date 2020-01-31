@@ -8,7 +8,6 @@ import androidx.annotation.Nullable;
 import com.example.myapplication.config.ConfigFront;
 import com.example.myapplication.controller.util.DisplayUtilActivity;
 import com.example.myapplication.dao.RoleDAO;
-import com.example.myapplication.model.EntityArticle;
 import com.example.myapplication.model.EntityEmployee;
 
 /**

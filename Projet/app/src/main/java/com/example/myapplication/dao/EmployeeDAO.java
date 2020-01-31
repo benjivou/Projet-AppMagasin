@@ -15,9 +15,7 @@ import com.example.myapplication.model.EntityAisle;
 import com.example.myapplication.model.EntityEmployee;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.logging.Logger;
 
 /**
  * This class represent a database access for the employee table
