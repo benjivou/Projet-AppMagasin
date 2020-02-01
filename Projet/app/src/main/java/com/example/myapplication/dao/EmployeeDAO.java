@@ -91,7 +91,7 @@ public class EmployeeDAO extends ManagerDAO {
     }
 
     /**
-     * Get a employee
+     * Get a employee by employee name
      * @param nameWanted
      * @return
      */
@@ -148,7 +148,7 @@ public class EmployeeDAO extends ManagerDAO {
         return employeeList;
     }
     /**
-     * Insert employee
+     * Insert employee in the database.
      * @param entityEmployee
 
      * @return
@@ -210,6 +210,10 @@ public class EmployeeDAO extends ManagerDAO {
         return row > 0;
     }
 
+    /**
+     * This method allow us to get all employee in the database.
+     * @return
+     */
     public   ArrayList<EntityEmployee> getAllEmployee(){
         DatabaseHelper databaseHelper = DatabaseHelper.getInstance(this.mExecutionContext);
         SQLiteDatabase sqLiteDatabase = databaseHelper.getReadableDatabase();
@@ -257,6 +261,10 @@ public class EmployeeDAO extends ManagerDAO {
         return new ArrayList<>();
     }
 
+    /**
+     * This method allows us to update the database.
+     * @param entityEmployee
+     */
     public  void insertUpdate(EntityEmployee entityEmployee  ) {
 
         long rowCount = 0;

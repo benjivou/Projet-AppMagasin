@@ -17,6 +17,7 @@ import com.example.myapplication.model.EntityEmployee;
 import java.util.ArrayList;
 
 /**
+ * This class allow us to show all the information about the employee
  * Created by Benjamin Vouillon on 30,January,2020
  */
 public class ShowEmployeePopUp extends DeletePopUp {
@@ -38,7 +39,10 @@ public class ShowEmployeePopUp extends DeletePopUp {
         super(entityEmployee, activity);
         mSelectedEmployee = target;
     }
-
+    /**
+     * This method allow us to bind the attribute with the view
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +64,10 @@ public class ShowEmployeePopUp extends DeletePopUp {
         init();
     }
 
+    /**
+     * This method allow us to show all informations about employee when the user click on the name
+     * @param v
+     */
     @Override
     public void onClick(View v) {
         super.onClick(v);
@@ -70,11 +78,16 @@ public class ShowEmployeePopUp extends DeletePopUp {
         }
     }
 
+    /**
+     * This method delete the employee in the dabatase when the user click on the delete button
+     */
     @Override
     protected void onDelete() {
         this.mEmployeeDAO.deleteEmployeeById(this.mSelectedEmployee.getIdEmployee());
     }
-
+    /**
+     * This method contain all action will do once you submit
+     */
     @Override
     protected void onSubmit() {
         try{
@@ -98,6 +111,9 @@ public class ShowEmployeePopUp extends DeletePopUp {
         return true;
     }
 
+    /**
+     * This method initialize the view with all the information about the employee name clicked.
+     */
     private void init(){
 
 

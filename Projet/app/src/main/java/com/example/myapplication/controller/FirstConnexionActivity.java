@@ -19,6 +19,11 @@ import com.example.myapplication.model.EntityEmployee;
 
 import static com.example.myapplication.config.ConfigFront.USERNAME_SESSION;
 
+/**
+ * This class correspond to the first activity which is called in second after the loginActivity
+ * @<version 1.0
+ * @author Leslie Kiav & Benjamin Vouillon
+ */
 public class FirstConnexionActivity extends DisplayUtilActivity {
 
     ImageButton mButton;
@@ -26,6 +31,10 @@ public class FirstConnexionActivity extends DisplayUtilActivity {
     private static final String TAG = "FisrtLoginActivity";
     String mMatricule;
 
+    /**
+     * This method allow us to bind the attribute with the view
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,6 +92,9 @@ public class FirstConnexionActivity extends DisplayUtilActivity {
 
     }
 
+    /**
+     * This method allow us to change the activity
+     */
     private void changeActivity(){
 
         Intent newActivity;

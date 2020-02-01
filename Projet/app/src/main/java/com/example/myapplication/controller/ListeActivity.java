@@ -15,7 +15,11 @@ import com.example.myapplication.R;
 import com.example.myapplication.controller.util.button.listActivity.ButtonPanel;
 import com.example.myapplication.dao.RoleDAO;
 
-
+/**
+ * This class correspond to the third activity which is called in third after the firstConnexionActivity.
+ * @<version 1.0
+ * @author Leslie Kiav & Benjamin Vouillon
+ */
 public class ListeActivity extends ButtonPanel {
     private static final String TAG = "ListeActivity";
     /*
@@ -28,7 +32,10 @@ public class ListeActivity extends ButtonPanel {
     TextView mEmployeInfo;
 
 
-
+    /**
+     * This method allow us to bind the attribute with the view
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

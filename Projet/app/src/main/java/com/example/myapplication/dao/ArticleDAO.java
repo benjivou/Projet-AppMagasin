@@ -29,7 +29,7 @@ public class ArticleDAO  extends ManagerDAO{
     }
 
     /**
-     * Insert a article
+     * Insert a article in the database
      * @param entityArticle
 
      * @return
@@ -60,7 +60,7 @@ public class ArticleDAO  extends ManagerDAO{
     }
 
     /**
-     * Delete a article
+     * Delete a article in the databases
      * @param subjectId
 
      * @return

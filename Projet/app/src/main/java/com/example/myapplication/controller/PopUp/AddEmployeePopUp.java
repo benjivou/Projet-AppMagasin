@@ -17,6 +17,11 @@ import com.example.myapplication.controller.util.button.listActivity.ButtonPanel
 import com.example.myapplication.dao.RoleDAO;
 import com.example.myapplication.model.EntityEmployee;
 
+/**
+ * This class allow us to manage the add employee pop-up
+ * @<version 1.0
+ * @author Leslie Kiav & Benjamin Vouillon
+ */
 public class AddEmployeePopUp extends AisleSpinnerPopUp implements RadioGroup.OnCheckedChangeListener {
 
     private static final String TAG = "AddEmployeePopUp";
@@ -33,6 +38,10 @@ public class AddEmployeePopUp extends AisleSpinnerPopUp implements RadioGroup.On
         super(entityEmployee, activity);
     }
 
+    /**
+     * This method allow us to bind the attribute with the view
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +58,9 @@ public class AddEmployeePopUp extends AisleSpinnerPopUp implements RadioGroup.On
         mRadioButton.performClick();
     }
 
+    /**
+     * This method contain all action will do once you submit
+     */
     @Override
     protected void onSubmit() {
         mName = mEmployeeName.getText().toString();
@@ -70,6 +82,11 @@ public class AddEmployeePopUp extends AisleSpinnerPopUp implements RadioGroup.On
         this.mCOwner.refreshAll();
     }
 
+    /**
+     * This method allow us to differenciate a man of a woman
+     * @param group
+     * @param checkedId
+     */
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         RadioButton rEnCours=(RadioButton)findViewById(checkedId);
@@ -82,6 +99,10 @@ public class AddEmployeePopUp extends AisleSpinnerPopUp implements RadioGroup.On
         }
     }
 
+    /**
+     * This method allow us to check if a field is incorrect.
+     * @return
+     */
     @Override
     protected boolean isAllFieldsValide() {
         if(mEmployeeName.getText().toString().isEmpty()){

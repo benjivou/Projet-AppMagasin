@@ -33,7 +33,7 @@ public class AisleDAO extends ManagerDAO{
 
 
     /**
-     * Insert a aisle
+     * Insert a aisle in the database
      * @param entityAisle
      *
      * @return
@@ -63,7 +63,7 @@ public class AisleDAO extends ManagerDAO{
     }
 
     /**
-     * Delete a aisle
+     * Delete a aisle in the database
      * @param subjectId
      *
      * @return

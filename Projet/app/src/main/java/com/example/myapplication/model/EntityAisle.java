@@ -57,9 +57,11 @@ public class EntityAisle {
     }
 
 
-
-
-
+    /**
+     * This method allows us to know if two aisle are equals
+     * @param o
+     * @return boolean
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -68,6 +70,10 @@ public class EntityAisle {
         return idAisle == that.idAisle;
     }
 
+    /**
+     * This method allow us to digest the data stored in an instance of the class into a hash value.
+     * @return int : hash value
+     */
     @Override
     public int hashCode() {
         return Objects.hash(idAisle);

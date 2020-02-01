@@ -19,6 +19,7 @@ import com.example.myapplication.model.EntityEmployee;
 import java.util.ArrayList;
 
 /**
+ * This class allow us to show all the information about the product
  * Created by Benjamin Vouillon on 28,January,2020
  */
 public class ShowProductPopUp extends DeleteProductPopUp {
@@ -35,7 +36,10 @@ public class ShowProductPopUp extends DeleteProductPopUp {
     public ShowProductPopUp(EntityEmployee entityEmployee, ControlOnglet activity, EntityArticle selectedArticle) {
         super(entityEmployee, activity, selectedArticle);
     }
-
+    /**
+     * This method allow us to bind the attribute with the view
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +67,9 @@ public class ShowProductPopUp extends DeleteProductPopUp {
 
         init();
     }
-
+    /**
+     * This method contain all action will do once you submit
+     */
     @Override
     protected void onSubmit() {
         try{
@@ -100,6 +106,10 @@ public class ShowProductPopUp extends DeleteProductPopUp {
         return true;
     }
 
+    /**
+     * This method allow us to show all informations about employee when the user click on the name
+     * @param v
+     */
     @Override
     public void onClick(View v) {
         super.onClick(v);

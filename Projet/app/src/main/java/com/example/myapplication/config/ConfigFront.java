@@ -3,6 +3,11 @@ package com.example.myapplication.config;
 import com.example.myapplication.dao.RoleDAO;
 import com.example.myapplication.model.EntityAisle;
 
+/**
+ * This class contains all the front configuration
+ * @<version 1.0
+ * @author Leslie Kiav & Benjamin Vouillon
+ */
 public class ConfigFront {
 
     public static final int DURATION_ERROR_MESSAGES  = 1; // 3 *2 sec long

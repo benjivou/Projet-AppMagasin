@@ -12,7 +12,11 @@ import com.example.myapplication.controller.PopUp.abstractpopup.MainPopUp;
 import com.example.myapplication.controller.util.button.listActivity.ButtonPanel;
 import com.example.myapplication.model.EntityAisle;
 import com.example.myapplication.model.EntityEmployee;
-
+/**
+ * This class allow us to manage the  add aisle pop-up
+ * @<version 1.0
+ * @author Leslie Kiav & Benjamin Vouillon
+ */
 public class AislePopUp extends MainPopUp {
 
 
@@ -27,7 +31,9 @@ public class AislePopUp extends MainPopUp {
     public AislePopUp(EntityEmployee entityEmployee, ButtonPanel activity) {
         super(entityEmployee,activity);
     }
-
+    /**
+     * This method contain all action will do once you submit
+     */
     @Override
     protected void onSubmit() {
         EntityAisle entityAisle = new EntityAisle(0,mAisle.getText().toString());
@@ -43,7 +49,10 @@ public class AislePopUp extends MainPopUp {
 
 
     }
-
+    /**
+     * This method allow us to bind the attribute with the view
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,9 +63,12 @@ public class AislePopUp extends MainPopUp {
 
     }
 
+    /**
+     * This method check if the aisleDao do not exist
+     * @return
+     */
     @Override
     protected boolean isAllFieldsValide() {
-        // Check if the aisleDao do not exist
         boolean res =  this.mAisleDAO.getByName(mAisle.getText().toString()).size() == 0;
 
         return res;

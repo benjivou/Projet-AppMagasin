@@ -13,6 +13,7 @@ import com.example.myapplication.controller.util.button.listActivity.ButtonPanel
 import com.example.myapplication.model.EntityEmployee;
 
 /**
+ * This class allow us to manage the find pop-up
  * Created by Benjamin Vouillon on 26,January,2020
  */
 public class FindPopUp extends MainPopUp {
@@ -28,7 +29,10 @@ public class FindPopUp extends MainPopUp {
         super(entityEmployee, activity);
 
     }
-
+    /**
+     * This method allow us to bind the attribute with the view
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +51,9 @@ public class FindPopUp extends MainPopUp {
         }
 
     }
-
+    /**
+     * This method contain all action will do once you submit
+     */
     @Override
     protected void onSubmit() {
         // refresh the list of elements

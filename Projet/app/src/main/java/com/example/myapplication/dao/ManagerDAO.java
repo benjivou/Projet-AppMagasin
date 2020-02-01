@@ -9,6 +9,8 @@ import com.example.myapplication.model.EntityArticle;
 /**
  * The goal is to Manage the permission of user
  * when he access to the DB
+ * @<version 1.0
+ * @author Leslie Kiav & Benjamin Vouillon
  */
 public abstract class ManagerDAO {
 

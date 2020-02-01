@@ -39,11 +39,6 @@ public class EntityArticle{
      */
     private String aisleName;
 
-    /**
-     * This is the default constructor
-     */
-    public EntityArticle(){}
-
 
     /**
      * The copy constructor

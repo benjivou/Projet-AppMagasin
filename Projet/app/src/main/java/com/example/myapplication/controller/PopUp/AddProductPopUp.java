@@ -19,6 +19,11 @@ import com.example.myapplication.model.EntityEmployee;
 
 import java.util.ArrayList;
 
+/**
+ * This class allow us to manage the add product pop-up
+ * @<version 1.0
+ * @author Leslie Kiav & Benjamin Vouillon
+ */
 public class AddProductPopUp extends AisleSpinnerPopUp {
 
     // Tag
@@ -31,7 +36,10 @@ public class AddProductPopUp extends AisleSpinnerPopUp {
     public AddProductPopUp(EntityEmployee entityEmployee, ButtonPanel activity) {
         super(entityEmployee, activity);
     }
-
+    /**
+     * This method allow us to bind the attribute with the view
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +56,9 @@ public class AddProductPopUp extends AisleSpinnerPopUp {
         this.mButtonSubmit = (ImageButton) findViewById(R.id.btnSubmit);
     }
 
+    /**
+     *This method is called as long as the device doesn't kill the activity.
+     */
     @Override
     protected void onStart() {
         super.onStart();
@@ -63,7 +74,9 @@ public class AddProductPopUp extends AisleSpinnerPopUp {
         }
 
     }
-
+    /**
+     * This method contain all action will do once you submit
+     */
     @Override
     protected void onSubmit() {
 
@@ -89,7 +102,10 @@ public class AddProductPopUp extends AisleSpinnerPopUp {
         this.mCOwner.refreshAll();
 
     }
-
+    /**
+     * This method allow us to check if a field is incorrect.
+     * @return
+     */
     @Override
     protected boolean isAllFieldsValide() {
 

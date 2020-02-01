@@ -7,6 +7,11 @@ import android.util.Log;
 
 import com.example.myapplication.config.ConfigDAO;
 
+/**
+ * This class allow us to manage the database
+ * @<version 1.0
+ * @author Leslie Kiav & Benjamin Vouillon
+ */
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String TAG = "DatabaseHelper";
     private static DatabaseHelper databaseHelper;
@@ -33,6 +38,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return databaseHelper;
     }
 
+    /**
+     * This method is called when the activity is first created.
+     * This method also provides you with a Bundle containing the activity's previously frozen state, if there was one.
+     * @param db
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
 
@@ -79,6 +89,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    /**
+     * This method allow us to drop older table if existed
+     * @param db
+     * @param oldVersion
+     * @param newVersion
+     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop older table if existed

@@ -55,6 +55,15 @@ public class EntityEmployee{
         this.entityAisle = entityAisle;
     }
 
+    /**
+     * The copy constructor
+     * @param idEmployee : String
+     * @param name : strong
+     * @param sex : String
+     * @param password : String
+     * @param role : RoleDAO
+     * @param entityAisle : EntityAisle
+     */
     public EntityEmployee(String idEmployee, String name, String sex, String password, RoleDAO role, EntityAisle entityAisle) {
         this.idEmployee = idEmployee;
         this.name = name;

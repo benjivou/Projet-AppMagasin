@@ -19,7 +19,11 @@ import static com.example.myapplication.config.ConfigFront.DEFAULT_PASSWORD;
 import static com.example.myapplication.config.ConfigFront.USERNAME_SESSION;
 import static com.example.myapplication.dao.RoleDAO.ADMIN;
 
-
+/**
+ * This class allow us to do the first activity which is the loginActivity
+ * @<version 1.0
+ * @author Leslie Kiav & Benjamin Vouillon
+ */
 public class LoginActivity extends DisplayUtilActivity {
 
     /*
@@ -32,7 +36,10 @@ public class LoginActivity extends DisplayUtilActivity {
 
 
 
-
+    /**
+     * This method allow us to bind the attribute with the view
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,7 +95,9 @@ public class LoginActivity extends DisplayUtilActivity {
     }
 
 
-
+    /**
+     * This method allow us to change the activity
+     */
     private void changeActivity(boolean isFirstConnection){
 
         Intent newActivity;
@@ -115,6 +124,9 @@ public class LoginActivity extends DisplayUtilActivity {
 
     }
 
+    /**
+     * This method allow us to initialize the database.
+     */
     public void initBDD(){
 
 
