@@ -64,6 +64,10 @@ public class AddEmployeePopUp extends AisleSpinnerPopUp implements RadioGroup.On
         );
         Log.d(TAG, "onSubmit: the new employee have as new password " + employee.getPassword() );
         this.mEmployeeDAO.insertEmployee(employee);
+        /*
+        Refresh the display
+         */
+        this.mCOwner.refreshAll();
     }
 
     @Override

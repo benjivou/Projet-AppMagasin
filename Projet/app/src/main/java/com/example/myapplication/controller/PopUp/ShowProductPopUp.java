@@ -86,7 +86,7 @@ public class ShowProductPopUp extends DeleteProductPopUp {
             //Insert Article
             mArticleDAO.insertUpdate(entityArticle);
             Log.d(TAG, "onItemClick: OnSubmit : article " + entityArticle);
-            this.mCOwner.refreshProductList();
+            this.mCOwner.refreshAll();
         }
         catch(Exception e ){ // if the formular is not valid don't do anything just remove the pop-up
             Log.e(TAG, "onSubmit: error when submit productPopup ",e );

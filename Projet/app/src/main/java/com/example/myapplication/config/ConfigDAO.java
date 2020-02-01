@@ -1,5 +1,8 @@
 package com.example.myapplication.config;
 
+/**
+ * Store all DB config Variable
+ */
 public class ConfigDAO {
     public static final String DB = "DB";
 
@@ -26,7 +29,6 @@ public class ConfigDAO {
     public static final String TABLE_AISLE = "rayon" ;
     public static final String COLUMN_RAYON_ID = "idRayon" ;
     public static final String COLUMN_RAYON_NAME = "name";
-    public static final String COLUMN_RAYON_EMPLOYEE= "employee";
 
 
 }

@@ -86,6 +86,7 @@ public class AddProductPopUp extends AisleSpinnerPopUp {
         //Insert Article
         mArticleDAO.insertArticle(entityArticle);
         Log.d(TAG, "onItemClick: OnSubmit : article" + entityArticle);
+        this.mCOwner.refreshAll();
 
     }
 
