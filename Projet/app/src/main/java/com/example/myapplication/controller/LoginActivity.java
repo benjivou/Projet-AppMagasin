@@ -119,7 +119,7 @@ public class LoginActivity extends DisplayUtilActivity {
 
 
 
-        this.getDatabasePath(ConfigDAO.DB).delete(); // Config de Test
+        //this.getDatabasePath(ConfigDAO.DB).delete(); // Config de Test
 
 
         if(  !this.getDatabasePath(ConfigDAO.DB).exists()) {
