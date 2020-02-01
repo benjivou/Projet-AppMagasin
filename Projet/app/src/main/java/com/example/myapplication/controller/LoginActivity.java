@@ -64,7 +64,7 @@ public class LoginActivity extends DisplayUtilActivity {
                 Step 2 : result
                  */
                 if(process[0] == true) {
-                  displayError("Redirecting...");
+
                     mIdEmployee = mLogin.getText().toString();                    /*
                     Step 3 : Change Activity
                      */
