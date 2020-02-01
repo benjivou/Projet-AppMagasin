@@ -66,31 +66,91 @@ public class TestListActivityRoot {
         let's start tests
          */
     }
-    /*
+/*    *//*
     Check if we have access to the database
-     */
+     *//*
     @Test
     public void checkListActivityAccess() {
 
         onView(withId(R.id.btModeProduct))
                 .check(matches(isDisplayed()));
 
+    }*/
+
+    @Test
+    public void addProductValid (){
+        createProduct();
+        /*
+        Open the product popup
+         */
+        onView(withText("tee-shirt"))
+        .perform(click());
+
+        onView(withId(R.id.txtName))
+                .check(matches(withText("tee-shirt")));
     }
 
     @Test
-    public void addProduct (){
-        /*
-       Create an aisle
-         */
+    public void addProductFail (){
+        createAisle();
 
-        onView(withId(R.id.btShoppingBasket))
+        /*
+        Click the button
+         */
+        onView(withId(R.id.btPlus))
                 .perform(click());
 
-        onView(withId(R.id.txtNomRayon))
-                .perform(typeText("Enfant"));
+        /*
+        Fill the form
+         */
+        onView(withId(R.id.txtName))
+                .perform(typeText("tee-shirt"),closeSoftKeyboard());
+
+        onView(withId(R.id.txtQuantity))
+                .perform(typeText("-1"),closeSoftKeyboard());
+        onView(withId(R.id.txtPrice))
+                .perform(typeText("45.25"),closeSoftKeyboard());
 
         onView((withId(R.id.btnSubmit)))
                 .perform(click());
+
+        onView(withText(ConfigFront.ERROR_PRODUCTFIELD_QUANTITY))
+                .inRoot(new ToastMatcher())
+                .check(matches((isDisplayed())));
+
+    }
+
+    @Test
+    public void supressProductSucess(){
+        createProduct();
+        /*
+        Check if the product was created
+         */
+        onView((withText("tee-shirt")))
+                .check(matches(isDisplayed()));
+         /*
+        Open the product popup
+         */
+        onView(withText("tee-shirt"))
+                .perform(click());
+
+        /*
+        Flush the object
+         */
+        onView(withId(R.id.btnDelete))
+                .perform(click());
+
+        /*
+        Check if the product is removed
+         */
+        onView(withText("tee-shirt"))
+                .check(doesNotExist());
+
+    }
+
+    public void createProduct(){
+
+        createAisle();
 
         /*
         Click the button
@@ -112,14 +172,21 @@ public class TestListActivityRoot {
         onView((withId(R.id.btnSubmit)))
                 .perform(click());
 
-        /*
-        Open the product popup
-         */
-        onView(withText("tee-shirt"))
-        .perform(click());
-
-        onView(withId(R.id.txtName))
-                .check(matches(withText("tee-shirt")));
     }
 
+    public void createAisle(){
+           /*
+       Create an aisle
+         */
+
+        onView(withId(R.id.btShoppingBasket))
+                .perform(click());
+
+        onView(withId(R.id.txtNomRayon))
+                .perform(typeText("Enfant"));
+
+        onView((withId(R.id.btnSubmit)))
+                .perform(click());
+
+    }
 }
